@@ -10,8 +10,8 @@ export default function Sidebar() {
   const nav = [
     { to: '/',         icon: LayoutDashboard, label: t('sidebar.dashboard') },
     { to: '/health',   icon: HeartPulse,      label: t('sidebar.healthTracker') },
-    { to: '/vet',      icon: ShieldCheck,     label: t('sidebar.vetInsurance') },
-    { to: '/food',     icon: Salad,           label: t('sidebar.foodNutrition') },
+    { to: '/costs',     icon: ShieldCheck,     label: t('sidebar.vetInsurance') },
+    { to: '/nutrition', icon: Salad,          label: t('sidebar.foodNutrition') },
     { to: '/community',icon: Users,           label: t('sidebar.community') },
   ]
 

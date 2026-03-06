@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "figma-desktop-bridge": {
+      "command": "npx",
+      "args": ["-y", "@anthropic/figma-desktop-bridge"]
+    }
+  }
+}

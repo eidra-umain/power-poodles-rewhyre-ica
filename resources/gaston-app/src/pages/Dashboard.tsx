@@ -1,19 +1,48 @@
 import { Link } from 'react-router-dom'
-import { ShoppingCart, Star, ArrowRight, ShieldCheck, Salad, MessageCircle, ChevronRight, Bone, Dumbbell, HeartPulse } from 'lucide-react'
+import {
+  ShieldCheck,
+  Salad,
+  MessageCircle,
+  ChevronRight,
+  CalendarDays,
+  Syringe,
+  Pill,
+  Stethoscope,
+  Heart,
+  Dog,
+} from 'lucide-react'
 import { useLanguage } from '../i18n/LanguageContext'
 
-// ─── Sub-components ───────────────────────────────────────────────────────────
+// ─── Health Score Ring ────────────────────────────────────────────────────────
 
-function Stars({ rating }: { rating: number }) {
+function HealthScoreRing({ score }: { score: number }) {
+  const radius = 40
+  const stroke = 6
+  const circumference = 2 * Math.PI * radius
+  const progress = (score / 100) * circumference
+  const color = score >= 80 ? 'text-green-500' : score >= 60 ? 'text-orange-400' : 'text-red-500'
+  const strokeColor = score >= 80 ? '#22c55e' : score >= 60 ? '#fb923c' : '#ef4444'
+
   return (
-    <div className="flex items-center gap-0.5">
-      {[1, 2, 3, 4, 5].map(i => (
-        <Star
-          key={i}
-          size={12}
-          className={i <= Math.round(rating) ? 'fill-orange-400 text-orange-400' : 'text-grey-300'}
+    <div className="relative flex items-center justify-center w-[100px] h-[100px]">
+      <svg width="100" height="100" className="-rotate-90">
+        <circle
+          cx="50" cy="50" r={radius}
+          fill="none" stroke="#f3f4f6" strokeWidth={stroke}
         />
-      ))}
+        <circle
+          cx="50" cy="50" r={radius}
+          fill="none" stroke={strokeColor} strokeWidth={stroke}
+          strokeLinecap="round"
+          strokeDasharray={circumference}
+          strokeDashoffset={circumference - progress}
+          className="transition-all duration-700"
+        />
+      </svg>
+      <div className="absolute flex flex-col items-center">
+        <span className={`font-rubrik font-bold text-[24px] ${color}`}>{score}</span>
+        <span className="font-text text-[10px] text-grey-500">/100</span>
+      </div>
     </div>
   )
 }
@@ -23,103 +52,53 @@ function Stars({ rating }: { rating: number }) {
 export default function Dashboard() {
   const { t } = useLanguage()
 
-  const products = [
-    {
-      id: 1,
-      category: t('cat.dryFood'),
-      categoryColor: 'bg-orange-50 text-orange-500',
-      img: 'https://www.royalcanin.com/~/media/Royal-Canin/Product-Categories/dog-retail/breed-health-nutrition/golden-retriever-adult/royal-canin-breed-health-nutrition-golden-retriever-adult-dry-dog-food-harold.jpg',
-      name: 'Royal Canin Golden Retriever Adult',
-      desc: t('prod.desc1'),
-      brand: 'Royal Canin',
-      price: '1 009 kr',
-      oldPrice: null,
-      rating: 4.8,
-      reviews: 312,
-      badge: t('badge.bestseller'),
-      badgeColor: 'bg-orange-400 text-white',
-    },
-    {
-      id: 2,
-      category: t('cat.dryFood'),
-      categoryColor: 'bg-orange-50 text-orange-500',
-      img: 'https://www.royalcanin.com/~/media/Royal-Canin/Product-Categories/dog-retail/breed-health-nutrition/golden-retriever-puppy/royal-canin-breed-health-nutrition-golden-retriever-puppy-dry-dog-food-packaging.jpg',
-      name: 'Royal Canin Golden Retriever Puppy',
-      desc: t('prod.desc2'),
-      brand: 'Royal Canin',
-      price: '1 009 kr',
-      oldPrice: null,
-      rating: 4.7,
-      reviews: 186,
-      badge: t('badge.puppy'),
-      badgeColor: 'bg-green-600 text-white',
-    },
-    {
-      id: 3,
-      category: t('cat.dryFood'),
-      categoryColor: 'bg-orange-50 text-orange-500',
-      img: 'https://www.royalcanin.com/~/media/Royal-Canin/Product-Categories/dog-retail/size-health-nutrition/medium-adult/royal-canin-size-health-nutrition-medium-adult-dry-dog-food-packaging.jpg',
-      name: 'Royal Canin Medium Adult',
-      desc: t('prod.desc3'),
-      brand: 'Royal Canin',
-      price: '349 kr',
-      oldPrice: '399 kr',
-      rating: 4.6,
-      reviews: 541,
-      badge: t('badge.offer'),
-      badgeColor: 'bg-blue-600 text-white',
-    },
-    {
-      id: 4,
-      category: t('cat.dryFood'),
-      categoryColor: 'bg-orange-50 text-orange-500',
-      img: 'https://www.royalcanin.com/~/media/Royal-Canin/Product-Categories/dog-retail/size-health-nutrition/maxi-adult/royal-canin-size-health-nutrition-maxi-adult-dry-dog-food-packaging.jpg',
-      name: 'Royal Canin Maxi Adult',
-      desc: t('prod.desc4'),
-      brand: 'Royal Canin',
-      price: '899 kr',
-      oldPrice: null,
-      rating: 4.7,
-      reviews: 203,
-      badge: t('badge.largeBreed'),
-      badgeColor: 'bg-grey-700 text-white',
-    },
-  ]
+  const pet = {
+    name: 'Bjorn',
+    breed: 'Golden Retriever',
+    age: '3 years',
+    weight: '32 kg',
+    healthScore: 87,
+    photo: 'https://images.unsplash.com/photo-1633722715463-d30f4f325e24?w=600&q=80',
+  }
 
-  const categories = [
-    { label: t('cat.dryFood'), Icon: Salad,      bg: 'bg-orange-50',  border: 'border-orange-200', text: 'text-orange-500', ic: 'text-orange-400', route: '/shop' },
-    { label: t('cat.toys'),    Icon: Dumbbell,   bg: 'bg-blue-50',    border: 'border-blue-200',   text: 'text-blue-600',  ic: 'text-blue-400',  route: '/shop' },
-    { label: t('cat.snacks'),  Icon: Bone,       bg: 'bg-green-50',   border: 'border-green-200',  text: 'text-green-700', ic: 'text-green-500', route: '/shop' },
-    { label: t('cat.health'),  Icon: HeartPulse, bg: 'bg-grey-100',   border: 'border-grey-200',   text: 'text-grey-700',  ic: 'text-grey-500',  route: '/health' },
-  ]
+  const insurance = {
+    provider: 'Lassie',
+    plan: 'Bas',
+    status: t('dash.insured'),
+    monthlyPremium: '249 kr/mån',
+    nextCost: t('dash.annualVaccination'),
+    nextCostAmount: '~600 kr',
+  }
 
-  const insurancePlans = [
+  const nutrition = {
+    food: 'Royal Canin Golden Retriever Adult',
+    dailyAmount: '320g/dag',
+    schedule: t('dash.feedingSchedule'),
+    alerts: null as string | null,
+  }
+
+  const agenda = [
     {
-      name: 'Lassie Bas',
-      price: '249 kr/mån',
-      highlight: t('ins.lassieHighlight'),
-      perks: [t('ins.lassiePerk1'), t('ins.lassiePerk2'), t('ins.lassiePerk3')],
-      badge: t('badge.mostPopular'),
-      badgeColor: 'bg-orange-400 text-white',
-      cardStyle: 'border-2 border-orange-400',
-      btnStyle: 'bg-orange-400 hover:bg-orange-500 text-white',
+      Icon: Syringe,
+      label: t('dash.agendaVaccination'),
+      date: '20 mar 2026',
+      color: 'bg-orange-50 text-orange-500',
+      iconColor: 'text-orange-400',
     },
     {
-      name: 'Agria Stor',
-      price: '399 kr/mån',
-      highlight: t('ins.agriaHighlight'),
-      perks: [t('ins.agriaPerk1'), t('ins.agriaPerk2'), t('ins.agriaPerk3')],
-      badge: t('badge.comprehensive'),
-      badgeColor: 'bg-grey-700 text-white',
-      cardStyle: 'border border-grey-200',
-      btnStyle: 'bg-grey-100 hover:bg-grey-200 text-grey-900',
+      Icon: Pill,
+      label: t('dash.agendaMedication'),
+      date: '1 apr 2026',
+      color: 'bg-blue-50 text-blue-600',
+      iconColor: 'text-blue-400',
     },
-  ]
-
-  const nutritionArticles = [
-    { img: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400&q=80', title: t('art.title1'), desc: t('art.desc1'), tag: t('art.tag1') },
-    { img: 'https://images.unsplash.com/photo-1601758124510-52d02ddb7cbd?w=400&q=80', title: t('art.title2'), desc: t('art.desc2'), tag: t('art.tag2') },
-    { img: 'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=400&q=80', title: t('art.title3'), desc: t('art.desc3'), tag: t('art.tag3') },
+    {
+      Icon: Stethoscope,
+      label: t('dash.agendaVetVisit'),
+      date: '15 apr 2026',
+      color: 'bg-green-50 text-green-700',
+      iconColor: 'text-green-500',
+    },
   ]
 
   const communityPosts = [
@@ -128,199 +107,156 @@ export default function Dashboard() {
   ]
 
   return (
-    <div className="max-w-6xl mx-auto px-6 py-8 space-y-10">
+    <div className="max-w-6xl mx-auto px-6 py-8 space-y-8">
 
-      {/* ── 1. Hero Banner ──────────────────────────────────────────────── */}
-      <section className="rounded-2xl overflow-hidden bg-orange-400 flex items-stretch min-h-[280px]">
-        <div className="flex-1 flex flex-col justify-center px-10 py-8 space-y-4">
-          <span className="inline-block w-fit px-3 py-1 rounded-full bg-white/20 font-rubrik font-bold text-[11px] text-white uppercase tracking-wider">
-            {t('dash.newFormula')}
-          </span>
-          <h1 className="font-rubrik font-bold text-[36px] leading-tight text-white whitespace-pre-line">
-            {t('dash.heroTitle')}
-          </h1>
-          <p className="font-text text-[15px] text-orange-50 max-w-xs">
-            {t('dash.heroDesc')}
-          </p>
-          <div className="flex items-center gap-4">
-            <div>
-              <p className="font-rubrik font-bold text-[28px] text-white">1 009 kr</p>
-              <p className="font-text text-[13px] text-orange-100">12 kg · 84 kr/kg</p>
+      {/* ── 1. Pet Summary + Health Score ──────────────────────────────── */}
+      <section className="bg-white rounded-2xl border border-grey-200 p-6">
+        <div className="flex items-center gap-6">
+          {/* Photo */}
+          <div className="w-24 h-24 rounded-2xl bg-orange-50 overflow-hidden shrink-0">
+            <img
+              src={pet.photo}
+              alt={pet.name}
+              className="w-full h-full object-cover"
+              onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
+            />
+          </div>
+
+          {/* Info */}
+          <div className="flex-1 space-y-1">
+            <div className="flex items-center gap-2">
+              <Dog size={18} className="text-orange-400" />
+              <h1 className="font-rubrik font-bold text-[28px] text-grey-900">{pet.name}</h1>
+            </div>
+            <div className="flex items-center gap-4 font-text text-[14px] text-grey-500">
+              <span>{pet.breed}</span>
+              <span className="text-grey-300">|</span>
+              <span>{pet.age}</span>
+              <span className="text-grey-300">|</span>
+              <span>{pet.weight}</span>
+            </div>
+          </div>
+
+          {/* Health Score */}
+          <div className="flex flex-col items-center gap-1 shrink-0">
+            <HealthScoreRing score={pet.healthScore} />
+            <span className="font-rubrik font-bold text-[12px] text-grey-500">{t('dash.healthScore')}</span>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 2 + 3. Insurance & Nutrition side-by-side ─────────────────── */}
+      <div className="grid grid-cols-2 gap-6">
+
+        {/* Insurance & Vet Cost Snapshot */}
+        <section className="bg-white rounded-2xl border border-grey-200 p-6 space-y-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <ShieldCheck size={18} className="text-orange-400" />
+              <h2 className="font-rubrik font-bold text-[18px] text-grey-900">{t('dash.insuranceCosts')}</h2>
             </div>
             <Link
-              to="/shop"
-              className="flex items-center gap-2 px-5 py-3 min-h-[44px] rounded-xl bg-white hover:bg-orange-50 transition-colors font-rubrik font-bold text-[14px] text-orange-500 cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-300"
+              to="/costs"
+              className="flex items-center gap-1 min-h-[44px] font-rubrik font-bold text-[12px] text-orange-500 hover:text-orange-600 transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-300"
             >
-              <ShoppingCart size={16} /> {t('dash.shopNow')}
+              {t('dash.viewAll')} <ChevronRight size={14} />
             </Link>
           </div>
-        </div>
-        <div className="w-80 bg-orange-300 flex items-center justify-center shrink-0 overflow-hidden">
-          <img
-            src="https://images.unsplash.com/photo-1633722715463-d30f4f325e24?w=600&q=80"
-            alt="Golden Retriever"
-            className="w-full h-full object-cover"
-          />
-        </div>
-      </section>
 
-      {/* ── 2. Category quick-links ─────────────────────────────────────── */}
-      <section className="grid grid-cols-4 gap-4">
-        {categories.map(c => (
-          <Link
-            key={c.label}
-            to={c.route}
-            className={`flex flex-col items-center gap-2.5 py-5 min-h-[44px] rounded-2xl border ${c.bg} ${c.border} hover:shadow-md transition-shadow cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-300`}
-          >
-            <c.Icon size={28} className={c.ic} />
-            <span className={`font-rubrik font-bold text-[14px] ${c.text}`}>{c.label}</span>
-          </Link>
-        ))}
-      </section>
-
-      {/* ── 3. Popular Products ─────────────────────────────────────────── */}
-      <section className="space-y-5">
-        <div className="flex items-center justify-between">
-          <h2 className="font-rubrik font-bold text-[22px] text-grey-900">{t('dash.popularProducts')}</h2>
-          <Link
-            to="/shop"
-            className="flex items-center gap-1 min-h-[44px] font-rubrik font-bold text-[13px] text-orange-500 hover:text-orange-600 transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-300"
-          >
-            {t('dash.viewAll')} <ChevronRight size={16} />
-          </Link>
-        </div>
-        <div className="grid grid-cols-4 gap-4">
-          {products.map(p => (
-            <div key={p.id} className="bg-white rounded-2xl p-4 flex flex-col gap-3 hover:shadow-md transition-shadow border border-grey-200">
-              <div className="flex items-center justify-between">
-                <span className={`px-2 py-0.5 rounded-full font-rubrik font-bold text-[10px] ${p.badgeColor}`}>
-                  {p.badge}
-                </span>
-                <span className={`px-2 py-0.5 rounded-full font-rubrik font-bold text-[10px] ${p.categoryColor}`}>
-                  {p.category}
-                </span>
-              </div>
-              <div className="h-28 bg-orange-50 rounded-xl overflow-hidden flex items-center justify-center">
-                <img src={p.img} alt={p.name} className="w-full h-full object-contain p-2" onError={e => { (e.target as HTMLImageElement).style.display='none' }} />
-              </div>
-              <div className="space-y-1 flex-1">
-                <p className="font-text text-[11px] text-grey-500">{p.brand}</p>
-                <p className="font-rubrik font-bold text-[13px] text-grey-900 leading-snug">{p.name}</p>
-                <p className="font-text text-[11px] text-grey-500">{p.desc}</p>
-                <div className="flex items-center gap-1.5 pt-0.5">
-                  <Stars rating={p.rating} />
-                  <span className="font-text text-[11px] text-grey-500">({p.reviews})</span>
-                </div>
-              </div>
-              <div className="flex items-center justify-between pt-1">
-                <div>
-                  <p className="font-rubrik font-bold text-[17px] text-grey-900">{p.price}</p>
-                  {p.oldPrice && (
-                    <p className="font-text text-[11px] text-grey-500 line-through">{p.oldPrice}</p>
-                  )}
-                </div>
-                <button
-                  type="button"
-                  onClick={() => {}}
-                  aria-label={t('dash.addToCartAria', { name: p.name })}
-                  className="flex items-center gap-1.5 px-3 py-2 min-h-[44px] rounded-lg bg-orange-400 hover:bg-orange-500 transition-colors text-white font-rubrik font-bold text-[12px] cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-300"
-                >
-                  <ShoppingCart size={13} /> {t('dash.addToCart')}
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── 4. Pet Insurance ────────────────────────────────────────────── */}
-      <section className="bg-white rounded-2xl p-8 space-y-6 border border-grey-200">
-        <div className="flex items-center justify-between">
-          <div className="space-y-1">
-            <div className="flex items-center gap-2">
-              <ShieldCheck size={20} className="text-orange-400" />
-              <h2 className="font-rubrik font-bold text-[22px] text-grey-900">{t('dash.petInsurance')}</h2>
-            </div>
-            <p className="font-text text-[14px] text-grey-500 max-w-md">
-              {t('dash.insuranceDesc')}
-            </p>
+          <div className="flex items-center gap-2">
+            <span className="px-2.5 py-1 rounded-full bg-green-50 font-rubrik font-bold text-[11px] text-green-700">
+              {insurance.status}
+            </span>
+            <span className="font-text text-[13px] text-grey-700">
+              {insurance.provider} {insurance.plan}
+            </span>
           </div>
-          <Link
-            to="/costs/insurance"
-            className="flex items-center gap-1.5 px-4 py-2.5 min-h-[44px] rounded-xl border border-orange-200 font-rubrik font-bold text-[13px] text-orange-500 hover:bg-orange-50 transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-300"
-          >
-            {t('dash.exploreInsurance')} <ArrowRight size={14} />
-          </Link>
-        </div>
-        <div className="grid grid-cols-2 gap-4">
-          {insurancePlans.map(plan => (
-            <div key={plan.name} className={`rounded-xl p-5 space-y-4 ${plan.cardStyle}`}>
-              <div className="flex items-center justify-between">
-                <p className="font-rubrik font-bold text-[16px] text-grey-900">{plan.name}</p>
-                <span className={`px-2.5 py-1 rounded-full font-rubrik font-bold text-[11px] ${plan.badgeColor}`}>
-                  {plan.badge}
-                </span>
-              </div>
-              <p className="font-rubrik font-bold text-[22px] text-grey-900">{plan.price}</p>
-              <p className="font-text text-[13px] text-grey-500">{plan.highlight}</p>
-              <ul className="space-y-1.5">
-                {plan.perks.map(perk => (
-                  <li key={perk} className="flex items-center gap-2 font-text text-[13px] text-grey-700">
-                    <span className="text-green-600">&#10003;</span> {perk}
-                  </li>
-                ))}
-              </ul>
-              <button
-                type="button"
-                onClick={() => {}}
-                className={`w-full py-2.5 min-h-[44px] rounded-lg font-rubrik font-bold text-[13px] transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-300 ${plan.btnStyle}`}
-              >
-                {t('dash.getQuote')}
-              </button>
-            </div>
-          ))}
-        </div>
-      </section>
 
-      {/* ── 5. Food & Nutrition ─────────────────────────────────────────── */}
-      <section className="space-y-5">
+          <div className="grid grid-cols-2 gap-3">
+            <div className="bg-grey-100 rounded-xl p-3 space-y-1">
+              <p className="font-text text-[11px] text-grey-500">{t('dash.monthlyPremium')}</p>
+              <p className="font-rubrik font-bold text-[18px] text-grey-900">{insurance.monthlyPremium}</p>
+            </div>
+            <div className="bg-orange-50 rounded-xl p-3 space-y-1">
+              <p className="font-text text-[11px] text-grey-500">{t('dash.nextEstimatedCost')}</p>
+              <p className="font-rubrik font-bold text-[14px] text-grey-900">{insurance.nextCost}</p>
+              <p className="font-rubrik font-bold text-[16px] text-orange-500">{insurance.nextCostAmount}</p>
+            </div>
+          </div>
+        </section>
+
+        {/* Nutrition Snapshot */}
+        <section className="bg-white rounded-2xl border border-grey-200 p-6 space-y-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <Salad size={18} className="text-green-600" />
+              <h2 className="font-rubrik font-bold text-[18px] text-grey-900">{t('dash.nutritionSnapshot')}</h2>
+            </div>
+            <Link
+              to="/nutrition"
+              className="flex items-center gap-1 min-h-[44px] font-rubrik font-bold text-[12px] text-orange-500 hover:text-orange-600 transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-300"
+            >
+              {t('dash.viewAll')} <ChevronRight size={14} />
+            </Link>
+          </div>
+
+          <div className="space-y-2">
+            <p className="font-rubrik font-bold text-[14px] text-grey-900">{nutrition.food}</p>
+            <div className="flex items-center gap-3 font-text text-[13px] text-grey-600">
+              <span className="px-2 py-0.5 rounded-full bg-green-50 text-green-700 font-rubrik font-bold text-[11px]">
+                {nutrition.dailyAmount}
+              </span>
+              <span>{nutrition.schedule}</span>
+            </div>
+          </div>
+
+          {nutrition.alerts ? (
+            <div className="bg-red-50 rounded-xl p-3">
+              <p className="font-text text-[13px] text-red-700">{nutrition.alerts}</p>
+            </div>
+          ) : (
+            <div className="bg-green-50 rounded-xl p-3 flex items-center gap-2">
+              <span className="text-green-600">&#10003;</span>
+              <p className="font-text text-[13px] text-green-700">{t('dash.noAlerts')}</p>
+            </div>
+          )}
+        </section>
+      </div>
+
+      {/* ── 4. Agenda ─────────────────────────────────────────────────── */}
+      <section className="bg-white rounded-2xl border border-grey-200 p-6 space-y-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Salad size={20} className="text-green-600" />
-            <h2 className="font-rubrik font-bold text-[22px] text-grey-900">{t('dash.foodNutrition')}</h2>
+            <CalendarDays size={18} className="text-orange-400" />
+            <h2 className="font-rubrik font-bold text-[18px] text-grey-900">{t('dash.agenda')}</h2>
           </div>
           <Link
-            to="/nutrition"
-            className="flex items-center gap-1 min-h-[44px] font-rubrik font-bold text-[13px] text-orange-500 hover:text-orange-600 transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-300"
+            to="/health"
+            className="flex items-center gap-1 min-h-[44px] font-rubrik font-bold text-[12px] text-orange-500 hover:text-orange-600 transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-300"
           >
-            {t('dash.viewNutritionAdvice')} <ChevronRight size={16} />
+            {t('dash.viewAll')} <ChevronRight size={14} />
           </Link>
         </div>
+
         <div className="grid grid-cols-3 gap-4">
-          {nutritionArticles.map(a => (
-            <div key={a.title} className="bg-white rounded-2xl overflow-hidden hover:shadow-md transition-shadow border border-grey-200">
-              <div className="h-24 bg-green-50 overflow-hidden">
-                <img src={a.img} alt={a.title} className="w-full h-full object-cover" />
+          {agenda.map((item, i) => (
+            <div
+              key={i}
+              className="flex items-center gap-3 rounded-xl border border-grey-200 p-4 hover:shadow-sm transition-shadow"
+            >
+              <div className={`flex items-center justify-center w-10 h-10 rounded-xl ${item.color}`}>
+                <item.Icon size={18} className={item.iconColor} />
               </div>
-              <div className="p-4 space-y-2">
-                <span className="inline-block px-2 py-0.5 rounded-full bg-green-50 font-rubrik font-bold text-[10px] text-green-700">
-                  {a.tag}
-                </span>
-                <p className="font-rubrik font-bold text-[14px] text-grey-900 leading-snug">{a.title}</p>
-                <p className="font-text text-[12px] text-grey-500 leading-relaxed">{a.desc}</p>
-                <Link
-                  to="/nutrition"
-                  className="flex items-center gap-1 min-h-[44px] font-rubrik font-bold text-[12px] text-orange-500 hover:text-orange-600 transition-colors pt-1 cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-300"
-                >
-                  {t('dash.readMore')} <ArrowRight size={12} />
-                </Link>
+              <div className="flex-1 min-w-0">
+                <p className="font-rubrik font-bold text-[13px] text-grey-900 truncate">{item.label}</p>
+                <p className="font-text text-[12px] text-grey-500">{item.date}</p>
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* ── 6. Community ────────────────────────────────────────────────── */}
+      {/* ── 5. Mini Community Feed ────────────────────────────────────── */}
       <section className="bg-orange-400 rounded-2xl p-8 flex gap-8">
         <div className="flex-1 space-y-4">
           <div className="flex items-center gap-2">
@@ -334,7 +270,7 @@ export default function Dashboard() {
             to="/community"
             className="inline-flex items-center gap-2 px-5 py-3 min-h-[44px] rounded-xl bg-white hover:bg-orange-50 transition-colors font-rubrik font-bold text-[14px] text-orange-500 cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-300"
           >
-            {t('dash.joinCommunity')} <ArrowRight size={16} />
+            {t('dash.joinCommunity')} <Heart size={16} />
           </Link>
         </div>
         <div className="flex-1 space-y-3">

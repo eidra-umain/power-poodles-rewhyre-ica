@@ -5,7 +5,7 @@ You are assisting with the development of the **ICA Pet App**. This is a "super 
 **Full app architecture:** See `.claude/app-architecture.md` for the complete screen map and route structure.
 
 ## Tech Stack
-- **Frontend:** Next.js (App Router) + React + Tailwind CSS + TypeScript
+- **Frontend:** Vite + React 19 + React Router v7 + Tailwind CSS + TypeScript
 - **Backend:** Node.js + Express + TypeScript
 - **Auth:** BankID (Sweden) + manual email signup
 

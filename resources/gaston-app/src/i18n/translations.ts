@@ -2,10 +2,12 @@ export type Locale = 'sv' | 'en'
 
 const translations = {
   // ─── Header & Nav ──────────────────────────────────────────────
-  'nav.products': { sv: 'Produkter', en: 'Products' },
-  'nav.insurance': { sv: 'Försäkring', en: 'Insurance' },
+  'nav.home': { sv: 'Hem', en: 'Home' },
+  'nav.health': { sv: 'Hälsa', en: 'Health' },
+  'nav.insurance': { sv: 'Kostnader', en: 'Costs' },
   'nav.nutrition': { sv: 'Nutrition', en: 'Nutrition' },
   'nav.community': { sv: 'Community', en: 'Community' },
+  'nav.shop': { sv: 'Butik', en: 'Shop' },
   'header.myAccount': { sv: 'Mitt konto', en: 'My Account' },
   'header.cart': { sv: 'Varukorg', en: 'Cart' },
   'header.searchPlaceholder': { sv: 'Sök produkter, varumärken...', en: 'Search products, brands...' },
@@ -39,6 +41,19 @@ const translations = {
   'dash.communityDesc': { sv: 'Träffa andra djurägare, få expertråd och dela med dig av din resa som husdjursägare.', en: 'Meet other pet owners, get expert advice and share your pet ownership journey.' },
   'dash.joinCommunity': { sv: 'Gå med i communityn', en: 'Join the Community' },
   'dash.likes': { sv: 'gillar', en: 'likes' },
+  'dash.healthScore': { sv: 'Hälsopoäng', en: 'Health Score' },
+  'dash.insured': { sv: 'Försäkrad', en: 'Insured' },
+  'dash.insuranceCosts': { sv: 'Försäkring & Kostnader', en: 'Insurance & Costs' },
+  'dash.monthlyPremium': { sv: 'Månadspremie', en: 'Monthly Premium' },
+  'dash.nextEstimatedCost': { sv: 'Nästa uppskattade kostnad', en: 'Next Estimated Cost' },
+  'dash.annualVaccination': { sv: 'Årlig vaccination', en: 'Annual Vaccination' },
+  'dash.nutritionSnapshot': { sv: 'Nutrition', en: 'Nutrition' },
+  'dash.feedingSchedule': { sv: 'Morgon & kväll', en: 'Morning & evening' },
+  'dash.noAlerts': { sv: 'Inga varningar — allt ser bra ut', en: 'No alerts — everything looks good' },
+  'dash.agenda': { sv: 'Agenda', en: 'Agenda' },
+  'dash.agendaVaccination': { sv: 'Rabies-vaccination', en: 'Rabies Vaccination' },
+  'dash.agendaMedication': { sv: 'Nexgard Spectra', en: 'Nexgard Spectra' },
+  'dash.agendaVetVisit': { sv: 'Rutinkontroll', en: 'Routine Check-up' },
 
   // Dashboard categories
   'cat.dryFood': { sv: 'Torrfoder', en: 'Dry Food' },

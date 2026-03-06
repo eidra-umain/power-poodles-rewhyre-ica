@@ -2,17 +2,19 @@ import { NavLink } from 'react-router-dom'
 import { PawPrint, Search, User, ShoppingCart } from 'lucide-react'
 import { useState } from 'react'
 import { useLanguage } from '../i18n/LanguageContext'
-import LanguageToggle from './LanguageToggle'
+import LanguageToggle from './language-toggle'
 
 export default function Header() {
   const [cartCount] = useState(2)
   const { t } = useLanguage()
 
   const nav = [
-    { to: '/',          label: t('nav.products') },
-    { to: '/vet',       label: t('nav.insurance') },
-    { to: '/food',      label: t('nav.nutrition') },
+    { to: '/',          label: t('nav.home') },
+    { to: '/health',    label: t('nav.health') },
+    { to: '/costs',     label: t('nav.insurance') },
+    { to: '/nutrition', label: t('nav.nutrition') },
     { to: '/community', label: t('nav.community') },
+    { to: '/shop',      label: t('nav.shop') },
   ]
 
   return (
