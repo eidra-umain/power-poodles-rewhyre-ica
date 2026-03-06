@@ -2,16 +2,19 @@ import { NavLink } from 'react-router-dom'
 import {
   LayoutDashboard, HeartPulse, ShieldCheck, Salad, Users, PawPrint
 } from 'lucide-react'
-
-const nav = [
-  { to: '/',         icon: LayoutDashboard, label: 'Dashboard' },
-  { to: '/health',   icon: HeartPulse,      label: 'Health Tracker' },
-  { to: '/vet',      icon: ShieldCheck,     label: 'Vet & Insurance' },
-  { to: '/food',     icon: Salad,           label: 'Food & Nutrition' },
-  { to: '/community',icon: Users,           label: 'Community' },
-]
+import { useLanguage } from '../i18n/LanguageContext'
 
 export default function Sidebar() {
+  const { t } = useLanguage()
+
+  const nav = [
+    { to: '/',         icon: LayoutDashboard, label: t('sidebar.dashboard') },
+    { to: '/health',   icon: HeartPulse,      label: t('sidebar.healthTracker') },
+    { to: '/vet',      icon: ShieldCheck,     label: t('sidebar.vetInsurance') },
+    { to: '/food',     icon: Salad,           label: t('sidebar.foodNutrition') },
+    { to: '/community',icon: Users,           label: t('sidebar.community') },
+  ]
+
   return (
     <aside className="flex flex-col justify-between w-60 h-full bg-blue-600 shrink-0">
       {/* Top */}
@@ -24,7 +27,7 @@ export default function Sidebar() {
 
         {/* Section label */}
         <p className="px-5 pb-1 font-rubrik font-bold text-[10px] tracking-[1.5px] text-blue-300 uppercase">
-          Menu
+          {t('sidebar.menu')}
         </p>
 
         {/* Nav items */}
@@ -35,7 +38,7 @@ export default function Sidebar() {
               to={to}
               end={to === '/'}
               className={({ isActive }) =>
-                `flex items-center gap-2.5 px-3 py-2.5 rounded-md text-sm font-rubrik transition-colors
+                `flex items-center gap-2.5 px-3 py-2.5 rounded-md text-sm font-rubrik transition-colors focus:outline-none focus:ring-2 focus:ring-orange-300
                  ${isActive
                    ? 'bg-white/10 text-white font-bold'
                    : 'text-blue-200 hover:bg-white/10 hover:text-white'}`

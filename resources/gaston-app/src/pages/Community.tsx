@@ -1,13 +1,15 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Heart, MessageCircle, Bookmark, ArrowRight } from 'lucide-react'
+import { useLanguage } from '../i18n/LanguageContext'
 
 type Filter = 'All' | 'Behaviour' | 'Training' | 'Nutrition'
 
-const FILTERS: Filter[] = ['All', 'Behaviour', 'Training', 'Nutrition']
+const FILTER_KEYS: Filter[] = ['All', 'Behaviour', 'Training', 'Nutrition']
 
 const articles = [
   {
-    category: 'Behaviour',
+    category: 'Behaviour' as Filter,
     categoryColor: 'bg-orange-50 text-orange-500',
     title: '7 Signs Your Dog Is Anxious (And What To Do)',
     excerpt: 'Learn to read the subtle body language cues that indicate stress in dogs, from yawning to whale eye.',
@@ -16,7 +18,7 @@ const articles = [
     img: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400&q=80',
   },
   {
-    category: 'Training',
+    category: 'Training' as Filter,
     categoryColor: 'bg-green-50 text-green-700',
     title: 'Loose-Leash Walking in 10 Days',
     excerpt: 'A step-by-step positive reinforcement program to stop pulling without corrections or aversives.',
@@ -25,7 +27,7 @@ const articles = [
     img: 'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=400&q=80',
   },
   {
-    category: 'Nutrition',
+    category: 'Nutrition' as Filter,
     categoryColor: 'bg-orange-50 text-orange-600',
     title: 'Is Grain-Free Really Better for Your Dog?',
     excerpt: 'Unpacking the science behind grain-free diets and what the latest veterinary research actually says.',
@@ -59,6 +61,14 @@ const posts = [
 export default function Community() {
   const [filter, setFilter] = useState<Filter>('All')
   const [likedPosts, setLikedPosts] = useState<Set<number>>(new Set(posts.flatMap((p, i) => p.liked ? [i] : [])))
+  const { t } = useLanguage()
+
+  const filterLabels: Record<Filter, string> = {
+    'All': t('comm.all'),
+    'Behaviour': t('comm.behaviour'),
+    'Training': t('comm.training'),
+    'Nutrition': t('comm.nutrition'),
+  }
 
   const filtered = articles.filter(a =>
     filter === 'All' ? true : a.category === filter
@@ -69,8 +79,8 @@ export default function Community() {
       {/* Topbar */}
       <header className="flex items-center justify-between px-7 border-b border-grey-200 bg-white h-16 shrink-0">
         <div>
-          <h1 className="font-rubrik font-bold text-lg text-grey-900">Guidance & Community</h1>
-          <p className="font-text text-[13px] text-grey-500">Expert advice and pet owner stories</p>
+          <h1 className="font-rubrik font-bold text-lg text-grey-900">{t('comm.title')}</h1>
+          <p className="font-text text-[13px] text-grey-500">{t('comm.subtitle')}</p>
         </div>
       </header>
 
@@ -78,24 +88,22 @@ export default function Community() {
       <div className="flex-1 overflow-hidden flex gap-5 p-6">
         {/* Articles */}
         <div className="flex-1 bg-white rounded-2xl p-6 flex flex-col gap-5 overflow-hidden">
-          {/* Tabs */}
           <div className="flex items-center justify-between shrink-0">
-            <h2 className="font-rubrik font-bold text-base text-grey-900">Expert Articles</h2>
+            <h2 className="font-rubrik font-bold text-base text-grey-900">{t('comm.expertArticles')}</h2>
             <div className="flex gap-1 bg-grey-100 rounded-lg p-1">
-              {FILTERS.map(f => (
+              {FILTER_KEYS.map(key => (
                 <button
-                  key={f}
-                  onClick={() => setFilter(f)}
-                  className={`px-3 py-1.5 rounded-md font-rubrik text-[12px] transition-colors
-                    ${filter === f ? 'bg-white text-grey-900 font-bold shadow-sm' : 'text-grey-500 hover:text-grey-700'}`}
+                  key={key}
+                  onClick={() => setFilter(key)}
+                  className={`px-3 py-1.5 rounded-md font-rubrik text-[12px] transition-colors cursor-pointer min-h-[44px] focus:outline-none focus:ring-2 focus:ring-orange-300
+                    ${filter === key ? 'bg-white text-grey-900 font-bold shadow-sm' : 'text-grey-500 hover:text-grey-700'}`}
                 >
-                  {f}
+                  {filterLabels[key]}
                 </button>
               ))}
             </div>
           </div>
 
-          {/* Article cards */}
           <div className="overflow-y-auto flex-1 space-y-4">
             {filtered.map(a => (
               <div key={a.title} className="border border-grey-200 rounded-xl overflow-hidden flex">
@@ -106,7 +114,7 @@ export default function Community() {
                   <div>
                     <div className="flex items-center gap-2 mb-1.5">
                       <span className={`px-2 py-0.5 rounded-full font-rubrik font-bold text-[11px] ${a.categoryColor}`}>
-                        {a.category}
+                        {filterLabels[a.category]}
                       </span>
                       <span className="font-text text-[11px] text-grey-500">{a.readTime}</span>
                     </div>
@@ -115,9 +123,9 @@ export default function Community() {
                   </div>
                   <div className="flex items-center justify-between mt-3">
                     <p className="font-text text-[12px] text-grey-500">By {a.author}</p>
-                    <button className="flex items-center gap-1 font-rubrik font-bold text-[12px] text-orange-500 hover:text-orange-600 transition-colors">
-                      Read more <ArrowRight size={12} />
-                    </button>
+                    <Link to="/community" className="flex items-center gap-1 font-rubrik font-bold text-[12px] text-orange-500 hover:text-orange-600 transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-300 rounded">
+                      {t('comm.readMore')} <ArrowRight size={12} />
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -128,7 +136,7 @@ export default function Community() {
         {/* Community feed */}
         <div className="w-72 flex flex-col gap-4 shrink-0">
           <div className="bg-white rounded-2xl p-5 flex flex-col gap-4 flex-1 overflow-hidden">
-            <h3 className="font-rubrik font-bold text-[15px] text-grey-900 shrink-0">Community Posts</h3>
+            <h3 className="font-rubrik font-bold text-[15px] text-grey-900 shrink-0">{t('comm.communityPosts')}</h3>
             <div className="space-y-4 overflow-y-auto flex-1">
               {posts.map((post, i) => (
                 <div key={i} className="space-y-2">
@@ -147,7 +155,8 @@ export default function Community() {
                         next.has(i) ? next.delete(i) : next.add(i)
                         setLikedPosts(next)
                       }}
-                      className="flex items-center gap-1.5 font-text text-[12px] text-grey-500 hover:text-orange-400 transition-colors"
+                      aria-label="Like post"
+                      className="flex items-center gap-1.5 font-text text-[12px] text-grey-500 hover:text-orange-400 transition-colors cursor-pointer min-h-[44px] min-w-[44px] focus:outline-none focus:ring-2 focus:ring-orange-300 rounded"
                     >
                       <Heart
                         size={14}
@@ -155,10 +164,10 @@ export default function Community() {
                       />
                       {post.likes + (likedPosts.has(i) && !post.liked ? 1 : !likedPosts.has(i) && post.liked ? -1 : 0)}
                     </button>
-                    <button className="flex items-center gap-1.5 font-text text-[12px] text-grey-500 hover:text-orange-400 transition-colors">
+                    <button onClick={() => {}} aria-label="Reply" className="flex items-center gap-1.5 font-text text-[12px] text-grey-500 hover:text-orange-400 transition-colors cursor-pointer min-h-[44px] min-w-[44px] focus:outline-none focus:ring-2 focus:ring-orange-300 rounded">
                       <MessageCircle size={14} /> {post.replies}
                     </button>
-                    <button className="flex items-center gap-1.5 font-text text-[12px] text-grey-500 hover:text-orange-400 transition-colors ml-auto">
+                    <button onClick={() => {}} aria-label="Save post" className="flex items-center gap-1.5 font-text text-[12px] text-grey-500 hover:text-orange-400 transition-colors ml-auto cursor-pointer min-h-[44px] min-w-[44px] focus:outline-none focus:ring-2 focus:ring-orange-300 rounded">
                       <Bookmark size={14} />
                     </button>
                   </div>

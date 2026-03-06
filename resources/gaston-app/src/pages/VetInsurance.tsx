@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Search, Star, ChevronDown, ChevronUp, ExternalLink, ShieldCheck } from 'lucide-react'
+import { useLanguage } from '../i18n/LanguageContext'
 
 const procedures = [
   {
@@ -41,7 +42,6 @@ const plans = [
       'Digital vet included',
     ],
     excluded: ['Dental', 'Preventive care'],
-    cta: 'Get Quote',
     ctaStyle: 'bg-orange-400 hover:bg-orange-500 text-white',
     cardStyle: 'border-2 border-orange-400',
   },
@@ -56,7 +56,6 @@ const plans = [
       'Rehab & physio included',
     ],
     excluded: ['Preventive care'],
-    cta: 'Get Quote',
     ctaStyle: 'bg-grey-100 hover:bg-grey-200 text-grey-900',
     cardStyle: 'border border-grey-200',
   },
@@ -65,6 +64,7 @@ const plans = [
 export default function VetInsurance() {
   const [query, setQuery] = useState('')
   const [expanded, setExpanded] = useState<string | null>(null)
+  const { t } = useLanguage()
 
   const filtered = procedures.filter(p =>
     p.name.toLowerCase().includes(query.toLowerCase())
@@ -75,12 +75,12 @@ export default function VetInsurance() {
       {/* Topbar */}
       <header className="flex items-center justify-between px-7 border-b border-grey-200 bg-white h-16 shrink-0">
         <div>
-          <h1 className="font-rubrik font-bold text-lg text-grey-900">Vet & Insurance</h1>
-          <p className="font-text text-[13px] text-grey-500">Cost transparency & coverage for Bjørn</p>
+          <h1 className="font-rubrik font-bold text-lg text-grey-900">{t('vet.title')}</h1>
+          <p className="font-text text-[13px] text-grey-500">{t('vet.subtitle')}</p>
         </div>
         <div className="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-orange-50 border border-orange-200">
           <ShieldCheck size={16} className="text-orange-500" />
-          <span className="font-rubrik font-bold text-[13px] text-orange-600">Insured · Lassie Basic</span>
+          <span className="font-rubrik font-bold text-[13px] text-orange-600">{t('vet.insured')}</span>
         </div>
       </header>
 
@@ -89,27 +89,25 @@ export default function VetInsurance() {
         {/* Procedure cost lookup */}
         <div className="bg-white rounded-2xl p-6 space-y-4">
           <div className="flex items-center justify-between">
-            <h2 className="font-rubrik font-bold text-base text-grey-900">Procedure Cost Lookup</h2>
-            <span className="font-text text-[12px] text-grey-500">Based on Swedish clinic averages</span>
+            <h2 className="font-rubrik font-bold text-base text-grey-900">{t('vet.procedureLookup')}</h2>
+            <span className="font-text text-[12px] text-grey-500">{t('vet.basedOn')}</span>
           </div>
 
-          {/* Search */}
           <div className="relative">
             <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-grey-500" />
             <input
               value={query}
               onChange={e => setQuery(e.target.value)}
-              placeholder="Search procedure…"
+              placeholder={t('vet.searchProcedure')}
               className="w-full pl-9 pr-4 py-2.5 border border-grey-200 rounded-lg font-text text-[14px] text-grey-900 placeholder:text-grey-500 focus:outline-none focus:border-orange-400"
             />
           </div>
 
-          {/* Procedure list */}
           <div className="space-y-2">
             {filtered.map(p => (
               <div key={p.name} className="border border-grey-200 rounded-xl overflow-hidden">
                 <button
-                  className="w-full flex items-center justify-between px-4 py-3 hover:bg-grey-100 transition-colors"
+                  className="w-full flex items-center justify-between px-4 py-3 hover:bg-grey-100 transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-300"
                   onClick={() => setExpanded(expanded === p.name ? null : p.name)}
                 >
                   <div className="flex items-center gap-3">
@@ -126,16 +124,20 @@ export default function VetInsurance() {
                 {expanded === p.name && (
                   <div className="px-4 pb-4 pt-1 bg-grey-100 flex items-center justify-between">
                     <div className="space-y-0.5">
-                      <p className="font-text text-[13px] text-grey-500">Average cost: <span className="font-rubrik font-bold text-grey-900">{p.avgPrice}</span></p>
+                      <p className="font-text text-[13px] text-grey-500">{t('vet.avgCost')} <span className="font-rubrik font-bold text-grey-900">{p.avgPrice}</span></p>
                       <p className="font-text text-[13px] text-grey-500">
-                        Insurance coverage:{' '}
+                        {t('vet.insuranceCoverage')}{' '}
                         <span className={`font-rubrik font-bold ${p.covered ? 'text-green-600' : 'text-orange-500'}`}>
-                          {p.covered ? 'Covered by your plan' : 'Not covered'}
+                          {p.covered ? t('vet.covered') : t('vet.notCovered')}
                         </span>
                       </p>
                     </div>
-                    <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-grey-200 bg-white font-rubrik font-bold text-[12px] text-grey-700 hover:bg-grey-200 transition-colors">
-                      Find clinic <ExternalLink size={12} />
+                    <button
+                      onClick={() => {}}
+                      aria-label={t('vet.findClinic')}
+                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-grey-200 bg-white font-rubrik font-bold text-[12px] text-grey-700 hover:bg-grey-200 transition-colors min-h-[44px] cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-300"
+                    >
+                      {t('vet.findClinic')} <ExternalLink size={12} />
                     </button>
                   </div>
                 )}
@@ -146,7 +148,7 @@ export default function VetInsurance() {
 
         {/* Insurance comparison */}
         <div className="bg-white rounded-2xl p-6 space-y-4">
-          <h2 className="font-rubrik font-bold text-base text-grey-900">Insurance Plans</h2>
+          <h2 className="font-rubrik font-bold text-base text-grey-900">{t('vet.insurancePlans')}</h2>
           <div className="grid grid-cols-2 gap-4">
             {plans.map(plan => (
               <div key={plan.name} className={`rounded-xl p-5 space-y-4 ${plan.cardStyle}`}>
@@ -168,20 +170,24 @@ export default function VetInsurance() {
                 <ul className="space-y-1.5">
                   {plan.highlights.map(h => (
                     <li key={h} className="flex items-start gap-2 font-text text-[13px] text-grey-700">
-                      <span className="text-green-600 mt-0.5">✓</span> {h}
+                      <span className="text-green-600 mt-0.5">&#10003;</span> {h}
                     </li>
                   ))}
                 </ul>
                 <div>
-                  <p className="font-rubrik font-bold text-[11px] text-grey-500 uppercase tracking-wide mb-1">Excluded</p>
+                  <p className="font-rubrik font-bold text-[11px] text-grey-500 uppercase tracking-wide mb-1">{t('vet.excluded')}</p>
                   <div className="flex flex-wrap gap-1">
                     {plan.excluded.map(e => (
                       <span key={e} className="px-2 py-0.5 rounded-full bg-grey-100 font-text text-[11px] text-grey-500">{e}</span>
                     ))}
                   </div>
                 </div>
-                <button className={`w-full py-2 rounded-lg font-rubrik font-bold text-[13px] transition-colors ${plan.ctaStyle}`}>
-                  {plan.cta}
+                <button
+                  type="button"
+                  onClick={() => {}}
+                  className={`w-full py-2 rounded-lg font-rubrik font-bold text-[13px] transition-colors min-h-[44px] cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-300 ${plan.ctaStyle}`}
+                >
+                  {t('vet.getQuote')}
                 </button>
               </div>
             ))}

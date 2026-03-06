@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Plus, Syringe, Pill, UploadCloud } from 'lucide-react'
+import { useLanguage } from '../i18n/LanguageContext'
 
 type Tab = 'All' | 'Vaccinations' | 'Vet Visits' | 'Medication'
 
@@ -41,11 +42,23 @@ const upcoming = [
   { icon: Pill,    bg: 'bg-orange-50',ic: 'text-orange-400',title: 'Nexgard Spectra',     date: '1 April 2026' },
 ]
 
-const TABS: Tab[] = ['All', 'Vaccinations', 'Vet Visits', 'Medication']
+const TAB_KEYS: Tab[] = ['All', 'Vaccinations', 'Vet Visits', 'Medication']
 
 export default function HealthTracker() {
   const [tab, setTab] = useState<Tab>('All')
   const [showModal, setShowModal] = useState(false)
+  const { t } = useLanguage()
+
+  const handleSave = () => {
+    setShowModal(false)
+  }
+
+  const tabLabels: Record<Tab, string> = {
+    'All': t('health.all'),
+    'Vaccinations': t('health.vaccinations'),
+    'Vet Visits': t('health.vetVisits'),
+    'Medication': t('health.medication'),
+  }
 
   const filtered = entries.filter(e =>
     tab === 'All' ? true :
@@ -59,14 +72,14 @@ export default function HealthTracker() {
       {/* Topbar */}
       <header className="flex items-center justify-between px-7 border-b border-grey-200 bg-white h-16 shrink-0">
         <div>
-          <h1 className="font-rubrik font-bold text-lg text-grey-900">Health Tracker</h1>
+          <h1 className="font-rubrik font-bold text-lg text-grey-900">{t('health.title')}</h1>
           <p className="font-text text-[13px] text-grey-500">Bjørn — Golden Retriever</p>
         </div>
         <button
           onClick={() => setShowModal(true)}
-          className="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-orange-400 hover:bg-orange-500 transition-colors text-white font-rubrik font-bold text-[13px]"
+          className="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-orange-400 hover:bg-orange-500 transition-colors text-white font-rubrik font-bold text-[13px] cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-300"
         >
-          <Plus size={16} /> Add Record
+          <Plus size={16} /> {t('health.addRecord')}
         </button>
       </header>
 
@@ -74,33 +87,29 @@ export default function HealthTracker() {
       <div className="flex-1 overflow-hidden flex gap-5 p-6">
         {/* Timeline */}
         <div className="flex-1 bg-white rounded-2xl p-6 flex flex-col gap-5 overflow-hidden">
-          {/* Header + tabs */}
           <div className="flex items-center justify-between shrink-0">
-            <h2 className="font-rubrik font-bold text-base text-grey-900">Health Timeline</h2>
+            <h2 className="font-rubrik font-bold text-base text-grey-900">{t('health.timeline')}</h2>
             <div className="flex gap-1 bg-grey-100 rounded-lg p-1">
-              {TABS.map(t => (
+              {TAB_KEYS.map(key => (
                 <button
-                  key={t}
-                  onClick={() => setTab(t)}
-                  className={`px-3 py-1.5 rounded-md font-rubrik text-[12px] transition-colors
-                    ${tab === t ? 'bg-white text-grey-900 font-bold shadow-sm' : 'text-grey-500 hover:text-grey-700'}`}
+                  key={key}
+                  onClick={() => setTab(key)}
+                  className={`px-3 py-1.5 min-h-[44px] rounded-md font-rubrik text-[12px] transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-300
+                    ${tab === key ? 'bg-white text-grey-900 font-bold shadow-sm' : 'text-grey-500 hover:text-grey-700'}`}
                 >
-                  {t}
+                  {tabLabels[key]}
                 </button>
               ))}
             </div>
           </div>
 
-          {/* Entries */}
           <div className="overflow-y-auto flex-1 space-y-0">
             {filtered.map((e, i) => (
               <div key={e.title} className="flex gap-4 pb-5">
-                {/* Dot + line */}
                 <div className="flex flex-col items-center w-5 shrink-0 pt-1">
                   <div className={`w-3 h-3 rounded-full ${e.dotColor} shrink-0`} />
                   {i < filtered.length - 1 && <div className="flex-1 w-0.5 bg-grey-200 mt-1" />}
                 </div>
-                {/* Info */}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-start justify-between gap-2">
                     <p className="font-rubrik font-bold text-[14px] text-grey-900">{e.title}</p>
@@ -122,9 +131,8 @@ export default function HealthTracker() {
 
         {/* Right column */}
         <div className="w-72 flex flex-col gap-4 shrink-0">
-          {/* Upcoming care */}
           <div className="bg-white rounded-2xl p-5 space-y-4">
-            <h3 className="font-rubrik font-bold text-[15px] text-grey-900">Upcoming Care</h3>
+            <h3 className="font-rubrik font-bold text-[15px] text-grey-900">{t('health.upcomingCare')}</h3>
             {upcoming.map(({ icon: Icon, bg, ic, title, date }) => (
               <div key={title} className="flex items-center gap-3">
                 <div className={`w-9 h-9 rounded-lg ${bg} flex items-center justify-center shrink-0`}>
@@ -138,15 +146,14 @@ export default function HealthTracker() {
             ))}
           </div>
 
-          {/* Upload */}
           <div className="bg-orange-50 rounded-2xl p-5 space-y-3">
             <UploadCloud size={28} className="text-orange-400" />
-            <p className="font-rubrik font-bold text-[14px] text-grey-900">Upload Vet Document</p>
+            <p className="font-rubrik font-bold text-[14px] text-grey-900">{t('health.uploadDoc')}</p>
             <p className="font-text text-[12px] text-grey-500 leading-relaxed">
-              Add certificates, prescriptions or lab results
+              {t('health.uploadDesc')}
             </p>
-            <button className="w-full py-2 rounded-lg bg-orange-400 hover:bg-orange-500 transition-colors text-white font-rubrik font-bold text-[13px]">
-              Choose File
+            <button onClick={() => {}} className="w-full py-2 rounded-lg bg-orange-400 hover:bg-orange-500 transition-colors text-white font-rubrik font-bold text-[13px] cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-300">
+              {t('health.chooseFile')}
             </button>
           </div>
         </div>
@@ -156,35 +163,35 @@ export default function HealthTracker() {
       {showModal && (
         <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50" onClick={() => setShowModal(false)}>
           <div className="bg-white rounded-2xl p-6 w-96 shadow-xl space-y-4" onClick={e => e.stopPropagation()}>
-            <h2 className="font-rubrik font-bold text-lg text-grey-900">Add Health Record</h2>
+            <h2 className="font-rubrik font-bold text-lg text-grey-900">{t('health.addHealthRecord')}</h2>
             <div className="space-y-3">
               <div>
-                <label className="font-rubrik font-bold text-[13px] text-grey-700 block mb-1">Type</label>
+                <label className="font-rubrik font-bold text-[13px] text-grey-700 block mb-1">{t('health.type')}</label>
                 <select className="w-full border border-grey-200 rounded-lg px-3 py-2 font-text text-[14px] text-grey-900 bg-white">
-                  <option>Vaccination</option>
-                  <option>Vet Visit</option>
-                  <option>Medication</option>
+                  <option>{t('health.vaccinations')}</option>
+                  <option>{t('health.vetVisits')}</option>
+                  <option>{t('health.medication')}</option>
                 </select>
               </div>
               <div>
-                <label className="font-rubrik font-bold text-[13px] text-grey-700 block mb-1">Title</label>
-                <input className="w-full border border-grey-200 rounded-lg px-3 py-2 font-text text-[14px] text-grey-900" placeholder="e.g. Annual vaccination" />
+                <label className="font-rubrik font-bold text-[13px] text-grey-700 block mb-1">{t('health.titleField')}</label>
+                <input className="w-full border border-grey-200 rounded-lg px-3 py-2 font-text text-[14px] text-grey-900" placeholder={t('health.titlePlaceholder')} />
               </div>
               <div>
-                <label className="font-rubrik font-bold text-[13px] text-grey-700 block mb-1">Date</label>
+                <label className="font-rubrik font-bold text-[13px] text-grey-700 block mb-1">{t('health.date')}</label>
                 <input type="date" className="w-full border border-grey-200 rounded-lg px-3 py-2 font-text text-[14px] text-grey-900" />
               </div>
               <div>
-                <label className="font-rubrik font-bold text-[13px] text-grey-700 block mb-1">Notes</label>
-                <textarea className="w-full border border-grey-200 rounded-lg px-3 py-2 font-text text-[14px] text-grey-900 resize-none" rows={3} placeholder="Clinic, doctor, observations..." />
+                <label className="font-rubrik font-bold text-[13px] text-grey-700 block mb-1">{t('health.notes')}</label>
+                <textarea className="w-full border border-grey-200 rounded-lg px-3 py-2 font-text text-[14px] text-grey-900 resize-none" rows={3} placeholder={t('health.notesPlaceholder')} />
               </div>
             </div>
             <div className="flex gap-3 justify-end pt-1">
-              <button onClick={() => setShowModal(false)} className="px-4 py-2 rounded-lg border border-grey-200 font-rubrik font-bold text-[13px] text-grey-700 hover:bg-grey-100 transition-colors">
-                Cancel
+              <button type="button" onClick={() => setShowModal(false)} className="px-4 py-2 min-h-[44px] rounded-lg border border-grey-200 font-rubrik font-bold text-[13px] text-grey-700 hover:bg-grey-100 transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-300">
+                {t('health.cancel')}
               </button>
-              <button onClick={() => setShowModal(false)} className="px-4 py-2 rounded-lg bg-orange-400 hover:bg-orange-500 transition-colors text-white font-rubrik font-bold text-[13px]">
-                Save Record
+              <button type="button" onClick={handleSave} className="px-4 py-2 min-h-[44px] rounded-lg bg-orange-400 hover:bg-orange-500 transition-colors text-white font-rubrik font-bold text-[13px] cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-300">
+                {t('health.saveRecord')}
               </button>
             </div>
           </div>
