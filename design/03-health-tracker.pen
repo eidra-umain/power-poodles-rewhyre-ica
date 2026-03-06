@@ -1,0 +1,289 @@
+{
+  "version": "2.8",
+  "children": [
+    {
+      "type": "frame",
+      "id": "health-flow",
+      "x": 0,
+      "y": 0,
+      "name": "Health Tracker Flow",
+      "width": 1200,
+      "fill": "#F5F5F5",
+      "layout": "horizontal",
+      "gap": 40,
+      "padding": [40, 40],
+      "children": [
+        {
+          "type": "frame",
+          "id": "health-timeline-screen",
+          "name": "1. Health Timeline",
+          "width": 360,
+          "height": 780,
+          "fill": "#FFFFFF",
+          "layout": "vertical",
+          "cornerRadius": 16,
+          "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" },
+          "children": [
+            { "type": "frame", "id": "ht-statusbar", "width": "fill_container", "height": 44, "fill": "#FFFFFF" },
+            {
+              "type": "frame",
+              "id": "ht-header",
+              "width": "fill_container",
+              "height": 56,
+              "fill": "#FFFFFF",
+              "layout": "horizontal",
+              "alignItems": "center",
+              "justifyContent": "space-between",
+              "padding": [0, 16],
+              "children": [
+                { "type": "text", "id": "ht-title", "fill": "#1D1D20", "content": "Hälsa & Logg", "fontFamily": "ICA Rubrik", "fontSize": 20, "fontWeight": "700" },
+                {
+                  "type": "frame",
+                  "id": "ht-add-btn",
+                  "width": 36,
+                  "height": 36,
+                  "fill": "#1E3065",
+                  "cornerRadius": 18,
+                  "layout": "horizontal",
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "children": [
+                    { "type": "text", "id": "ht-plus", "fill": "#FFFFFF", "content": "+", "fontFamily": "ICA Rubrik", "fontSize": 20, "fontWeight": "600" }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "ht-tabs",
+              "width": "fill_container",
+              "height": 40,
+              "fill": "#FFFFFF",
+              "layout": "horizontal",
+              "padding": [0, 16],
+              "gap": 16,
+              "children": [
+                { "type": "text", "id": "ht-tab-all", "fill": "#1E3065", "content": "Alla", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "700" },
+                { "type": "text", "id": "ht-tab-vacc", "fill": "#828386", "content": "Vaccination", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "400" },
+                { "type": "text", "id": "ht-tab-meds", "fill": "#828386", "content": "Medicin", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "400" },
+                { "type": "text", "id": "ht-tab-visits", "fill": "#828386", "content": "Besök", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "400" }
+              ]
+            },
+            {
+              "type": "rectangle",
+              "id": "ht-divider",
+              "width": "fill_container",
+              "height": 1,
+              "fill": "#ECEDED"
+            },
+            {
+              "type": "frame",
+              "id": "ht-timeline",
+              "width": "fill_container",
+              "layout": "vertical",
+              "padding": [16, 16],
+              "gap": 0,
+              "children": [
+                { "type": "text", "id": "ht-month", "fill": "#828386", "content": "Mars 2026", "fontFamily": "ICA Rubrik", "fontSize": 12, "fontWeight": "600" },
+                {
+                  "type": "frame",
+                  "id": "tl-entry-1",
+                  "name": "entry-vaccination",
+                  "width": "fill_container",
+                  "layout": "horizontal",
+                  "gap": 12,
+                  "padding": [12, 0],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "tl1-indicator",
+                      "layout": "vertical",
+                      "alignItems": "center",
+                      "children": [
+                        { "type": "frame", "id": "tl1-dot", "width": 24, "height": 24, "fill": "#E8F2E1", "cornerRadius": 12, "stroke": { "align": "inside", "thickness": 2, "fill": "#2D6E40" } },
+                        { "type": "frame", "id": "tl1-line", "width": 2, "height": 40, "fill": "#ECEDED" }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "tl1-content",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        { "type": "text", "id": "tl1-title", "fill": "#1D1D20", "content": "Vaccination — Rabies", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "600" },
+                        { "type": "text", "id": "tl1-clinic", "fill": "#45464B", "content": "Evidensia Kungsholmen", "fontFamily": "ICA Rubrik", "fontSize": 12, "fontWeight": "400" },
+                        { "type": "text", "id": "tl1-date", "fill": "#828386", "content": "3 mars 2026", "fontFamily": "ICA Rubrik", "fontSize": 12, "fontWeight": "400" }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "tl-entry-2",
+                  "name": "entry-vet-visit",
+                  "width": "fill_container",
+                  "layout": "horizontal",
+                  "gap": 12,
+                  "padding": [12, 0],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "tl2-indicator",
+                      "layout": "vertical",
+                      "alignItems": "center",
+                      "children": [
+                        { "type": "frame", "id": "tl2-dot", "width": 24, "height": 24, "fill": "#FBCFBD", "cornerRadius": 12, "stroke": { "align": "inside", "thickness": 2, "fill": "#D4613C" } },
+                        { "type": "frame", "id": "tl2-line", "width": 2, "height": 40, "fill": "#ECEDED" }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "tl2-content",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        { "type": "text", "id": "tl2-title", "fill": "#1D1D20", "content": "Veterinärbesök — Hälta", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "600" },
+                        { "type": "text", "id": "tl2-clinic", "fill": "#45464B", "content": "AniCura Södermalm • 850 kr", "fontFamily": "ICA Rubrik", "fontSize": 12, "fontWeight": "400" },
+                        { "type": "text", "id": "tl2-date", "fill": "#828386", "content": "27 februari 2026", "fontFamily": "ICA Rubrik", "fontSize": 12, "fontWeight": "400" }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "tl-entry-3",
+                  "name": "entry-medication",
+                  "width": "fill_container",
+                  "layout": "horizontal",
+                  "gap": 12,
+                  "padding": [12, 0],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "tl3-indicator",
+                      "layout": "vertical",
+                      "alignItems": "center",
+                      "children": [
+                        { "type": "frame", "id": "tl3-dot", "width": 24, "height": 24, "fill": "#E0EDFF", "cornerRadius": 12, "stroke": { "align": "inside", "thickness": 2, "fill": "#4A7CBF" } }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "tl3-content",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        { "type": "text", "id": "tl3-title", "fill": "#1D1D20", "content": "Medicin — Metacam 1.5mg", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "600" },
+                        { "type": "text", "id": "tl3-detail", "fill": "#45464B", "content": "1x dagligen • 10 dagar", "fontFamily": "ICA Rubrik", "fontSize": 12, "fontWeight": "400" },
+                        { "type": "text", "id": "tl3-date", "fill": "#828386", "content": "27 februari 2026", "fontFamily": "ICA Rubrik", "fontSize": 12, "fontWeight": "400" }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "add-vaccination-screen",
+          "name": "2. Add Vaccination",
+          "width": 360,
+          "height": 780,
+          "fill": "#FFFFFF",
+          "layout": "vertical",
+          "cornerRadius": 16,
+          "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" },
+          "children": [
+            { "type": "frame", "id": "av-statusbar", "width": "fill_container", "height": 44, "fill": "#FFFFFF" },
+            {
+              "type": "frame",
+              "id": "av-header",
+              "width": "fill_container",
+              "height": 56,
+              "fill": "#FFFFFF",
+              "layout": "horizontal",
+              "alignItems": "center",
+              "justifyContent": "space-between",
+              "padding": [0, 16],
+              "children": [
+                { "type": "text", "id": "av-back", "fill": "#1E3065", "content": "← Avbryt", "fontFamily": "ICA Rubrik", "fontSize": 16, "fontWeight": "600" },
+                { "type": "text", "id": "av-title", "fill": "#1D1D20", "content": "Ny vaccination", "fontFamily": "ICA Rubrik", "fontSize": 16, "fontWeight": "700" },
+                { "type": "frame", "id": "av-spacer", "width": 60, "height": 1 }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "av-form",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 16,
+              "padding": [24, 16],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "av-field-name",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    { "type": "text", "id": "av-label-name", "fill": "#45464B", "content": "Vaccinnamn *", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "400" },
+                    { "type": "frame", "id": "av-input-name", "width": "fill_container", "height": 48, "fill": "#F5F5F5", "cornerRadius": 8, "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" } }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "av-field-date",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    { "type": "text", "id": "av-label-date", "fill": "#45464B", "content": "Datum *", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "400" },
+                    { "type": "frame", "id": "av-input-date", "width": "fill_container", "height": 48, "fill": "#F5F5F5", "cornerRadius": 8, "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" } }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "av-field-clinic",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    { "type": "text", "id": "av-label-clinic", "fill": "#45464B", "content": "Veterinärklinik *", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "400" },
+                    { "type": "frame", "id": "av-input-clinic", "width": "fill_container", "height": 48, "fill": "#F5F5F5", "cornerRadius": 8, "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" } }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "av-field-next",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    { "type": "text", "id": "av-label-next", "fill": "#45464B", "content": "Nästa datum", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "400" },
+                    { "type": "frame", "id": "av-input-next", "width": "fill_container", "height": 48, "fill": "#F5F5F5", "cornerRadius": 8, "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" } },
+                    { "type": "text", "id": "av-hint-next", "fill": "#828386", "content": "Du får en påminnelse 7 dagar innan", "fontFamily": "ICA Rubrik", "fontSize": 12, "fontWeight": "400" }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "av-submit",
+                  "width": "fill_container",
+                  "height": 48,
+                  "fill": "#1E3065",
+                  "cornerRadius": 8,
+                  "layout": "horizontal",
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "children": [
+                    { "type": "text", "id": "av-submit-label", "fill": "#FFFFFF", "content": "Spara vaccination", "fontFamily": "ICA Rubrik", "fontSize": 16, "fontWeight": "600" }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

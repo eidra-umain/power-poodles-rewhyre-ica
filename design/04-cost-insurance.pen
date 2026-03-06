@@ -1,0 +1,386 @@
+{
+  "version": "2.8",
+  "children": [
+    {
+      "type": "frame",
+      "id": "cost-flow",
+      "x": 0,
+      "y": 0,
+      "name": "Cost & Insurance Flow",
+      "width": 1200,
+      "fill": "#F5F5F5",
+      "layout": "horizontal",
+      "gap": 40,
+      "padding": [40, 40],
+      "children": [
+        {
+          "type": "frame",
+          "id": "procedure-search-screen",
+          "name": "1. Procedure Cost Search",
+          "width": 360,
+          "height": 780,
+          "fill": "#FFFFFF",
+          "layout": "vertical",
+          "cornerRadius": 16,
+          "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" },
+          "children": [
+            { "type": "frame", "id": "ps-statusbar", "width": "fill_container", "height": 44, "fill": "#FFFFFF" },
+            {
+              "type": "frame",
+              "id": "ps-header",
+              "width": "fill_container",
+              "height": 56,
+              "fill": "#FFFFFF",
+              "layout": "horizontal",
+              "alignItems": "center",
+              "padding": [0, 16],
+              "children": [
+                { "type": "text", "id": "ps-title", "fill": "#1D1D20", "content": "Kostnader & Försäkring", "fontFamily": "ICA Rubrik", "fontSize": 20, "fontWeight": "700" }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "ps-search",
+              "width": "fill_container",
+              "padding": [8, 16],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "ps-search-bar",
+                  "width": "fill_container",
+                  "height": 48,
+                  "fill": "#F5F5F5",
+                  "cornerRadius": 8,
+                  "layout": "horizontal",
+                  "alignItems": "center",
+                  "padding": [0, 12],
+                  "gap": 8,
+                  "children": [
+                    { "type": "frame", "id": "ps-search-icon", "width": 20, "height": 20, "fill": "#828386", "cornerRadius": 4 },
+                    { "type": "text", "id": "ps-search-placeholder", "fill": "#828386", "content": "Sök behandling, t.ex. \"kastrering\"", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "400" }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "ps-results",
+              "width": "fill_container",
+              "layout": "vertical",
+              "padding": [8, 16],
+              "gap": 8,
+              "children": [
+                { "type": "text", "id": "ps-results-heading", "fill": "#828386", "content": "VANLIGA BEHANDLINGAR", "fontFamily": "ICA Rubrik", "fontSize": 11, "fontWeight": "600" },
+                {
+                  "type": "frame",
+                  "id": "ps-result-1",
+                  "width": "fill_container",
+                  "height": 72,
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 12,
+                  "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" },
+                  "layout": "horizontal",
+                  "alignItems": "center",
+                  "justifyContent": "space-between",
+                  "padding": [0, 16],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "ps-r1-left",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        { "type": "text", "id": "ps-r1-name", "fill": "#1D1D20", "content": "Kastrering (hane)", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "600" },
+                        { "type": "text", "id": "ps-r1-updated", "fill": "#828386", "content": "Uppdaterat: jan 2026", "fontFamily": "ICA Rubrik", "fontSize": 12, "fontWeight": "400" }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "ps-r1-right",
+                      "layout": "vertical",
+                      "alignItems": "flex-end",
+                      "gap": 2,
+                      "children": [
+                        { "type": "text", "id": "ps-r1-price", "fill": "#1D1D20", "content": "3 500–6 000 kr", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "700" },
+                        { "type": "text", "id": "ps-r1-arrow", "fill": "#828386", "content": "Se detaljer ›", "fontFamily": "ICA Rubrik", "fontSize": 12, "fontWeight": "400" }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "ps-result-2",
+                  "width": "fill_container",
+                  "height": 72,
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 12,
+                  "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" },
+                  "layout": "horizontal",
+                  "alignItems": "center",
+                  "justifyContent": "space-between",
+                  "padding": [0, 16],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "ps-r2-left",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        { "type": "text", "id": "ps-r2-name", "fill": "#1D1D20", "content": "Tandsten / tandrengöring", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "600" },
+                        { "type": "text", "id": "ps-r2-updated", "fill": "#828386", "content": "Uppdaterat: feb 2026", "fontFamily": "ICA Rubrik", "fontSize": 12, "fontWeight": "400" }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "ps-r2-right",
+                      "layout": "vertical",
+                      "alignItems": "flex-end",
+                      "gap": 2,
+                      "children": [
+                        { "type": "text", "id": "ps-r2-price", "fill": "#1D1D20", "content": "2 000–4 500 kr", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "700" },
+                        { "type": "text", "id": "ps-r2-arrow", "fill": "#828386", "content": "Se detaljer ›", "fontFamily": "ICA Rubrik", "fontSize": 12, "fontWeight": "400" }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "ps-result-3",
+                  "width": "fill_container",
+                  "height": 72,
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 12,
+                  "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" },
+                  "layout": "horizontal",
+                  "alignItems": "center",
+                  "justifyContent": "space-between",
+                  "padding": [0, 16],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "ps-r3-left",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        { "type": "text", "id": "ps-r3-name", "fill": "#1D1D20", "content": "Röntgen", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "600" },
+                        { "type": "text", "id": "ps-r3-updated", "fill": "#828386", "content": "Uppdaterat: dec 2025", "fontFamily": "ICA Rubrik", "fontSize": 12, "fontWeight": "400" }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "ps-r3-right",
+                      "layout": "vertical",
+                      "alignItems": "flex-end",
+                      "gap": 2,
+                      "children": [
+                        { "type": "text", "id": "ps-r3-price", "fill": "#1D1D20", "content": "1 500–3 000 kr", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "700" },
+                        { "type": "text", "id": "ps-r3-arrow", "fill": "#828386", "content": "Se detaljer ›", "fontFamily": "ICA Rubrik", "fontSize": 12, "fontWeight": "400" }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "insurance-compare-screen",
+          "name": "2. Insurance Comparison",
+          "width": 360,
+          "height": 780,
+          "fill": "#FFFFFF",
+          "layout": "vertical",
+          "cornerRadius": 16,
+          "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" },
+          "children": [
+            { "type": "frame", "id": "ic-statusbar", "width": "fill_container", "height": 44, "fill": "#FFFFFF" },
+            {
+              "type": "frame",
+              "id": "ic-header",
+              "width": "fill_container",
+              "height": 56,
+              "fill": "#FFFFFF",
+              "layout": "horizontal",
+              "alignItems": "center",
+              "padding": [0, 16],
+              "children": [
+                { "type": "text", "id": "ic-back", "fill": "#1E3065", "content": "←", "fontFamily": "ICA Rubrik", "fontSize": 20, "fontWeight": "600" },
+                { "type": "text", "id": "ic-title", "fill": "#1D1D20", "content": "  Jämför försäkringar", "fontFamily": "ICA Rubrik", "fontSize": 20, "fontWeight": "700" }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "ic-cards",
+              "width": "fill_container",
+              "layout": "vertical",
+              "padding": [8, 16],
+              "gap": 12,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "ic-card-1",
+                  "name": "insurance-card-A",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 12,
+                  "stroke": { "align": "inside", "thickness": 2, "fill": "#1E3065" },
+                  "layout": "vertical",
+                  "padding": [16, 16],
+                  "gap": 12,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "ic1-header",
+                      "width": "fill_container",
+                      "layout": "horizontal",
+                      "justifyContent": "space-between",
+                      "alignItems": "center",
+                      "children": [
+                        { "type": "text", "id": "ic1-name", "fill": "#1D1D20", "content": "Lassie Hundförsäkring Plus", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "700" },
+                        { "type": "frame", "id": "ic1-logo", "width": 40, "height": 24, "fill": "#E0EDFF", "cornerRadius": 4 }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "ic1-metrics",
+                      "width": "fill_container",
+                      "layout": "horizontal",
+                      "gap": 16,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "ic1-premium",
+                          "layout": "vertical",
+                          "gap": 2,
+                          "children": [
+                            { "type": "text", "id": "ic1-prem-label", "fill": "#828386", "content": "Premie/mån", "fontFamily": "ICA Rubrik", "fontSize": 11, "fontWeight": "400" },
+                            { "type": "text", "id": "ic1-prem-value", "fill": "#1D1D20", "content": "329 kr", "fontFamily": "ICA Rubrik", "fontSize": 20, "fontWeight": "700" }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "ic1-deductible",
+                          "layout": "vertical",
+                          "gap": 2,
+                          "children": [
+                            { "type": "text", "id": "ic1-ded-label", "fill": "#828386", "content": "Självrisk", "fontFamily": "ICA Rubrik", "fontSize": 11, "fontWeight": "400" },
+                            { "type": "text", "id": "ic1-ded-value", "fill": "#1D1D20", "content": "1 500 kr", "fontFamily": "ICA Rubrik", "fontSize": 16, "fontWeight": "600" }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "ic1-coverage",
+                          "layout": "vertical",
+                          "gap": 2,
+                          "children": [
+                            { "type": "text", "id": "ic1-cov-label", "fill": "#828386", "content": "Maxbelopp", "fontFamily": "ICA Rubrik", "fontSize": 11, "fontWeight": "400" },
+                            { "type": "text", "id": "ic1-cov-value", "fill": "#1D1D20", "content": "120 000 kr", "fontFamily": "ICA Rubrik", "fontSize": 16, "fontWeight": "600" }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "ic1-cta",
+                      "width": "fill_container",
+                      "height": 40,
+                      "fill": "#1E3065",
+                      "cornerRadius": 8,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "children": [
+                        { "type": "text", "id": "ic1-cta-label", "fill": "#FFFFFF", "content": "Teckna försäkring", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "600" }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "ic-card-2",
+                  "name": "insurance-card-B",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 12,
+                  "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" },
+                  "layout": "vertical",
+                  "padding": [16, 16],
+                  "gap": 12,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "ic2-header",
+                      "width": "fill_container",
+                      "layout": "horizontal",
+                      "justifyContent": "space-between",
+                      "alignItems": "center",
+                      "children": [
+                        { "type": "text", "id": "ic2-name", "fill": "#1D1D20", "content": "Agria Bas", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "700" },
+                        { "type": "frame", "id": "ic2-logo", "width": 40, "height": 24, "fill": "#E8F2E1", "cornerRadius": 4 }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "ic2-metrics",
+                      "width": "fill_container",
+                      "layout": "horizontal",
+                      "gap": 16,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "ic2-premium",
+                          "layout": "vertical",
+                          "gap": 2,
+                          "children": [
+                            { "type": "text", "id": "ic2-prem-label", "fill": "#828386", "content": "Premie/mån", "fontFamily": "ICA Rubrik", "fontSize": 11, "fontWeight": "400" },
+                            { "type": "text", "id": "ic2-prem-value", "fill": "#1D1D20", "content": "289 kr", "fontFamily": "ICA Rubrik", "fontSize": 20, "fontWeight": "700" }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "ic2-deductible",
+                          "layout": "vertical",
+                          "gap": 2,
+                          "children": [
+                            { "type": "text", "id": "ic2-ded-label", "fill": "#828386", "content": "Självrisk", "fontFamily": "ICA Rubrik", "fontSize": 11, "fontWeight": "400" },
+                            { "type": "text", "id": "ic2-ded-value", "fill": "#1D1D20", "content": "2 000 kr", "fontFamily": "ICA Rubrik", "fontSize": 16, "fontWeight": "600" }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "ic2-coverage",
+                          "layout": "vertical",
+                          "gap": 2,
+                          "children": [
+                            { "type": "text", "id": "ic2-cov-label", "fill": "#828386", "content": "Maxbelopp", "fontFamily": "ICA Rubrik", "fontSize": 11, "fontWeight": "400" },
+                            { "type": "text", "id": "ic2-cov-value", "fill": "#1D1D20", "content": "80 000 kr", "fontFamily": "ICA Rubrik", "fontSize": 16, "fontWeight": "600" }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "ic2-cta",
+                      "width": "fill_container",
+                      "height": 40,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 8,
+                      "stroke": { "align": "inside", "thickness": 1.5, "fill": "#1E3065" },
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "children": [
+                        { "type": "text", "id": "ic2-cta-label", "fill": "#1E3065", "content": "Teckna försäkring", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "600" }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,229 @@
+{
+  "version": "2.8",
+  "children": [
+    {
+      "type": "frame",
+      "id": "nutrition-flow",
+      "x": 0,
+      "y": 0,
+      "name": "Nutrition & Food Flow",
+      "width": 1200,
+      "fill": "#F5F5F5",
+      "layout": "horizontal",
+      "gap": 40,
+      "padding": [40, 40],
+      "children": [
+        {
+          "type": "frame",
+          "id": "recommendations-screen",
+          "name": "1. Recommendations",
+          "width": 360,
+          "height": 780,
+          "fill": "#FFFFFF",
+          "layout": "vertical",
+          "cornerRadius": 16,
+          "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" },
+          "children": [
+            { "type": "frame", "id": "nr-statusbar", "width": "fill_container", "height": 44, "fill": "#FFFFFF" },
+            {
+              "type": "frame",
+              "id": "nr-header",
+              "width": "fill_container",
+              "height": 56,
+              "fill": "#FFFFFF",
+              "layout": "horizontal",
+              "alignItems": "center",
+              "padding": [0, 16],
+              "children": [
+                { "type": "text", "id": "nr-title", "fill": "#1D1D20", "content": "Kost & Näring", "fontFamily": "ICA Rubrik", "fontSize": 20, "fontWeight": "700" }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "nr-pet-context",
+              "width": "fill_container",
+              "fill": "#E0EDFF",
+              "padding": [12, 16],
+              "layout": "horizontal",
+              "gap": 12,
+              "alignItems": "center",
+              "children": [
+                { "type": "frame", "id": "nr-pet-avatar", "width": 40, "height": 40, "fill": "#4A7CBF", "cornerRadius": 20 },
+                {
+                  "type": "frame",
+                  "id": "nr-pet-info",
+                  "layout": "vertical",
+                  "gap": 2,
+                  "children": [
+                    { "type": "text", "id": "nr-pet-name", "fill": "#1E3065", "content": "Max — Golden Retriever", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "600" },
+                    { "type": "text", "id": "nr-pet-detail", "fill": "#2F5A9A", "content": "3 år • 32 kg • Inga allergier", "fontFamily": "ICA Rubrik", "fontSize": 12, "fontWeight": "400" }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "nr-recommendations",
+              "width": "fill_container",
+              "layout": "vertical",
+              "padding": [16, 16],
+              "gap": 12,
+              "children": [
+                { "type": "text", "id": "nr-recs-heading", "fill": "#828386", "content": "REKOMMENDATIONER", "fontFamily": "ICA Rubrik", "fontSize": 11, "fontWeight": "600" },
+                {
+                  "type": "frame",
+                  "id": "nr-rec-1",
+                  "name": "recommendation-card",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 12,
+                  "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" },
+                  "layout": "vertical",
+                  "padding": [16, 16],
+                  "gap": 8,
+                  "children": [
+                    { "type": "text", "id": "nr-rec1-title", "fill": "#1D1D20", "content": "Torrfoder för stora raser", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "700" },
+                    { "type": "text", "id": "nr-rec1-reason", "fill": "#45464B", "content": "Rekommenderas för stora raser 1–5 år för att stödja leder och muskulatur.", "fontFamily": "ICA Rubrik", "fontSize": 12, "fontWeight": "400" },
+                    { "type": "text", "id": "nr-rec1-dosage", "fill": "#2D6E40", "content": "Daglig dos: 300–350 g", "fontFamily": "ICA Rubrik", "fontSize": 12, "fontWeight": "600" },
+                    { "type": "text", "id": "nr-rec1-cta", "fill": "#1E3065", "content": "Se matchade produkter ›", "fontFamily": "ICA Rubrik", "fontSize": 13, "fontWeight": "600" }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "nr-rec-2",
+                  "name": "recommendation-card-2",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 12,
+                  "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" },
+                  "layout": "vertical",
+                  "padding": [16, 16],
+                  "gap": 8,
+                  "children": [
+                    { "type": "text", "id": "nr-rec2-title", "fill": "#1D1D20", "content": "Komplement: våtfoder", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "700" },
+                    { "type": "text", "id": "nr-rec2-reason", "fill": "#45464B", "content": "Komplement till torrfoder för att öka vätskeintag och smak.", "fontFamily": "ICA Rubrik", "fontSize": 12, "fontWeight": "400" },
+                    { "type": "text", "id": "nr-rec2-dosage", "fill": "#2D6E40", "content": "Daglig dos: 100–150 g", "fontFamily": "ICA Rubrik", "fontSize": 12, "fontWeight": "600" },
+                    { "type": "text", "id": "nr-rec2-cta", "fill": "#1E3065", "content": "Se matchade produkter ›", "fontFamily": "ICA Rubrik", "fontSize": 13, "fontWeight": "600" }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "products-screen",
+          "name": "2. Product Matches",
+          "width": 360,
+          "height": 780,
+          "fill": "#FFFFFF",
+          "layout": "vertical",
+          "cornerRadius": 16,
+          "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" },
+          "children": [
+            { "type": "frame", "id": "pm-statusbar", "width": "fill_container", "height": 44, "fill": "#FFFFFF" },
+            {
+              "type": "frame",
+              "id": "pm-header",
+              "width": "fill_container",
+              "height": 56,
+              "fill": "#FFFFFF",
+              "layout": "horizontal",
+              "alignItems": "center",
+              "padding": [0, 16],
+              "children": [
+                { "type": "text", "id": "pm-back", "fill": "#1E3065", "content": "←", "fontFamily": "ICA Rubrik", "fontSize": 20, "fontWeight": "600" },
+                { "type": "text", "id": "pm-title", "fill": "#1D1D20", "content": "  ICA Gaston produkter", "fontFamily": "ICA Rubrik", "fontSize": 18, "fontWeight": "700" }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "pm-products",
+              "width": "fill_container",
+              "layout": "vertical",
+              "padding": [8, 16],
+              "gap": 12,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "pm-product-1",
+                  "name": "product-card-in-stock",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 12,
+                  "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" },
+                  "layout": "horizontal",
+                  "padding": [12, 12],
+                  "gap": 12,
+                  "children": [
+                    { "type": "frame", "id": "pm-p1-img", "width": 80, "height": 80, "fill": "#F5F5F5", "cornerRadius": 8 },
+                    {
+                      "type": "frame",
+                      "id": "pm-p1-info",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "children": [
+                        { "type": "text", "id": "pm-p1-name", "fill": "#1D1D20", "content": "ICA Gaston Adult Large Breed", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "600" },
+                        { "type": "text", "id": "pm-p1-weight", "fill": "#45464B", "content": "12 kg • Kyckling & ris", "fontFamily": "ICA Rubrik", "fontSize": 12, "fontWeight": "400" },
+                        { "type": "text", "id": "pm-p1-price", "fill": "#1D1D20", "content": "349 kr", "fontFamily": "ICA Rubrik", "fontSize": 16, "fontWeight": "700" },
+                        {
+                          "type": "frame",
+                          "id": "pm-p1-row",
+                          "layout": "horizontal",
+                          "gap": 8,
+                          "alignItems": "center",
+                          "children": [
+                            { "type": "frame", "id": "pm-p1-stock-dot", "width": 8, "height": 8, "fill": "#2D6E40", "cornerRadius": 4 },
+                            { "type": "text", "id": "pm-p1-stock", "fill": "#2D6E40", "content": "I lager", "fontFamily": "ICA Rubrik", "fontSize": 12, "fontWeight": "600" },
+                            { "type": "text", "id": "pm-p1-cart-btn", "fill": "#1E3065", "content": "Lägg i varukorg", "fontFamily": "ICA Rubrik", "fontSize": 12, "fontWeight": "600" }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "pm-product-2",
+                  "name": "product-card-out-of-stock",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 12,
+                  "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" },
+                  "layout": "horizontal",
+                  "padding": [12, 12],
+                  "gap": 12,
+                  "children": [
+                    { "type": "frame", "id": "pm-p2-img", "width": 80, "height": 80, "fill": "#F5F5F5", "cornerRadius": 8, "opacity": 0.5 },
+                    {
+                      "type": "frame",
+                      "id": "pm-p2-info",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "children": [
+                        { "type": "text", "id": "pm-p2-name", "fill": "#1D1D20", "content": "ICA Gaston Grain Free Adult", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "600" },
+                        { "type": "text", "id": "pm-p2-weight", "fill": "#45464B", "content": "10 kg • Lax & potatis", "fontFamily": "ICA Rubrik", "fontSize": 12, "fontWeight": "400" },
+                        { "type": "text", "id": "pm-p2-price", "fill": "#828386", "content": "399 kr", "fontFamily": "ICA Rubrik", "fontSize": 16, "fontWeight": "700" },
+                        {
+                          "type": "frame",
+                          "id": "pm-p2-stock-row",
+                          "layout": "horizontal",
+                          "gap": 8,
+                          "alignItems": "center",
+                          "children": [
+                            { "type": "frame", "id": "pm-p2-stock-dot", "width": 8, "height": 8, "fill": "#828386", "cornerRadius": 4 },
+                            { "type": "text", "id": "pm-p2-stock", "fill": "#828386", "content": "Slut i lager", "fontFamily": "ICA Rubrik", "fontSize": 12, "fontWeight": "400" }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

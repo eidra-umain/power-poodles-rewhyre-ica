@@ -1,0 +1,347 @@
+{
+  "version": "2.8",
+  "children": [
+    {
+      "type": "frame",
+      "id": "dashboard-flow",
+      "x": 0,
+      "y": 0,
+      "name": "Home Dashboard",
+      "width": 440,
+      "fill": "#F5F5F5",
+      "padding": [40, 40],
+      "children": [
+        {
+          "type": "frame",
+          "id": "dashboard-screen",
+          "name": "Dashboard",
+          "width": 360,
+          "height": 900,
+          "fill": "#FFFFFF",
+          "layout": "vertical",
+          "cornerRadius": 16,
+          "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" },
+          "children": [
+            {
+              "type": "frame",
+              "id": "dash-statusbar",
+              "name": "status-bar",
+              "width": "fill_container",
+              "height": 44,
+              "fill": "#FFFFFF"
+            },
+            {
+              "type": "frame",
+              "id": "dash-header",
+              "name": "header",
+              "width": "fill_container",
+              "height": 56,
+              "fill": "#FFFFFF",
+              "layout": "horizontal",
+              "alignItems": "center",
+              "justifyContent": "space-between",
+              "padding": [0, 16],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "dash-pet-selector",
+                  "name": "pet-selector",
+                  "layout": "horizontal",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "pet-avatar",
+                      "name": "avatar",
+                      "width": 36,
+                      "height": 36,
+                      "fill": "#E0EDFF",
+                      "cornerRadius": 18
+                    },
+                    {
+                      "type": "text",
+                      "id": "pet-name",
+                      "fill": "#1D1D20",
+                      "content": "Max ▾",
+                      "fontFamily": "ICA Rubrik",
+                      "fontSize": 20,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "dash-bell",
+                  "name": "notification-bell",
+                  "width": 24,
+                  "height": 24,
+                  "fill": "#45464B",
+                  "cornerRadius": 4
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "dash-body",
+              "name": "body",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 12,
+              "padding": [8, 16],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "health-score-card",
+                  "name": "card-health-score",
+                  "width": "fill_container",
+                  "height": 100,
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 12,
+                  "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" },
+                  "layout": "horizontal",
+                  "alignItems": "center",
+                  "padding": [0, 16],
+                  "gap": 16,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "score-circle",
+                      "name": "score-ring",
+                      "width": 64,
+                      "height": 64,
+                      "fill": "#E8F2E1",
+                      "cornerRadius": 32,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "stroke": { "align": "inside", "thickness": 4, "fill": "#2D6E40" },
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "score-number",
+                          "fill": "#2D6E40",
+                          "content": "87",
+                          "fontFamily": "ICA Rubrik",
+                          "fontSize": 24,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "score-info",
+                      "name": "score-text",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "children": [
+                        { "type": "text", "id": "score-label", "fill": "#1D1D20", "content": "Hälsopoäng", "fontFamily": "ICA Rubrik", "fontSize": 16, "fontWeight": "600" },
+                        { "type": "text", "id": "score-desc", "fill": "#45464B", "content": "Alla vaccinationer uppdaterade", "fontFamily": "ICA Rubrik", "fontSize": 12, "fontWeight": "400" }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "cost-snapshot-card",
+                  "name": "card-cost-snapshot",
+                  "width": "fill_container",
+                  "height": 80,
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 12,
+                  "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" },
+                  "layout": "horizontal",
+                  "alignItems": "center",
+                  "justifyContent": "space-between",
+                  "padding": [0, 16],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "cost-left",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "children": [
+                        { "type": "text", "id": "cost-label", "fill": "#828386", "content": "FÖRSÄKRING & KOSTNADER", "fontFamily": "ICA Rubrik", "fontSize": 11, "fontWeight": "600" },
+                        { "type": "text", "id": "cost-status", "fill": "#2D6E40", "content": "Försäkring aktiv", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "600" },
+                        { "type": "text", "id": "cost-next", "fill": "#45464B", "content": "Nästa besök: ~1 200 kr", "fontFamily": "ICA Rubrik", "fontSize": 12, "fontWeight": "400" }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "cost-arrow",
+                      "fill": "#828386",
+                      "content": "›",
+                      "fontFamily": "ICA Rubrik",
+                      "fontSize": 20,
+                      "fontWeight": "400"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "nutrition-snapshot-card",
+                  "name": "card-nutrition-snapshot",
+                  "width": "fill_container",
+                  "height": 80,
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 12,
+                  "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" },
+                  "layout": "horizontal",
+                  "alignItems": "center",
+                  "justifyContent": "space-between",
+                  "padding": [0, 16],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "nutr-left",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "children": [
+                        { "type": "text", "id": "nutr-label", "fill": "#828386", "content": "NUTRITION", "fontFamily": "ICA Rubrik", "fontSize": 11, "fontWeight": "600" },
+                        { "type": "text", "id": "nutr-plan", "fill": "#1D1D20", "content": "ICA Gaston Adult Large", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "600" },
+                        { "type": "text", "id": "nutr-detail", "fill": "#45464B", "content": "350g / dag • Torr + våtfoder", "fontFamily": "ICA Rubrik", "fontSize": 12, "fontWeight": "400" }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "nutr-arrow",
+                      "fill": "#828386",
+                      "content": "›",
+                      "fontFamily": "ICA Rubrik",
+                      "fontSize": 20,
+                      "fontWeight": "400"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "agenda-card",
+                  "name": "card-agenda",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 12,
+                  "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" },
+                  "layout": "vertical",
+                  "padding": [16, 16],
+                  "gap": 12,
+                  "children": [
+                    { "type": "text", "id": "agenda-title", "fill": "#828386", "content": "KOMMANDE", "fontFamily": "ICA Rubrik", "fontSize": 11, "fontWeight": "600" },
+                    {
+                      "type": "frame",
+                      "id": "agenda-item-1",
+                      "name": "item-vaccine",
+                      "width": "fill_container",
+                      "layout": "horizontal",
+                      "gap": 12,
+                      "alignItems": "center",
+                      "children": [
+                        { "type": "frame", "id": "a1-dot", "width": 8, "height": 8, "fill": "#D4613C", "cornerRadius": 4 },
+                        { "type": "text", "id": "a1-text", "fill": "#1D1D20", "content": "Vaccination rabies — 15 mars", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "400" }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "agenda-item-2",
+                      "name": "item-checkup",
+                      "width": "fill_container",
+                      "layout": "horizontal",
+                      "gap": 12,
+                      "alignItems": "center",
+                      "children": [
+                        { "type": "frame", "id": "a2-dot", "width": 8, "height": 8, "fill": "#4A7CBF", "cornerRadius": 4 },
+                        { "type": "text", "id": "a2-text", "fill": "#1D1D20", "content": "Årlig kontroll — 2 april", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "400" }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "agenda-item-3",
+                      "name": "item-meds",
+                      "width": "fill_container",
+                      "layout": "horizontal",
+                      "gap": 12,
+                      "alignItems": "center",
+                      "children": [
+                        { "type": "frame", "id": "a3-dot", "width": 8, "height": 8, "fill": "#2D6E40", "cornerRadius": 4 },
+                        { "type": "text", "id": "a3-text", "fill": "#1D1D20", "content": "Fästingmedel påfyllning — 10 april", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "400" }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "tab-bar",
+              "name": "tab-bar",
+              "width": "fill_container",
+              "height": 56,
+              "fill": "#FFFFFF",
+              "layout": "horizontal",
+              "alignItems": "center",
+              "justifyContent": "space-around",
+              "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" },
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "tab-home",
+                  "name": "tab-active",
+                  "layout": "vertical",
+                  "alignItems": "center",
+                  "gap": 2,
+                  "children": [
+                    { "type": "frame", "id": "tab-home-icon", "width": 24, "height": 24, "fill": "#1E3065", "cornerRadius": 4 },
+                    { "type": "text", "id": "tab-home-label", "fill": "#1E3065", "content": "Hem", "fontFamily": "ICA Rubrik", "fontSize": 10, "fontWeight": "600" }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "tab-health",
+                  "layout": "vertical",
+                  "alignItems": "center",
+                  "gap": 2,
+                  "children": [
+                    { "type": "frame", "id": "tab-health-icon", "width": 24, "height": 24, "fill": "#C5C6C7", "cornerRadius": 4 },
+                    { "type": "text", "id": "tab-health-label", "fill": "#828386", "content": "Hälsa", "fontFamily": "ICA Rubrik", "fontSize": 10, "fontWeight": "400" }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "tab-costs",
+                  "layout": "vertical",
+                  "alignItems": "center",
+                  "gap": 2,
+                  "children": [
+                    { "type": "frame", "id": "tab-costs-icon", "width": 24, "height": 24, "fill": "#C5C6C7", "cornerRadius": 4 },
+                    { "type": "text", "id": "tab-costs-label", "fill": "#828386", "content": "Kostnader", "fontFamily": "ICA Rubrik", "fontSize": 10, "fontWeight": "400" }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "tab-nutrition",
+                  "layout": "vertical",
+                  "alignItems": "center",
+                  "gap": 2,
+                  "children": [
+                    { "type": "frame", "id": "tab-nutr-icon", "width": 24, "height": 24, "fill": "#C5C6C7", "cornerRadius": 4 },
+                    { "type": "text", "id": "tab-nutr-label", "fill": "#828386", "content": "Kost", "fontFamily": "ICA Rubrik", "fontSize": 10, "fontWeight": "400" }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "tab-community",
+                  "layout": "vertical",
+                  "alignItems": "center",
+                  "gap": 2,
+                  "children": [
+                    { "type": "frame", "id": "tab-comm-icon", "width": 24, "height": 24, "fill": "#C5C6C7", "cornerRadius": 4 },
+                    { "type": "text", "id": "tab-comm-label", "fill": "#828386", "content": "Grupp", "fontFamily": "ICA Rubrik", "fontSize": 10, "fontWeight": "400" }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
