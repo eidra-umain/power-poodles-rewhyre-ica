@@ -10,7 +10,7 @@ The app connects four distinct areas into one cohesive experience:
 4.  **Behavioral Guidance & Community:** Expert content and peer support to drive retention.
 
 ## Key Hypotheses
-**H1 (Cost Anxiety):** We believe that making vet costs transparent and insurance easy to understand will reduce the anxiety that causes owners to delay care.
+**H1 (Cost Anxiety):** We believe that making vet costs transparent and insurance easy to understand will reduce the anxiety that causes owners to delay care.  
 **H2 (Retail Trust):** We believe users will trust feeding recommendations from a retailer if they are backed by evidence and tailored to the specific pet's health profile.
 
 ## Market Context
