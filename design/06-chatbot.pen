@@ -6,19 +6,19 @@
       "id": "chatbot-flow",
       "x": 0,
       "y": 0,
-      "name": "Chatbot Diary Flow",
-      "width": 1200,
+      "name": "Chatbot Diary — Desktop Overlay",
+      "width": 2000,
       "fill": "#F5F5F5",
       "layout": "horizontal",
-      "gap": 40,
+      "gap": 60,
       "padding": [40, 40],
       "children": [
         {
           "type": "frame",
           "id": "fab-screen",
-          "name": "1. FAB on Dashboard",
-          "width": 360,
-          "height": 780,
+          "name": "1. FAB on Page",
+          "width": 580,
+          "height": 500,
           "fill": "#F5F5F5",
           "cornerRadius": 16,
           "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" },
@@ -27,27 +27,27 @@
               "type": "frame",
               "id": "fab-bg",
               "name": "page-content-dimmed",
-              "width": 360,
-              "height": 780,
+              "width": 580,
+              "height": 500,
               "fill": "#FFFFFF",
               "cornerRadius": 16,
-              "opacity": 0.6
+              "opacity": 0.5
             },
             {
               "type": "frame",
               "id": "fab-button",
-              "name": "fab",
-              "x": 288,
-              "y": 688,
+              "name": "floating-action-button",
+              "x": 500,
+              "y": 420,
               "width": 56,
               "height": 56,
-              "fill": "#1E3065",
+              "fill": "#D4613C",
               "cornerRadius": 28,
               "layout": "horizontal",
               "alignItems": "center",
               "justifyContent": "center",
               "children": [
-                { "type": "text", "id": "fab-icon", "fill": "#FFFFFF", "content": "Chat", "fontFamily": "ICA Rubrik", "fontSize": 11, "fontWeight": "600" }
+                { "type": "text", "id": "fab-icon", "fill": "#FFFFFF", "content": "💬", "fontSize": 22 }
               ]
             }
           ]
@@ -56,73 +56,86 @@
           "type": "frame",
           "id": "chat-open-screen",
           "name": "2. Chat Panel Open",
-          "width": 360,
-          "height": 780,
+          "width": 580,
+          "height": 500,
           "fill": "#F5F5F5",
           "cornerRadius": 16,
           "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" },
           "children": [
             {
               "type": "frame",
-              "id": "chat-dimmed-bg",
-              "width": 360,
-              "height": 120,
-              "fill": "#000000",
-              "opacity": 0.3,
-              "cornerRadius": 16
+              "id": "chat-page-bg",
+              "name": "page-behind",
+              "width": 580,
+              "height": 500,
+              "fill": "#FFFFFF",
+              "cornerRadius": 16,
+              "opacity": 0.3
             },
             {
               "type": "frame",
               "id": "chat-panel",
-              "name": "chat-overlay",
-              "x": 0,
-              "y": 120,
-              "width": 360,
-              "height": 660,
+              "name": "chat-side-panel",
+              "x": 200,
+              "y": 0,
+              "width": 380,
+              "height": 500,
               "fill": "#FFFFFF",
               "cornerRadius": 16,
               "layout": "vertical",
               "children": [
                 {
                   "type": "frame",
-                  "id": "chat-handle",
-                  "width": "fill_container",
-                  "height": 24,
-                  "layout": "horizontal",
-                  "alignItems": "center",
-                  "justifyContent": "center",
-                  "children": [
-                    { "type": "frame", "id": "handle-bar", "width": 40, "height": 4, "fill": "#C5C6C7", "cornerRadius": 2 }
-                  ]
-                },
-                {
-                  "type": "frame",
                   "id": "chat-header",
+                  "name": "panel-header",
                   "width": "fill_container",
-                  "height": 48,
+                  "height": 56,
                   "layout": "horizontal",
                   "alignItems": "center",
                   "justifyContent": "space-between",
-                  "padding": [0, 16],
+                  "padding": [0, 20],
                   "children": [
                     {
                       "type": "frame",
                       "id": "chat-header-left",
                       "layout": "horizontal",
-                      "gap": 8,
+                      "gap": 10,
                       "alignItems": "center",
                       "children": [
-                        { "type": "frame", "id": "chat-pet-avatar", "width": 32, "height": 32, "fill": "#E0EDFF", "cornerRadius": 16 },
-                        { "type": "text", "id": "chat-pet-label", "fill": "#1D1D20", "content": "Max dagbok", "fontFamily": "ICA Rubrik", "fontSize": 16, "fontWeight": "700" }
+                        {
+                          "type": "frame",
+                          "id": "chat-pet-avatar",
+                          "width": 32,
+                          "height": 32,
+                          "fill": "#FBCFBD",
+                          "cornerRadius": 8,
+                          "layout": "horizontal",
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "children": [
+                            { "type": "text", "id": "chat-pet-icon", "fill": "#D4613C", "content": "🐾", "fontSize": 16 }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "chat-header-text",
+                          "layout": "vertical",
+                          "gap": 0,
+                          "children": [
+                            { "type": "text", "id": "chat-title", "fill": "#1D1D20", "content": "Bjørn dagbok", "fontFamily": "ICA Rubrik", "fontSize": 15, "fontWeight": "700" },
+                            { "type": "text", "id": "chat-subtitle", "fill": "#828386", "content": "AI-driven health diary", "fontFamily": "ICA Text Ny", "fontSize": 11, "fontWeight": "400" }
+                          ]
+                        }
                       ]
                     },
-                    { "type": "text", "id": "chat-close", "fill": "#828386", "content": "✕", "fontFamily": "ICA Rubrik", "fontSize": 20, "fontWeight": "400" }
+                    { "type": "text", "id": "chat-close", "fill": "#828386", "content": "✕", "fontFamily": "ICA Rubrik", "fontSize": 18, "fontWeight": "400" }
                   ]
                 },
                 { "type": "rectangle", "id": "chat-divider", "width": "fill_container", "height": 1, "fill": "#ECEDED" },
                 {
                   "type": "frame",
                   "id": "chat-messages",
+                  "name": "message-area",
                   "width": "fill_container",
                   "layout": "vertical",
                   "padding": [16, 16],
@@ -134,16 +147,30 @@
                       "name": "bot-message",
                       "layout": "horizontal",
                       "gap": 8,
+                      "width": "fill_container",
                       "children": [
-                        { "type": "frame", "id": "bot-avatar", "width": 28, "height": 28, "fill": "#E0EDFF", "cornerRadius": 14 },
+                        {
+                          "type": "frame",
+                          "id": "bot-avatar",
+                          "width": 28,
+                          "height": 28,
+                          "fill": "#FBCFBD",
+                          "cornerRadius": 14,
+                          "layout": "horizontal",
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "children": [
+                            { "type": "text", "id": "bot-icon", "fill": "#D4613C", "content": "🐾", "fontSize": 12 }
+                          ]
+                        },
                         {
                           "type": "frame",
                           "id": "bot-bubble",
                           "fill": "#F5F5F5",
                           "cornerRadius": 12,
-                          "padding": [10, 12],
+                          "padding": [10, 14],
                           "children": [
-                            { "type": "text", "id": "bot-text-1", "fill": "#45464B", "content": "Hej! Hur har Max haft det idag?", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "400", "textGrowth": "fixed-width", "width": 240 }
+                            { "type": "text", "id": "bot-text", "fill": "#45464B", "content": "Hej! Hur har Bjørn haft det idag?", "fontFamily": "ICA Text Ny", "fontSize": 14, "fontWeight": "400", "textGrowth": "fixed-width", "width": 260 }
                           ]
                         }
                       ]
@@ -159,11 +186,11 @@
                         {
                           "type": "frame",
                           "id": "user-bubble",
-                          "fill": "#E0EDFF",
+                          "fill": "#FBCFBD",
                           "cornerRadius": 12,
-                          "padding": [10, 12],
+                          "padding": [10, 14],
                           "children": [
-                            { "type": "text", "id": "user-text-1", "fill": "#1E3065", "content": "Vi var på promenad i parken.\nMax haltade lite efteråt.", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "400", "textGrowth": "fixed-width", "width": 220 }
+                            { "type": "text", "id": "user-text", "fill": "#5E2018", "content": "Vi var på promenad i parken.\nBjørn haltade lite efteråt.", "fontFamily": "ICA Text Ny", "fontSize": 14, "fontWeight": "400", "textGrowth": "fixed-width", "width": 240 }
                           ]
                         }
                       ]
@@ -173,17 +200,18 @@
                 {
                   "type": "frame",
                   "id": "chat-input-area",
+                  "name": "input-bar",
                   "width": "fill_container",
                   "height": 56,
                   "layout": "horizontal",
                   "alignItems": "center",
-                  "padding": [0, 12],
+                  "padding": [0, 16],
                   "gap": 8,
                   "children": [
                     {
                       "type": "frame",
-                      "id": "chat-text-input",
-                      "width": 280,
+                      "id": "chat-input",
+                      "width": 288,
                       "height": 40,
                       "fill": "#F5F5F5",
                       "cornerRadius": 20,
@@ -191,7 +219,7 @@
                       "layout": "horizontal",
                       "alignItems": "center",
                       "children": [
-                        { "type": "text", "id": "chat-input-placeholder", "fill": "#828386", "content": "Skriv om Max dag...", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "400" }
+                        { "type": "text", "id": "chat-placeholder", "fill": "#828386", "content": "Skriv om Bjørns dag...", "fontFamily": "ICA Text Ny", "fontSize": 14, "fontWeight": "400" }
                       ]
                     },
                     {
@@ -199,7 +227,7 @@
                       "id": "chat-send-btn",
                       "width": 40,
                       "height": 40,
-                      "fill": "#1E3065",
+                      "fill": "#D4613C",
                       "cornerRadius": 20,
                       "layout": "horizontal",
                       "alignItems": "center",
@@ -218,56 +246,58 @@
           "type": "frame",
           "id": "chat-confirm-screen",
           "name": "3. Parsed Confirmation",
-          "width": 360,
-          "height": 780,
+          "width": 580,
+          "height": 500,
           "fill": "#F5F5F5",
           "cornerRadius": 16,
           "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" },
           "children": [
             {
               "type": "frame",
-              "id": "confirm-dimmed-bg",
-              "width": 360,
-              "height": 120,
-              "fill": "#000000",
-              "opacity": 0.3,
-              "cornerRadius": 16
+              "id": "confirm-page-bg",
+              "width": 580,
+              "height": 500,
+              "fill": "#FFFFFF",
+              "cornerRadius": 16,
+              "opacity": 0.3
             },
             {
               "type": "frame",
               "id": "confirm-panel",
-              "x": 0,
-              "y": 120,
-              "width": 360,
-              "height": 660,
+              "name": "confirm-side-panel",
+              "x": 200,
+              "y": 0,
+              "width": 380,
+              "height": 500,
               "fill": "#FFFFFF",
               "cornerRadius": 16,
               "layout": "vertical",
               "children": [
                 {
                   "type": "frame",
-                  "id": "confirm-handle",
-                  "width": "fill_container",
-                  "height": 24,
-                  "layout": "horizontal",
-                  "alignItems": "center",
-                  "justifyContent": "center",
-                  "children": [
-                    { "type": "frame", "id": "confirm-handle-bar", "width": 40, "height": 4, "fill": "#C5C6C7", "cornerRadius": 2 }
-                  ]
-                },
-                {
-                  "type": "frame",
                   "id": "confirm-header",
                   "width": "fill_container",
-                  "height": 48,
+                  "height": 56,
                   "layout": "horizontal",
                   "alignItems": "center",
-                  "padding": [0, 16],
-                  "gap": 8,
+                  "padding": [0, 20],
+                  "gap": 10,
                   "children": [
-                    { "type": "frame", "id": "confirm-avatar", "width": 32, "height": 32, "fill": "#E0EDFF", "cornerRadius": 16 },
-                    { "type": "text", "id": "confirm-title", "fill": "#1D1D20", "content": "Max dagbok", "fontFamily": "ICA Rubrik", "fontSize": 16, "fontWeight": "700" }
+                    {
+                      "type": "frame",
+                      "id": "confirm-avatar",
+                      "width": 32,
+                      "height": 32,
+                      "fill": "#FBCFBD",
+                      "cornerRadius": 8,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "children": [
+                        { "type": "text", "id": "confirm-avatar-icon", "fill": "#D4613C", "content": "🐾", "fontSize": 16 }
+                      ]
+                    },
+                    { "type": "text", "id": "confirm-title", "fill": "#1D1D20", "content": "Bjørn dagbok", "fontFamily": "ICA Rubrik", "fontSize": 15, "fontWeight": "700" }
                   ]
                 },
                 { "type": "rectangle", "id": "confirm-divider", "width": "fill_container", "height": 1, "fill": "#ECEDED" },
@@ -284,22 +314,36 @@
                       "id": "confirm-bot-msg",
                       "layout": "horizontal",
                       "gap": 8,
+                      "width": "fill_container",
                       "children": [
-                        { "type": "frame", "id": "confirm-bot-avatar", "width": 28, "height": 28, "fill": "#E0EDFF", "cornerRadius": 14 },
+                        {
+                          "type": "frame",
+                          "id": "confirm-bot-avatar",
+                          "width": 28,
+                          "height": 28,
+                          "fill": "#FBCFBD",
+                          "cornerRadius": 14,
+                          "layout": "horizontal",
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "children": [
+                            { "type": "text", "id": "confirm-bot-icon", "fill": "#D4613C", "content": "🐾", "fontSize": 12 }
+                          ]
+                        },
                         {
                           "type": "frame",
                           "id": "confirm-bot-bubble",
                           "fill": "#F5F5F5",
                           "cornerRadius": 12,
-                          "padding": [10, 12],
+                          "padding": [12, 14],
                           "layout": "vertical",
-                          "gap": 8,
+                          "gap": 10,
                           "children": [
-                            { "type": "text", "id": "confirm-bot-intro", "fill": "#45464B", "content": "Jag har skapat en logg. Stämmer det?", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "400", "textGrowth": "fixed-width", "width": 240 },
+                            { "type": "text", "id": "confirm-bot-intro", "fill": "#45464B", "content": "Jag har skapat en logg. Stämmer det?", "fontFamily": "ICA Text Ny", "fontSize": 14, "fontWeight": "400", "textGrowth": "fixed-width", "width": 260 },
                             {
                               "type": "frame",
                               "id": "parsed-entry",
-                              "name": "parsed-health-entry",
+                              "name": "parsed-health-entry-card",
                               "width": "fill_container",
                               "fill": "#FFFFFF",
                               "cornerRadius": 8,
@@ -316,12 +360,12 @@
                                   "alignItems": "center",
                                   "children": [
                                     { "type": "frame", "id": "parsed-dot", "width": 8, "height": 8, "fill": "#D4613C", "cornerRadius": 4 },
-                                    { "type": "text", "id": "parsed-cat-label", "fill": "#828386", "content": "SYMPTOM", "fontFamily": "ICA Rubrik", "fontSize": 11, "fontWeight": "600" }
+                                    { "type": "text", "id": "parsed-cat-label", "fill": "#828386", "content": "SYMPTOM", "fontFamily": "ICA Rubrik", "fontSize": 11, "fontWeight": "700" }
                                   ]
                                 },
-                                { "type": "text", "id": "parsed-title", "fill": "#1D1D20", "content": "Hälta efter promenad", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "600" },
-                                { "type": "text", "id": "parsed-date", "fill": "#828386", "content": "6 mars 2026", "fontFamily": "ICA Rubrik", "fontSize": 12, "fontWeight": "400" },
-                                { "type": "text", "id": "parsed-detail", "fill": "#45464B", "content": "Max haltade efter promenad i parken.", "fontFamily": "ICA Rubrik", "fontSize": 12, "fontWeight": "400" }
+                                { "type": "text", "id": "parsed-title", "fill": "#1D1D20", "content": "Hälta efter promenad", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "700" },
+                                { "type": "text", "id": "parsed-date", "fill": "#828386", "content": "6 mars 2026", "fontFamily": "ICA Text Ny", "fontSize": 12, "fontWeight": "400" },
+                                { "type": "text", "id": "parsed-detail", "fill": "#45464B", "content": "Bjørn haltade efter promenad i parken.", "fontFamily": "ICA Text Ny", "fontSize": 12, "fontWeight": "400" }
                               ]
                             }
                           ]
@@ -334,19 +378,20 @@
                       "width": "fill_container",
                       "layout": "horizontal",
                       "gap": 8,
+                      "padding": [0, 36],
                       "children": [
                         {
                           "type": "frame",
                           "id": "confirm-save-btn",
                           "width": 160,
                           "height": 40,
-                          "fill": "#1E3065",
+                          "fill": "#D4613C",
                           "cornerRadius": 8,
                           "layout": "horizontal",
                           "alignItems": "center",
                           "justifyContent": "center",
                           "children": [
-                            { "type": "text", "id": "confirm-save-label", "fill": "#FFFFFF", "content": "Spara", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "600" }
+                            { "type": "text", "id": "confirm-save-label", "fill": "#FFFFFF", "content": "Spara", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "700" }
                           ]
                         },
                         {
@@ -356,12 +401,12 @@
                           "height": 40,
                           "fill": "#FFFFFF",
                           "cornerRadius": 8,
-                          "stroke": { "align": "inside", "thickness": 1.5, "fill": "#1E3065" },
+                          "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" },
                           "layout": "horizontal",
                           "alignItems": "center",
                           "justifyContent": "center",
                           "children": [
-                            { "type": "text", "id": "confirm-edit-label", "fill": "#1E3065", "content": "Redigera", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "600" }
+                            { "type": "text", "id": "confirm-edit-label", "fill": "#45464B", "content": "Redigera", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "700" }
                           ]
                         }
                       ]

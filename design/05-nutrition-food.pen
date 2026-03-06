@@ -6,176 +6,298 @@
       "id": "nutrition-flow",
       "x": 0,
       "y": 0,
-      "name": "Nutrition & Food Flow",
-      "width": 1200,
+      "name": "Food & Nutrition — Desktop",
+      "width": 960,
       "fill": "#F5F5F5",
-      "layout": "horizontal",
-      "gap": 40,
+      "layout": "vertical",
       "padding": [40, 40],
+      "gap": 0,
       "children": [
         {
           "type": "frame",
-          "id": "recommendations-screen",
-          "name": "1. Recommendations",
-          "width": 360,
-          "height": 780,
-          "fill": "#FFFFFF",
+          "id": "nutrition-screen",
+          "name": "Food & Nutrition — Full Page",
+          "width": 880,
+          "height": 700,
+          "fill": "#F5F5F5",
           "layout": "vertical",
           "cornerRadius": 16,
           "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" },
           "children": [
-            { "type": "frame", "id": "nr-statusbar", "width": "fill_container", "height": 44, "fill": "#FFFFFF" },
             {
               "type": "frame",
-              "id": "nr-header",
+              "id": "fn-topbar",
+              "name": "page-header",
               "width": "fill_container",
-              "height": 56,
+              "height": 64,
               "fill": "#FFFFFF",
               "layout": "horizontal",
               "alignItems": "center",
-              "padding": [0, 16],
+              "justifyContent": "space-between",
+              "padding": [0, 28],
               "children": [
-                { "type": "text", "id": "nr-title", "fill": "#1D1D20", "content": "Kost & Näring", "fontFamily": "ICA Rubrik", "fontSize": 20, "fontWeight": "700" }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "nr-pet-context",
-              "width": "fill_container",
-              "fill": "#E0EDFF",
-              "padding": [12, 16],
-              "layout": "horizontal",
-              "gap": 12,
-              "alignItems": "center",
-              "children": [
-                { "type": "frame", "id": "nr-pet-avatar", "width": 40, "height": 40, "fill": "#4A7CBF", "cornerRadius": 20 },
                 {
                   "type": "frame",
-                  "id": "nr-pet-info",
+                  "id": "fn-topbar-left",
                   "layout": "vertical",
                   "gap": 2,
                   "children": [
-                    { "type": "text", "id": "nr-pet-name", "fill": "#1E3065", "content": "Max — Golden Retriever", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "600" },
-                    { "type": "text", "id": "nr-pet-detail", "fill": "#2F5A9A", "content": "3 år • 32 kg • Inga allergier", "fontFamily": "ICA Rubrik", "fontSize": 12, "fontWeight": "400" }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "nr-recommendations",
-              "width": "fill_container",
-              "layout": "vertical",
-              "padding": [16, 16],
-              "gap": 12,
-              "children": [
-                { "type": "text", "id": "nr-recs-heading", "fill": "#828386", "content": "REKOMMENDATIONER", "fontFamily": "ICA Rubrik", "fontSize": 11, "fontWeight": "600" },
-                {
-                  "type": "frame",
-                  "id": "nr-rec-1",
-                  "name": "recommendation-card",
-                  "width": "fill_container",
-                  "fill": "#FFFFFF",
-                  "cornerRadius": 12,
-                  "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" },
-                  "layout": "vertical",
-                  "padding": [16, 16],
-                  "gap": 8,
-                  "children": [
-                    { "type": "text", "id": "nr-rec1-title", "fill": "#1D1D20", "content": "Torrfoder för stora raser", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "700" },
-                    { "type": "text", "id": "nr-rec1-reason", "fill": "#45464B", "content": "Rekommenderas för stora raser 1–5 år för att stödja leder och muskulatur.", "fontFamily": "ICA Rubrik", "fontSize": 12, "fontWeight": "400" },
-                    { "type": "text", "id": "nr-rec1-dosage", "fill": "#2D6E40", "content": "Daglig dos: 300–350 g", "fontFamily": "ICA Rubrik", "fontSize": 12, "fontWeight": "600" },
-                    { "type": "text", "id": "nr-rec1-cta", "fill": "#1E3065", "content": "Se matchade produkter ›", "fontFamily": "ICA Rubrik", "fontSize": 13, "fontWeight": "600" }
+                    { "type": "text", "id": "fn-title", "fill": "#1D1D20", "content": "Food & Nutrition", "fontFamily": "ICA Rubrik", "fontSize": 18, "fontWeight": "700" },
+                    { "type": "text", "id": "fn-subtitle", "fill": "#828386", "content": "Bjørn — Golden Retriever · 32 kg", "fontFamily": "ICA Text Ny", "fontSize": 13, "fontWeight": "400" }
                   ]
                 },
                 {
                   "type": "frame",
-                  "id": "nr-rec-2",
-                  "name": "recommendation-card-2",
-                  "width": "fill_container",
-                  "fill": "#FFFFFF",
-                  "cornerRadius": 12,
-                  "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" },
-                  "layout": "vertical",
-                  "padding": [16, 16],
-                  "gap": 8,
+                  "id": "fn-basket-btn",
+                  "name": "btn-view-basket",
+                  "height": 36,
+                  "fill": "#D4613C",
+                  "cornerRadius": 8,
+                  "layout": "horizontal",
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "gap": 6,
+                  "padding": [0, 14],
                   "children": [
-                    { "type": "text", "id": "nr-rec2-title", "fill": "#1D1D20", "content": "Komplement: våtfoder", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "700" },
-                    { "type": "text", "id": "nr-rec2-reason", "fill": "#45464B", "content": "Komplement till torrfoder för att öka vätskeintag och smak.", "fontFamily": "ICA Rubrik", "fontSize": 12, "fontWeight": "400" },
-                    { "type": "text", "id": "nr-rec2-dosage", "fill": "#2D6E40", "content": "Daglig dos: 100–150 g", "fontFamily": "ICA Rubrik", "fontSize": 12, "fontWeight": "600" },
-                    { "type": "text", "id": "nr-rec2-cta", "fill": "#1E3065", "content": "Se matchade produkter ›", "fontFamily": "ICA Rubrik", "fontSize": 13, "fontWeight": "600" }
+                    { "type": "text", "id": "fn-cart-icon", "fill": "#FFFFFF", "content": "🛒", "fontSize": 14 },
+                    { "type": "text", "id": "fn-basket-label", "fill": "#FFFFFF", "content": "View Basket", "fontFamily": "ICA Rubrik", "fontSize": 13, "fontWeight": "700" }
                   ]
                 }
               ]
-            }
-          ]
-        },
-        {
-          "type": "frame",
-          "id": "products-screen",
-          "name": "2. Product Matches",
-          "width": 360,
-          "height": 780,
-          "fill": "#FFFFFF",
-          "layout": "vertical",
-          "cornerRadius": 16,
-          "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" },
-          "children": [
-            { "type": "frame", "id": "pm-statusbar", "width": "fill_container", "height": 44, "fill": "#FFFFFF" },
-            {
-              "type": "frame",
-              "id": "pm-header",
-              "width": "fill_container",
-              "height": 56,
-              "fill": "#FFFFFF",
-              "layout": "horizontal",
-              "alignItems": "center",
-              "padding": [0, 16],
-              "children": [
-                { "type": "text", "id": "pm-back", "fill": "#1E3065", "content": "←", "fontFamily": "ICA Rubrik", "fontSize": 20, "fontWeight": "600" },
-                { "type": "text", "id": "pm-title", "fill": "#1D1D20", "content": "  ICA Gaston produkter", "fontFamily": "ICA Rubrik", "fontSize": 18, "fontWeight": "700" }
-              ]
             },
+            { "type": "rectangle", "id": "fn-topbar-border", "width": "fill_container", "height": 1, "fill": "#ECEDED" },
             {
               "type": "frame",
-              "id": "pm-products",
+              "id": "fn-content",
+              "name": "two-column-layout",
               "width": "fill_container",
-              "layout": "vertical",
-              "padding": [8, 16],
-              "gap": 12,
+              "layout": "horizontal",
+              "gap": 20,
+              "padding": [24, 24],
               "children": [
                 {
                   "type": "frame",
-                  "id": "pm-product-1",
-                  "name": "product-card-in-stock",
-                  "width": "fill_container",
-                  "fill": "#FFFFFF",
-                  "cornerRadius": 12,
-                  "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" },
-                  "layout": "horizontal",
-                  "padding": [12, 12],
-                  "gap": 12,
+                  "id": "fn-left-col",
+                  "name": "main-content",
+                  "layout": "vertical",
+                  "gap": 16,
+                  "width": 500,
                   "children": [
-                    { "type": "frame", "id": "pm-p1-img", "width": 80, "height": 80, "fill": "#F5F5F5", "cornerRadius": 8 },
                     {
                       "type": "frame",
-                      "id": "pm-p1-info",
+                      "id": "fn-profile",
+                      "name": "nutrition-profile-card",
+                      "width": "fill_container",
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 16,
+                      "padding": [20, 20],
                       "layout": "vertical",
-                      "gap": 4,
+                      "gap": 16,
                       "children": [
-                        { "type": "text", "id": "pm-p1-name", "fill": "#1D1D20", "content": "ICA Gaston Adult Large Breed", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "600" },
-                        { "type": "text", "id": "pm-p1-weight", "fill": "#45464B", "content": "12 kg • Kyckling & ris", "fontFamily": "ICA Rubrik", "fontSize": 12, "fontWeight": "400" },
-                        { "type": "text", "id": "pm-p1-price", "fill": "#1D1D20", "content": "349 kr", "fontFamily": "ICA Rubrik", "fontSize": 16, "fontWeight": "700" },
                         {
                           "type": "frame",
-                          "id": "pm-p1-row",
+                          "id": "fn-profile-header",
                           "layout": "horizontal",
                           "gap": 8,
                           "alignItems": "center",
                           "children": [
-                            { "type": "frame", "id": "pm-p1-stock-dot", "width": 8, "height": 8, "fill": "#2D6E40", "cornerRadius": 4 },
-                            { "type": "text", "id": "pm-p1-stock", "fill": "#2D6E40", "content": "I lager", "fontFamily": "ICA Rubrik", "fontSize": 12, "fontWeight": "600" },
-                            { "type": "text", "id": "pm-p1-cart-btn", "fill": "#1E3065", "content": "Lägg i varukorg", "fontFamily": "ICA Rubrik", "fontSize": 12, "fontWeight": "600" }
+                            { "type": "text", "id": "fn-profile-title", "fill": "#1D1D20", "content": "Nutrition Profile", "fontFamily": "ICA Rubrik", "fontSize": 16, "fontWeight": "700" },
+                            { "type": "text", "id": "fn-profile-info", "fill": "#828386", "content": "ℹ", "fontSize": 14 }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "fn-stats-grid",
+                          "name": "4-column-stats",
+                          "width": "fill_container",
+                          "layout": "horizontal",
+                          "gap": 12,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "fn-stat-1",
+                              "fill": "#F5F5F5",
+                              "cornerRadius": 12,
+                              "padding": [12, 16],
+                              "layout": "vertical",
+                              "alignItems": "center",
+                              "gap": 2,
+                              "width": 108,
+                              "children": [
+                                { "type": "text", "id": "fn-stat1-val", "fill": "#1D1D20", "content": "Golden Retriever", "fontFamily": "ICA Rubrik", "fontSize": 13, "fontWeight": "700", "textAlign": "center" },
+                                { "type": "text", "id": "fn-stat1-label", "fill": "#828386", "content": "Breed", "fontFamily": "ICA Text Ny", "fontSize": 12, "fontWeight": "400" }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "fn-stat-2",
+                              "fill": "#F5F5F5",
+                              "cornerRadius": 12,
+                              "padding": [12, 16],
+                              "layout": "vertical",
+                              "alignItems": "center",
+                              "gap": 2,
+                              "width": 108,
+                              "children": [
+                                { "type": "text", "id": "fn-stat2-val", "fill": "#1D1D20", "content": "3 years", "fontFamily": "ICA Rubrik", "fontSize": 16, "fontWeight": "700" },
+                                { "type": "text", "id": "fn-stat2-label", "fill": "#828386", "content": "Age", "fontFamily": "ICA Text Ny", "fontSize": 12, "fontWeight": "400" }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "fn-stat-3",
+                              "fill": "#F5F5F5",
+                              "cornerRadius": 12,
+                              "padding": [12, 16],
+                              "layout": "vertical",
+                              "alignItems": "center",
+                              "gap": 2,
+                              "width": 108,
+                              "children": [
+                                { "type": "text", "id": "fn-stat3-val", "fill": "#1D1D20", "content": "32 kg", "fontFamily": "ICA Rubrik", "fontSize": 16, "fontWeight": "700" },
+                                { "type": "text", "id": "fn-stat3-label", "fill": "#828386", "content": "Weight", "fontFamily": "ICA Text Ny", "fontSize": 12, "fontWeight": "400" }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "fn-stat-4",
+                              "fill": "#F5F5F5",
+                              "cornerRadius": 12,
+                              "padding": [12, 16],
+                              "layout": "vertical",
+                              "alignItems": "center",
+                              "gap": 2,
+                              "width": 108,
+                              "children": [
+                                { "type": "text", "id": "fn-stat4-val", "fill": "#1D1D20", "content": "1 680 kcal", "fontFamily": "ICA Rubrik", "fontSize": 16, "fontWeight": "700" },
+                                { "type": "text", "id": "fn-stat4-label", "fill": "#828386", "content": "Daily kcal", "fontFamily": "ICA Text Ny", "fontSize": 12, "fontWeight": "400" }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "fn-meals",
+                      "name": "meal-schedule-card",
+                      "width": "fill_container",
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 16,
+                      "padding": [20, 20],
+                      "layout": "vertical",
+                      "gap": 12,
+                      "children": [
+                        { "type": "text", "id": "fn-meals-title", "fill": "#1D1D20", "content": "Daily Meal Schedule", "fontFamily": "ICA Rubrik", "fontSize": 16, "fontWeight": "700" },
+                        {
+                          "type": "frame",
+                          "id": "fn-meal-1",
+                          "name": "meal-row-morning",
+                          "width": "fill_container",
+                          "fill": "#FBCFBD",
+                          "cornerRadius": 12,
+                          "padding": [12, 16],
+                          "layout": "horizontal",
+                          "alignItems": "center",
+                          "gap": 16,
+                          "children": [
+                            { "type": "frame", "id": "fn-meal1-dot", "width": 10, "height": 10, "fill": "#D4613C", "cornerRadius": 5 },
+                            {
+                              "type": "frame",
+                              "id": "fn-meal1-info",
+                              "layout": "vertical",
+                              "gap": 2,
+                              "width": 340,
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "fn-meal1-top",
+                                  "layout": "horizontal",
+                                  "gap": 8,
+                                  "alignItems": "center",
+                                  "children": [
+                                    { "type": "text", "id": "fn-meal1-time", "fill": "#B94A2E", "content": "Morning", "fontFamily": "ICA Rubrik", "fontSize": 13, "fontWeight": "700" },
+                                    { "type": "text", "id": "fn-meal1-note", "fill": "#828386", "content": "7:00 AM · dry food", "fontFamily": "ICA Text Ny", "fontSize": 12, "fontWeight": "400" }
+                                  ]
+                                },
+                                { "type": "text", "id": "fn-meal1-product", "fill": "#1D1D20", "content": "Royal Canin Golden Retriever Adult", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "700" }
+                              ]
+                            },
+                            { "type": "text", "id": "fn-meal1-amount", "fill": "#1D1D20", "content": "160g", "fontFamily": "ICA Rubrik", "fontSize": 16, "fontWeight": "700" }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "fn-meal-2",
+                          "name": "meal-row-evening",
+                          "width": "fill_container",
+                          "fill": "#FBCFBD",
+                          "cornerRadius": 12,
+                          "padding": [12, 16],
+                          "layout": "horizontal",
+                          "alignItems": "center",
+                          "gap": 16,
+                          "children": [
+                            { "type": "frame", "id": "fn-meal2-dot", "width": 10, "height": 10, "fill": "#E5805A", "cornerRadius": 5 },
+                            {
+                              "type": "frame",
+                              "id": "fn-meal2-info",
+                              "layout": "vertical",
+                              "gap": 2,
+                              "width": 340,
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "fn-meal2-top",
+                                  "layout": "horizontal",
+                                  "gap": 8,
+                                  "alignItems": "center",
+                                  "children": [
+                                    { "type": "text", "id": "fn-meal2-time", "fill": "#D4613C", "content": "Evening", "fontFamily": "ICA Rubrik", "fontSize": 13, "fontWeight": "700" },
+                                    { "type": "text", "id": "fn-meal2-note", "fill": "#828386", "content": "6:00 PM · dry food", "fontFamily": "ICA Text Ny", "fontSize": 12, "fontWeight": "400" }
+                                  ]
+                                },
+                                { "type": "text", "id": "fn-meal2-product", "fill": "#1D1D20", "content": "Royal Canin Golden Retriever Adult", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "700" }
+                              ]
+                            },
+                            { "type": "text", "id": "fn-meal2-amount", "fill": "#1D1D20", "content": "160g", "fontFamily": "ICA Rubrik", "fontSize": 16, "fontWeight": "700" }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "fn-meal-3",
+                          "name": "meal-row-water",
+                          "width": "fill_container",
+                          "fill": "#F5F5F5",
+                          "cornerRadius": 12,
+                          "padding": [12, 16],
+                          "layout": "horizontal",
+                          "alignItems": "center",
+                          "gap": 16,
+                          "children": [
+                            { "type": "frame", "id": "fn-meal3-dot", "width": 10, "height": 10, "fill": "#C5C6C7", "cornerRadius": 5 },
+                            {
+                              "type": "frame",
+                              "id": "fn-meal3-info",
+                              "layout": "vertical",
+                              "gap": 2,
+                              "width": 340,
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "fn-meal3-top",
+                                  "layout": "horizontal",
+                                  "gap": 8,
+                                  "alignItems": "center",
+                                  "children": [
+                                    { "type": "text", "id": "fn-meal3-time", "fill": "#828386", "content": "Water", "fontFamily": "ICA Rubrik", "fontSize": 13, "fontWeight": "700" },
+                                    { "type": "text", "id": "fn-meal3-note", "fill": "#828386", "content": "All day · refill bowl", "fontFamily": "ICA Text Ny", "fontSize": 12, "fontWeight": "400" }
+                                  ]
+                                },
+                                { "type": "text", "id": "fn-meal3-product", "fill": "#1D1D20", "content": "Fresh water", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "700" }
+                              ]
+                            },
+                            { "type": "text", "id": "fn-meal3-amount", "fill": "#1D1D20", "content": "1.5L", "fontFamily": "ICA Rubrik", "fontSize": 16, "fontWeight": "700" }
                           ]
                         }
                       ]
@@ -184,35 +306,123 @@
                 },
                 {
                   "type": "frame",
-                  "id": "pm-product-2",
-                  "name": "product-card-out-of-stock",
-                  "width": "fill_container",
-                  "fill": "#FFFFFF",
-                  "cornerRadius": 12,
-                  "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" },
-                  "layout": "horizontal",
-                  "padding": [12, 12],
-                  "gap": 12,
+                  "id": "fn-right-col",
+                  "name": "product-sidebar",
+                  "width": 320,
+                  "layout": "vertical",
+                  "gap": 16,
                   "children": [
-                    { "type": "frame", "id": "pm-p2-img", "width": 80, "height": 80, "fill": "#F5F5F5", "cornerRadius": 8, "opacity": 0.5 },
+                    { "type": "text", "id": "fn-products-title", "fill": "#1D1D20", "content": "Recommended Products", "fontFamily": "ICA Rubrik", "fontSize": 16, "fontWeight": "700" },
                     {
                       "type": "frame",
-                      "id": "pm-p2-info",
+                      "id": "fn-product-1",
+                      "name": "product-card",
+                      "width": "fill_container",
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 16,
+                      "padding": [20, 20],
                       "layout": "vertical",
-                      "gap": 4,
+                      "gap": 12,
                       "children": [
-                        { "type": "text", "id": "pm-p2-name", "fill": "#1D1D20", "content": "ICA Gaston Grain Free Adult", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "600" },
-                        { "type": "text", "id": "pm-p2-weight", "fill": "#45464B", "content": "10 kg • Lax & potatis", "fontFamily": "ICA Rubrik", "fontSize": 12, "fontWeight": "400" },
-                        { "type": "text", "id": "pm-p2-price", "fill": "#828386", "content": "399 kr", "fontFamily": "ICA Rubrik", "fontSize": 16, "fontWeight": "700" },
                         {
                           "type": "frame",
-                          "id": "pm-p2-stock-row",
-                          "layout": "horizontal",
-                          "gap": 8,
-                          "alignItems": "center",
+                          "id": "fn-p1-badge",
+                          "fill": "#FBCFBD",
+                          "cornerRadius": 999,
+                          "padding": [4, 10],
                           "children": [
-                            { "type": "frame", "id": "pm-p2-stock-dot", "width": 8, "height": 8, "fill": "#828386", "cornerRadius": 4 },
-                            { "type": "text", "id": "pm-p2-stock", "fill": "#828386", "content": "Slut i lager", "fontFamily": "ICA Rubrik", "fontSize": 12, "fontWeight": "400" }
+                            { "type": "text", "id": "fn-p1-badge-text", "fill": "#B94A2E", "content": "Gaston Pick", "fontFamily": "ICA Rubrik", "fontSize": 11, "fontWeight": "700" }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "fn-p1-img",
+                          "width": "fill_container",
+                          "height": 96,
+                          "fill": "#F5F5F5",
+                          "cornerRadius": 12
+                        },
+                        { "type": "text", "id": "fn-p1-name", "fill": "#1D1D20", "content": "Royal Canin Golden Retriever Adult 12kg", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "700" },
+                        { "type": "text", "id": "fn-p1-desc", "fill": "#828386", "content": "Supports joints, coat & digestion · Tailored for Golden Retrievers", "fontFamily": "ICA Text Ny", "fontSize": 12, "fontWeight": "400" },
+                        {
+                          "type": "frame",
+                          "id": "fn-p1-footer",
+                          "layout": "horizontal",
+                          "justifyContent": "space-between",
+                          "alignItems": "center",
+                          "width": "fill_container",
+                          "children": [
+                            { "type": "text", "id": "fn-p1-price", "fill": "#1D1D20", "content": "1 009 kr", "fontFamily": "ICA Rubrik", "fontSize": 20, "fontWeight": "700" },
+                            {
+                              "type": "frame",
+                              "id": "fn-p1-cta",
+                              "fill": "#D4613C",
+                              "cornerRadius": 8,
+                              "padding": [8, 14],
+                              "layout": "horizontal",
+                              "alignItems": "center",
+                              "justifyContent": "center",
+                              "children": [
+                                { "type": "text", "id": "fn-p1-cta-label", "fill": "#FFFFFF", "content": "Add to basket", "fontFamily": "ICA Rubrik", "fontSize": 13, "fontWeight": "700" }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "fn-product-2",
+                      "name": "product-card-2",
+                      "width": "fill_container",
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 16,
+                      "padding": [20, 20],
+                      "layout": "vertical",
+                      "gap": 12,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "fn-p2-badge",
+                          "fill": "#E8F2E1",
+                          "cornerRadius": 999,
+                          "padding": [4, 10],
+                          "children": [
+                            { "type": "text", "id": "fn-p2-badge-text", "fill": "#235834", "content": "Vet Recommended", "fontFamily": "ICA Rubrik", "fontSize": 11, "fontWeight": "700" }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "fn-p2-img",
+                          "width": "fill_container",
+                          "height": 96,
+                          "fill": "#F5F5F5",
+                          "cornerRadius": 12
+                        },
+                        { "type": "text", "id": "fn-p2-name", "fill": "#1D1D20", "content": "Nordic Omega-3 Fish Oil Supplement", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "700" },
+                        { "type": "text", "id": "fn-p2-desc", "fill": "#828386", "content": "Supports joint mobility & shiny coat · 250ml liquid", "fontFamily": "ICA Text Ny", "fontSize": 12, "fontWeight": "400" },
+                        {
+                          "type": "frame",
+                          "id": "fn-p2-footer",
+                          "layout": "horizontal",
+                          "justifyContent": "space-between",
+                          "alignItems": "center",
+                          "width": "fill_container",
+                          "children": [
+                            { "type": "text", "id": "fn-p2-price", "fill": "#1D1D20", "content": "149 kr", "fontFamily": "ICA Rubrik", "fontSize": 20, "fontWeight": "700" },
+                            {
+                              "type": "frame",
+                              "id": "fn-p2-cta",
+                              "fill": "#D4613C",
+                              "cornerRadius": 8,
+                              "padding": [8, 14],
+                              "layout": "horizontal",
+                              "alignItems": "center",
+                              "justifyContent": "center",
+                              "children": [
+                                { "type": "text", "id": "fn-p2-cta-label", "fill": "#FFFFFF", "content": "Add to basket", "fontFamily": "ICA Rubrik", "fontSize": 13, "fontWeight": "700" }
+                              ]
+                            }
                           ]
                         }
                       ]

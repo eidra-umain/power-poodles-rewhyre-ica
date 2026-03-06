@@ -6,19 +6,19 @@
       "id": "auth-flow",
       "x": 0,
       "y": 0,
-      "name": "Auth & Onboarding Flow",
-      "width": 1600,
+      "name": "Auth & Onboarding Flow — Desktop",
+      "width": 2800,
       "fill": "#F5F5F5",
       "layout": "horizontal",
-      "gap": 40,
+      "gap": 60,
       "padding": [40, 40],
       "children": [
         {
           "type": "frame",
           "id": "login-screen",
-          "name": "1. Login",
-          "width": 360,
-          "height": 780,
+          "name": "1. Login / Landing",
+          "width": 860,
+          "height": 640,
           "fill": "#FFFFFF",
           "layout": "vertical",
           "cornerRadius": 16,
@@ -26,19 +26,11 @@
           "children": [
             {
               "type": "frame",
-              "id": "login-statusbar",
-              "name": "status-bar",
-              "width": "fill_container",
-              "height": 44,
-              "fill": "#FFFFFF"
-            },
-            {
-              "type": "frame",
               "id": "login-hero",
-              "name": "hero",
+              "name": "hero-banner",
               "width": "fill_container",
-              "height": 280,
-              "fill": "#1E3065",
+              "height": 320,
+              "fill": "#D4613C",
               "layout": "vertical",
               "alignItems": "center",
               "justifyContent": "center",
@@ -46,30 +38,34 @@
               "children": [
                 {
                   "type": "frame",
-                  "id": "login-logo",
-                  "name": "logo-placeholder",
-                  "width": 80,
-                  "height": 80,
-                  "fill": "#E0EDFF",
-                  "cornerRadius": 20
+                  "id": "login-logo-box",
+                  "name": "logo",
+                  "width": 64,
+                  "height": 64,
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 16,
+                  "layout": "horizontal",
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "children": [
+                    { "type": "text", "id": "login-paw-icon", "fill": "#D4613C", "content": "🐾", "fontSize": 28 }
+                  ]
                 },
                 {
                   "type": "text",
                   "id": "login-title",
-                  "name": "app-name",
                   "fill": "#FFFFFF",
-                  "content": "ICA Pet",
+                  "content": "ICA Gaston",
                   "fontFamily": "ICA Rubrik",
-                  "fontSize": 32,
+                  "fontSize": 36,
                   "fontWeight": "700"
                 },
                 {
                   "type": "text",
                   "id": "login-subtitle",
-                  "name": "tagline",
-                  "fill": "#C1DAFF",
-                  "content": "Din husdjurspartner",
-                  "fontFamily": "ICA Rubrik",
+                  "fill": "#FBCFBD",
+                  "content": "Allt för ditt husdjur — på ett ställe",
+                  "fontFamily": "ICA Text Ny",
                   "fontSize": 16,
                   "fontWeight": "400"
                 }
@@ -78,19 +74,20 @@
             {
               "type": "frame",
               "id": "login-actions",
-              "name": "actions",
+              "name": "login-form",
               "width": "fill_container",
               "layout": "vertical",
+              "alignItems": "center",
               "gap": 12,
-              "padding": [32, 24],
+              "padding": [40, 120],
               "children": [
                 {
                   "type": "frame",
                   "id": "bankid-btn",
-                  "name": "btn-bankid",
+                  "name": "btn-bankid-primary",
                   "width": "fill_container",
                   "height": 48,
-                  "fill": "#1E3065",
+                  "fill": "#D4613C",
                   "cornerRadius": 8,
                   "layout": "horizontal",
                   "alignItems": "center",
@@ -100,56 +97,53 @@
                     {
                       "type": "frame",
                       "id": "bankid-icon",
-                      "name": "bankid-icon",
                       "width": 24,
                       "height": 24,
-                      "fill": "#E0EDFF",
-                      "cornerRadius": 4
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 6,
+                      "opacity": 0.3
                     },
                     {
                       "type": "text",
                       "id": "bankid-label",
-                      "name": "label",
                       "fill": "#FFFFFF",
                       "content": "Logga in med BankID",
                       "fontFamily": "ICA Rubrik",
-                      "fontSize": 16,
-                      "fontWeight": "600"
+                      "fontSize": 14,
+                      "fontWeight": "700"
                     }
                   ]
                 },
                 {
                   "type": "frame",
                   "id": "email-btn",
-                  "name": "btn-email",
+                  "name": "btn-email-secondary",
                   "width": "fill_container",
                   "height": 48,
                   "fill": "#FFFFFF",
                   "cornerRadius": 8,
+                  "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" },
                   "layout": "horizontal",
                   "alignItems": "center",
                   "justifyContent": "center",
-                  "stroke": { "align": "inside", "thickness": 1.5, "fill": "#1E3065" },
                   "children": [
                     {
                       "type": "text",
                       "id": "email-label",
-                      "name": "label",
-                      "fill": "#1E3065",
+                      "fill": "#1D1D20",
                       "content": "Registrera med e-post",
                       "fontFamily": "ICA Rubrik",
-                      "fontSize": 16,
-                      "fontWeight": "600"
+                      "fontSize": 14,
+                      "fontWeight": "700"
                     }
                   ]
                 },
                 {
                   "type": "text",
                   "id": "login-terms",
-                  "name": "terms",
                   "fill": "#828386",
-                  "content": "Genom att fortsätta godkänner du våra villkor",
-                  "fontFamily": "ICA Rubrik",
+                  "content": "Genom att fortsätta godkänner du våra villkor och integritetspolicy",
+                  "fontFamily": "ICA Text Ny",
                   "fontSize": 12,
                   "fontWeight": "400",
                   "textAlign": "center"
@@ -162,8 +156,8 @@
           "type": "frame",
           "id": "bankid-screen",
           "name": "2. BankID Verification",
-          "width": 360,
-          "height": 780,
+          "width": 860,
+          "height": 640,
           "fill": "#FFFFFF",
           "layout": "vertical",
           "cornerRadius": 16,
@@ -171,85 +165,103 @@
           "children": [
             {
               "type": "frame",
-              "id": "bankid-statusbar",
-              "name": "status-bar",
+              "id": "bankid-topbar",
+              "name": "topbar",
               "width": "fill_container",
-              "height": 44,
-              "fill": "#FFFFFF"
-            },
-            {
-              "type": "frame",
-              "id": "bankid-header",
-              "name": "header",
-              "width": "fill_container",
-              "height": 56,
+              "height": 64,
               "fill": "#FFFFFF",
               "layout": "horizontal",
               "alignItems": "center",
-              "padding": [0, 16],
+              "padding": [0, 32],
+              "gap": 12,
+              "stroke": { "align": "inside", "thickness": 0 },
               "children": [
                 {
+                  "type": "frame",
+                  "id": "bankid-logo",
+                  "width": 32,
+                  "height": 32,
+                  "fill": "#D4613C",
+                  "cornerRadius": 8,
+                  "layout": "horizontal",
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "children": [
+                    { "type": "text", "id": "bankid-paw", "fill": "#FFFFFF", "content": "🐾", "fontSize": 16 }
+                  ]
+                },
+                {
                   "type": "text",
-                  "id": "bankid-back",
-                  "name": "back",
-                  "fill": "#1E3065",
-                  "content": "← Tillbaka",
+                  "id": "bankid-brand",
+                  "fill": "#1D1D20",
+                  "content": "ICA Gaston",
                   "fontFamily": "ICA Rubrik",
-                  "fontSize": 16,
-                  "fontWeight": "600"
+                  "fontSize": 18,
+                  "fontWeight": "700"
                 }
               ]
             },
+            { "type": "rectangle", "id": "bankid-divider", "width": "fill_container", "height": 1, "fill": "#ECEDED" },
             {
               "type": "frame",
               "id": "bankid-content",
-              "name": "content",
+              "name": "verification-content",
               "width": "fill_container",
               "layout": "vertical",
               "alignItems": "center",
+              "justifyContent": "center",
               "gap": 24,
-              "padding": [80, 24],
+              "padding": [100, 40],
               "children": [
                 {
                   "type": "frame",
                   "id": "bankid-spinner",
                   "name": "spinner-placeholder",
-                  "width": 64,
-                  "height": 64,
-                  "fill": "#E0EDFF",
-                  "cornerRadius": 32
+                  "width": 72,
+                  "height": 72,
+                  "fill": "#FBCFBD",
+                  "cornerRadius": 36,
+                  "layout": "horizontal",
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "children": [
+                    { "type": "frame", "id": "spinner-inner", "width": 48, "height": 48, "fill": "#D4613C", "cornerRadius": 24, "opacity": 0.5 }
+                  ]
                 },
                 {
                   "type": "text",
                   "id": "bankid-status",
-                  "name": "status-text",
                   "fill": "#1D1D20",
                   "content": "Öppna BankID-appen",
                   "fontFamily": "ICA Rubrik",
-                  "fontSize": 20,
+                  "fontSize": 24,
                   "fontWeight": "700",
                   "textAlign": "center"
                 },
                 {
                   "type": "text",
                   "id": "bankid-desc",
-                  "name": "description",
-                  "fill": "#45464B",
-                  "content": "Starta BankID-appen på din enhet\noch legitimera dig.",
-                  "fontFamily": "ICA Rubrik",
+                  "fill": "#828386",
+                  "content": "Starta BankID-appen på din enhet och legitimera dig.",
+                  "fontFamily": "ICA Text Ny",
                   "fontSize": 14,
                   "fontWeight": "400",
                   "textAlign": "center"
                 },
                 {
-                  "type": "text",
-                  "id": "bankid-timeout",
-                  "name": "timeout-note",
-                  "fill": "#828386",
-                  "content": "Tidsgräns: 60 sekunder",
-                  "fontFamily": "ICA Rubrik",
-                  "fontSize": 12,
-                  "fontWeight": "400"
+                  "type": "frame",
+                  "id": "bankid-cancel-btn",
+                  "width": 160,
+                  "height": 40,
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 8,
+                  "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" },
+                  "layout": "horizontal",
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "children": [
+                    { "type": "text", "id": "bankid-cancel-label", "fill": "#45464B", "content": "Avbryt", "fontFamily": "ICA Rubrik", "fontSize": 13, "fontWeight": "700" }
+                  ]
                 }
               ]
             }
@@ -259,8 +271,8 @@
           "type": "frame",
           "id": "pet-profile-screen",
           "name": "3. Create Pet Profile",
-          "width": 360,
-          "height": 780,
+          "width": 860,
+          "height": 640,
           "fill": "#FFFFFF",
           "layout": "vertical",
           "cornerRadius": 16,
@@ -268,215 +280,263 @@
           "children": [
             {
               "type": "frame",
-              "id": "profile-statusbar",
-              "name": "status-bar",
+              "id": "profile-topbar",
+              "name": "topbar",
               "width": "fill_container",
-              "height": 44,
-              "fill": "#FFFFFF"
-            },
-            {
-              "type": "frame",
-              "id": "profile-header",
-              "name": "header",
-              "width": "fill_container",
-              "height": 56,
+              "height": 64,
               "fill": "#FFFFFF",
               "layout": "horizontal",
               "alignItems": "center",
-              "padding": [0, 16],
-              "children": [
-                {
-                  "type": "text",
-                  "id": "profile-title",
-                  "name": "page-title",
-                  "fill": "#1D1D20",
-                  "content": "Lägg till ditt husdjur",
-                  "fontFamily": "ICA Rubrik",
-                  "fontSize": 20,
-                  "fontWeight": "700"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "profile-form",
-              "name": "form",
-              "width": "fill_container",
-              "layout": "vertical",
-              "gap": 16,
-              "padding": [16, 16],
+              "padding": [0, 32],
+              "gap": 12,
               "children": [
                 {
                   "type": "frame",
-                  "id": "species-selector",
-                  "name": "species-toggle",
-                  "width": "fill_container",
-                  "height": 48,
-                  "fill": "#F5F5F5",
-                  "cornerRadius": 8,
-                  "layout": "horizontal",
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "species-dog",
-                      "name": "dog-selected",
-                      "width": 164,
-                      "height": 48,
-                      "fill": "#1E3065",
-                      "cornerRadius": 8,
-                      "layout": "horizontal",
-                      "alignItems": "center",
-                      "justifyContent": "center",
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "dog-label",
-                          "fill": "#FFFFFF",
-                          "content": "Hund",
-                          "fontFamily": "ICA Rubrik",
-                          "fontSize": 14,
-                          "fontWeight": "600"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "frame",
-                      "id": "species-cat",
-                      "name": "cat-unselected",
-                      "width": 164,
-                      "height": 48,
-                      "fill": "#F5F5F5",
-                      "cornerRadius": 8,
-                      "layout": "horizontal",
-                      "alignItems": "center",
-                      "justifyContent": "center",
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "cat-label",
-                          "fill": "#828386",
-                          "content": "Katt",
-                          "fontFamily": "ICA Rubrik",
-                          "fontSize": 14,
-                          "fontWeight": "600"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "field-name",
-                  "name": "input-name",
-                  "width": "fill_container",
-                  "height": 48,
-                  "fill": "#F5F5F5",
-                  "cornerRadius": 8,
-                  "padding": [0, 12],
-                  "layout": "horizontal",
-                  "alignItems": "center",
-                  "children": [
-                    { "type": "text", "id": "name-placeholder", "fill": "#828386", "content": "Namn *", "fontFamily": "ICA Rubrik", "fontSize": 16, "fontWeight": "400" }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "field-breed",
-                  "name": "input-breed",
-                  "width": "fill_container",
-                  "height": 48,
-                  "fill": "#F5F5F5",
-                  "cornerRadius": 8,
-                  "padding": [0, 12],
-                  "layout": "horizontal",
-                  "alignItems": "center",
-                  "children": [
-                    { "type": "text", "id": "breed-placeholder", "fill": "#828386", "content": "Ras *", "fontFamily": "ICA Rubrik", "fontSize": 16, "fontWeight": "400" }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "field-row-dob-weight",
-                  "name": "row",
-                  "width": "fill_container",
-                  "layout": "horizontal",
-                  "gap": 12,
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "field-dob",
-                      "name": "input-dob",
-                      "width": 156,
-                      "height": 48,
-                      "fill": "#F5F5F5",
-                      "cornerRadius": 8,
-                      "padding": [0, 12],
-                      "layout": "horizontal",
-                      "alignItems": "center",
-                      "children": [
-                        { "type": "text", "id": "dob-placeholder", "fill": "#828386", "content": "Födelsedatum *", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "400" }
-                      ]
-                    },
-                    {
-                      "type": "frame",
-                      "id": "field-weight",
-                      "name": "input-weight",
-                      "width": 156,
-                      "height": 48,
-                      "fill": "#F5F5F5",
-                      "cornerRadius": 8,
-                      "padding": [0, 12],
-                      "layout": "horizontal",
-                      "alignItems": "center",
-                      "children": [
-                        { "type": "text", "id": "weight-placeholder", "fill": "#828386", "content": "Vikt (kg) *", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "400" }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "field-allergies",
-                  "name": "input-allergies",
-                  "width": "fill_container",
-                  "height": 48,
-                  "fill": "#F5F5F5",
-                  "cornerRadius": 8,
-                  "padding": [0, 12],
-                  "layout": "horizontal",
-                  "alignItems": "center",
-                  "children": [
-                    { "type": "text", "id": "allergy-placeholder", "fill": "#828386", "content": "Allergier (valfritt)", "fontFamily": "ICA Rubrik", "fontSize": 16, "fontWeight": "400" }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "field-conditions",
-                  "name": "input-conditions",
-                  "width": "fill_container",
-                  "height": 48,
-                  "fill": "#F5F5F5",
-                  "cornerRadius": 8,
-                  "padding": [0, 12],
-                  "layout": "horizontal",
-                  "alignItems": "center",
-                  "children": [
-                    { "type": "text", "id": "conditions-placeholder", "fill": "#828386", "content": "Hälsotillstånd (valfritt)", "fontFamily": "ICA Rubrik", "fontSize": 16, "fontWeight": "400" }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "submit-btn",
-                  "name": "btn-submit",
-                  "width": "fill_container",
-                  "height": 48,
-                  "fill": "#1E3065",
+                  "id": "profile-logo",
+                  "width": 32,
+                  "height": 32,
+                  "fill": "#D4613C",
                   "cornerRadius": 8,
                   "layout": "horizontal",
                   "alignItems": "center",
                   "justifyContent": "center",
                   "children": [
-                    { "type": "text", "id": "submit-label", "fill": "#FFFFFF", "content": "Spara och fortsätt", "fontFamily": "ICA Rubrik", "fontSize": 16, "fontWeight": "600" }
+                    { "type": "text", "id": "profile-paw", "fill": "#FFFFFF", "content": "🐾", "fontSize": 16 }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "profile-brand",
+                  "fill": "#1D1D20",
+                  "content": "ICA Gaston",
+                  "fontFamily": "ICA Rubrik",
+                  "fontSize": 18,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            { "type": "rectangle", "id": "profile-divider", "width": "fill_container", "height": 1, "fill": "#ECEDED" },
+            {
+              "type": "frame",
+              "id": "profile-content",
+              "name": "onboarding-form",
+              "width": "fill_container",
+              "layout": "horizontal",
+              "gap": 40,
+              "padding": [32, 60],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "profile-left",
+                  "name": "form-column",
+                  "layout": "vertical",
+                  "gap": 16,
+                  "width": 380,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "profile-heading",
+                      "fill": "#1D1D20",
+                      "content": "Lägg till ditt husdjur",
+                      "fontFamily": "ICA Rubrik",
+                      "fontSize": 22,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "profile-subheading",
+                      "fill": "#828386",
+                      "content": "Vi anpassar rekommendationer efter ditt djur.",
+                      "fontFamily": "ICA Text Ny",
+                      "fontSize": 14,
+                      "fontWeight": "400"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "species-toggle",
+                      "name": "species-selector",
+                      "width": "fill_container",
+                      "height": 44,
+                      "fill": "#F5F5F5",
+                      "cornerRadius": 8,
+                      "layout": "horizontal",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "species-dog",
+                          "width": 190,
+                          "height": 44,
+                          "fill": "#D4613C",
+                          "cornerRadius": 8,
+                          "layout": "horizontal",
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "children": [
+                            { "type": "text", "id": "dog-label", "fill": "#FFFFFF", "content": "Hund", "fontFamily": "ICA Rubrik", "fontSize": 13, "fontWeight": "700" }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "species-cat",
+                          "width": 190,
+                          "height": 44,
+                          "fill": "#F5F5F5",
+                          "cornerRadius": 8,
+                          "layout": "horizontal",
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "children": [
+                            { "type": "text", "id": "cat-label", "fill": "#828386", "content": "Katt", "fontFamily": "ICA Rubrik", "fontSize": 13, "fontWeight": "700" }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "field-name",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "width": "fill_container",
+                      "children": [
+                        { "type": "text", "id": "label-name", "fill": "#45464B", "content": "Namn", "fontFamily": "ICA Rubrik", "fontSize": 13, "fontWeight": "700" },
+                        { "type": "frame", "id": "input-name", "width": "fill_container", "height": 40, "fill": "#FFFFFF", "cornerRadius": 8, "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" } }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "field-breed",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "width": "fill_container",
+                      "children": [
+                        { "type": "text", "id": "label-breed", "fill": "#45464B", "content": "Ras", "fontFamily": "ICA Rubrik", "fontSize": 13, "fontWeight": "700" },
+                        { "type": "frame", "id": "input-breed", "width": "fill_container", "height": 40, "fill": "#FFFFFF", "cornerRadius": 8, "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" } }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "field-row",
+                      "layout": "horizontal",
+                      "gap": 12,
+                      "width": "fill_container",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "field-dob",
+                          "layout": "vertical",
+                          "gap": 4,
+                          "width": 184,
+                          "children": [
+                            { "type": "text", "id": "label-dob", "fill": "#45464B", "content": "Födelsedatum", "fontFamily": "ICA Rubrik", "fontSize": 13, "fontWeight": "700" },
+                            { "type": "frame", "id": "input-dob", "width": "fill_container", "height": 40, "fill": "#FFFFFF", "cornerRadius": 8, "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" } }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "field-weight",
+                          "layout": "vertical",
+                          "gap": 4,
+                          "width": 184,
+                          "children": [
+                            { "type": "text", "id": "label-weight", "fill": "#45464B", "content": "Vikt (kg)", "fontFamily": "ICA Rubrik", "fontSize": 13, "fontWeight": "700" },
+                            { "type": "frame", "id": "input-weight", "width": "fill_container", "height": 40, "fill": "#FFFFFF", "cornerRadius": 8, "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" } }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "field-allergies",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "width": "fill_container",
+                      "children": [
+                        { "type": "text", "id": "label-allergies", "fill": "#45464B", "content": "Allergier (valfritt)", "fontFamily": "ICA Rubrik", "fontSize": 13, "fontWeight": "700" },
+                        { "type": "frame", "id": "input-allergies", "width": "fill_container", "height": 40, "fill": "#FFFFFF", "cornerRadius": 8, "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" } }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "submit-btn",
+                      "name": "btn-save",
+                      "width": "fill_container",
+                      "height": 44,
+                      "fill": "#D4613C",
+                      "cornerRadius": 8,
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "children": [
+                        { "type": "text", "id": "submit-label", "fill": "#FFFFFF", "content": "Spara och fortsätt", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "700" }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "profile-right",
+                  "name": "preview-column",
+                  "layout": "vertical",
+                  "gap": 16,
+                  "width": 300,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "preview-card",
+                      "name": "pet-preview",
+                      "width": "fill_container",
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 16,
+                      "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" },
+                      "layout": "vertical",
+                      "alignItems": "center",
+                      "padding": [24, 24],
+                      "gap": 12,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "preview-avatar",
+                          "width": 80,
+                          "height": 80,
+                          "fill": "#FBCFBD",
+                          "cornerRadius": 16,
+                          "layout": "horizontal",
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "children": [
+                            { "type": "text", "id": "preview-paw", "fill": "#D4613C", "content": "🐾", "fontSize": 32 }
+                          ]
+                        },
+                        { "type": "text", "id": "preview-name", "fill": "#1D1D20", "content": "Bjørn", "fontFamily": "ICA Rubrik", "fontSize": 20, "fontWeight": "700" },
+                        { "type": "text", "id": "preview-details", "fill": "#828386", "content": "Golden Retriever · 3 år · 32 kg", "fontFamily": "ICA Text Ny", "fontSize": 13, "fontWeight": "400" }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "onboarding-steps",
+                      "name": "progress-indicator",
+                      "width": "fill_container",
+                      "fill": "#F5F5F5",
+                      "cornerRadius": 16,
+                      "padding": [16, 16],
+                      "layout": "vertical",
+                      "gap": 12,
+                      "children": [
+                        { "type": "text", "id": "steps-title", "fill": "#1D1D20", "content": "Steg 3 av 3", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "700" },
+                        {
+                          "type": "frame",
+                          "id": "progress-bar-bg",
+                          "width": "fill_container",
+                          "height": 6,
+                          "fill": "#ECEDED",
+                          "cornerRadius": 3,
+                          "children": [
+                            { "type": "frame", "id": "progress-bar-fill", "width": 268, "height": 6, "fill": "#D4613C", "cornerRadius": 3 }
+                          ]
+                        },
+                        { "type": "text", "id": "steps-desc", "fill": "#828386", "content": "Skapa din husdjursprofil för personliga rekommendationer", "fontFamily": "ICA Text Ny", "fontSize": 12, "fontWeight": "400" }
+                      ]
+                    }
                   ]
                 }
               ]

@@ -1,513 +1,609 @@
-# ICA Pet App — Design Specification
+# ICA Gaston Pet App — Design Specification
 
-**Version:** 1.0
+**Version:** 2.0
 **Date:** March 6, 2026
-**Status:** Draft
+**Status:** Draft — aligned to gaston-app reference implementation
 **Owner:** ICA Digital — Design
+**Source of truth:** `resources/gaston-app/` (React + Tailwind + TypeScript)
 
 ---
 
 ## 1. Brand Foundation
 
-The ICA Pet App extends the ICA Gaston sub-brand into a digital product. The visual language inherits ICA Gaston's established colour palette (blue, green, orange, grey) and adapts it for screen use with semantic mappings, dark mode support, and WCAG AA contrast compliance.
+The ICA Gaston app is a desktop-first pet care platform that combines e-commerce (pet food and products), health tracking, insurance comparison, nutrition guidance, and community features. The visual language is warm and approachable, built on the ICA Gaston colour palette with orange as the primary action colour — not blue. Blue is reserved for brand identity and informational contexts.
 
 ### 1.1 Brand Personality
 
-The app should feel like a competent veterinary receptionist — knowledgeable, calm, organised, and warm. It should never feel clinical, playful-to-the-point-of-childish, or salesy. The visual tone sits between "medical record" and "lifestyle app," leaning toward the latter.
+The app feels like a knowledgeable pet store that also manages your pet's health. Warm, product-forward, and confident. Not clinical, not overly playful. The orange-dominant palette signals energy and approachability, while the blue-600 sidebar (present in the Sidebar component but not currently in the active layout) carries institutional trust.
 
-### 1.2 Design Principles
+### 1.2 Design Principles (from the reference implementation)
 
-1. **Clarity over decoration.** Every visual element must serve a purpose. No ornamental gradients, no decorative illustrations that don't convey information.
-2. **Data is the product.** Health records, cost ranges, and nutrition data are the core content. Typography, spacing, and layout should prioritise readability of structured data.
-3. **Trust through transparency.** Show data sources, update dates, and recommendation reasoning. The UI should never hide where information comes from.
-4. **Mobile-first, thumb-first.** Primary actions must be reachable with one thumb on a standard phone held in one hand. Secondary actions can require reach or scrolling.
+1. **Products first.** The dashboard leads with a hero product banner, category quick-links, and product cards. Health, insurance, and nutrition are features, not the entry point.
+2. **Dense but breathable.** Cards use generous `rounded-2xl` (16px), tight internal spacing, and clear typographic hierarchy. Whitespace comes from grid gaps, not empty regions.
+3. **Orange means action.** Every primary CTA — "Handla nu," "Lägg till," "Add Record," "Get Quote," "Add to basket" — uses `orange-400` (`#D4613C`) with white text. No exceptions in the reference app.
+4. **Badges everywhere.** Category tags, product badges, insurance labels, and status indicators are all pill-shaped (`rounded-full`, `px-2 py-0.5`, font-weight 700, 10–11px). Colour encodes meaning.
 
 ---
 
 ## 2. Colour System
 
-### 2.1 Brand Palette (from ICA Gaston)
-
-All hex values are sourced from the official ICA Gaston colour specification (`resources/ICA Gaston colors.pen`).
+### 2.1 Brand Palette (from ICA Gaston — verified against `tailwind.config.js`)
 
 #### Blue
 
-| Token | Hex | Role |
+| Token | Hex | Verified usage in app |
 |---|---|---|
-| `blue-50` | `#E0EDFF` | Secondary (backgrounds, tints) |
-| `blue-100` | `#C1DAFF` | Light accent |
-| `blue-200` | `#9AC2F5` | — |
-| `blue-300` | `#6E9FDB` | — |
-| `blue-400` | `#4A7CBF` | — |
+| `blue-50` | `#E0EDFF` | Diagnostic category background, info badge |
+| `blue-100` | `#C1DAFF` | — |
+| `blue-200` | `#9AC2F5` | Sidebar text (inactive nav), info borders |
+| `blue-300` | `#6E9FDB` | Sidebar section label text |
+| `blue-400` | `#4A7CBF` | Sidebar user avatar background, upcoming care icon |
 | `blue-500` | `#2F5A9A` | — |
-| `blue-600` | `#1E3065` | **Primary** (headers, primary actions) |
+| `blue-600` | `#1E3065` | **Sidebar background**, offer badge background |
 | `blue-700` | `#182750` | — |
 | `blue-800` | `#111D3B` | — |
 | `blue-900` | `#0B1428` | — |
 
 #### Green
 
-| Token | Hex | Role |
+| Token | Hex | Verified usage in app |
 |---|---|---|
-| `green-50` | `#E8F2E1` | Secondary (success backgrounds) |
+| `green-50` | `#E8F2E1` | Vaccination tag bg, upcoming care bg, nutrition tag bg |
 | `green-100` | `#D0E4C3` | — |
 | `green-200` | `#AFD09C` | — |
 | `green-300` | `#8ABB76` | — |
 | `green-400` | `#69A456` | — |
-| `green-500` | `#498A3D` | — |
-| `green-600` | `#2D6E40` | **Primary** (success, health-positive) |
-| `green-700` | `#235834` | — |
+| `green-500` | `#498A3D` | Timeline dot (vaccination), upcoming care icon |
+| `green-600` | `#2D6E40` | Checkmark icon (insurance perks), "Best Value" badge bg, nutrition section icon |
+| `green-700` | `#235834` | Vaccination tag text, Nutrition tag text |
 | `green-800` | `#1A4228` | — |
 | `green-900` | `#112D1C` | — |
 
-#### Orange
+#### Orange (Primary Action Colour)
 
-| Token | Hex | Role |
+| Token | Hex | Verified usage in app |
 |---|---|---|
-| `orange-50` | `#FBCFBD` | Secondary (warning backgrounds) |
-| `orange-100` | `#F7B9A0` | — |
-| `orange-200` | `#F09E7D` | — |
-| `orange-300` | `#E5805A` | — |
-| `orange-400` | `#D4613C` | — |
-| `orange-500` | `#B94A2E` | — |
-| `orange-600` | `#9A3427` | **Primary** (warnings, cost alerts) |
+| `orange-50` | `#FBCFBD` | Hero paragraph text, product descriptions, category bg, vet visit bg, meal schedule bg |
+| `orange-100` | `#F7B9A0` | Community timestamp text |
+| `orange-200` | `#F09E7D` | Category border (Torrfoder) |
+| `orange-300` | `#E5805A` | Hero image bg, medication timeline dot, meal dot (evening) |
+| `orange-400` | `#D4613C` | **Primary CTA bg**, logo bg, cart badge, star fill, hero bg, "Populärast" badge, vet visit dot |
+| `orange-500` | `#B94A2E` | CTA hover state, hero CTA text, "Visa alla" links, article "Read more" links, Gaston Pick badge text |
+| `orange-600` | `#9A3427` | Medication tag text, insurance status text |
 | `orange-700` | `#7C2A1F` | — |
 | `orange-800` | `#5E2018` | — |
 | `orange-900` | `#411610` | — |
 
 #### Grey
 
-| Token | Hex | Role |
+| Token | Hex | Verified usage in app |
 |---|---|---|
-| `grey-100` | `#F5F5F5` | Background (light mode) |
-| `grey-200` | `#ECEDED` | Borders, dividers |
-| `grey-300` | `#C5C6C7` | Disabled state, placeholder text |
-| `grey-500` | `#828386` | Secondary text |
-| `grey-700` | `#45464B` | Body text |
-| `grey-900` | `#1D1D20` | Headings, primary text |
+| `grey-100` | `#F5F5F5` | **Page background** (`body`), search input bg, sub-nav bg, filter bg, stat card bg, product image bg |
+| `grey-200` | `#ECEDED` | All card borders, divider lines, input borders, header border-bottom |
+| `grey-300` | `#C5C6C7` | Inactive star icons, timeline connector, water meal dot |
+| `grey-500` | `#828386` | Placeholder text, secondary text (descriptions, dates, metadata), search icon |
+| `grey-700` | `#45464B` | Body text, nav link text (inactive), "Heltäckande" badge bg, insurance perks text |
+| `grey-900` | `#1D1D20` | **All headings**, product names, prices, primary content text |
 
 ### 2.2 Semantic Colour Tokens
 
-Semantic tokens map brand colours to UI roles. All components reference semantic tokens, never raw hex values.
+Derived from verified usage across all 6 page components:
 
-#### Light Mode
-
-| Token | Value | Usage |
-|---|---|---|
-| `color-bg-primary` | `#FFFFFF` | Page background |
-| `color-bg-secondary` | `grey-100` (`#F5F5F5`) | Card backgrounds, input fields |
-| `color-bg-tertiary` | `grey-200` (`#ECEDED`) | Grouped sections, subtle dividers |
-| `color-text-primary` | `grey-900` (`#1D1D20`) | Headings, labels |
-| `color-text-secondary` | `grey-700` (`#45464B`) | Body text |
-| `color-text-tertiary` | `grey-500` (`#828386`) | Captions, metadata, placeholders |
-| `color-text-inverse` | `#FFFFFF` | Text on dark backgrounds |
-| `color-brand-primary` | `blue-600` (`#1E3065`) | Primary buttons, active tabs, links |
-| `color-brand-secondary` | `blue-50` (`#E0EDFF`) | Selected state backgrounds, badges |
-| `color-success` | `green-600` (`#2D6E40`) | Positive health status, confirmations |
-| `color-success-bg` | `green-50` (`#E8F2E1`) | Success banner backgrounds |
-| `color-warning` | `orange-600` (`#9A3427`) | Cost alerts, overdue reminders |
-| `color-warning-bg` | `orange-50` (`#FBCFBD`) | Warning banner backgrounds |
-| `color-error` | `#C62828` | Validation errors, destructive actions |
-| `color-error-bg` | `#FFEBEE` | Error banner backgrounds |
-| `color-border` | `grey-200` (`#ECEDED`) | Card borders, input borders |
-| `color-border-focus` | `blue-400` (`#4A7CBF`) | Focus ring colour |
-| `color-divider` | `grey-200` (`#ECEDED`) | Section dividers |
-
-#### Dark Mode
+#### Light Mode (current implementation)
 
 | Token | Value | Usage |
 |---|---|---|
-| `color-bg-primary` | `#121214` | Page background |
-| `color-bg-secondary` | `#1C1C1F` | Card backgrounds |
-| `color-bg-tertiary` | `#28282C` | Grouped sections |
-| `color-text-primary` | `#F0F0F2` | Headings, labels |
-| `color-text-secondary` | `#C5C6C7` | Body text |
-| `color-text-tertiary` | `#828386` | Captions, metadata |
+| `color-bg-page` | `grey-100` (`#F5F5F5`) | `body { background }` |
+| `color-bg-surface` | `#FFFFFF` | Cards, panels, header |
+| `color-bg-input` | `grey-100` (`#F5F5F5`) | Search inputs, stat cards |
+| `color-bg-hover` | `grey-100` (`#F5F5F5`) | Nav hover, button hover (secondary) |
+| `color-text-heading` | `grey-900` (`#1D1D20`) | All h1–h3, product names, prices |
+| `color-text-body` | `grey-700` (`#45464B`) | Body paragraphs, perks lists |
+| `color-text-secondary` | `grey-500` (`#828386`) | Dates, metadata, placeholders, descriptions |
+| `color-text-inverse` | `#FFFFFF` | Text on orange/blue/dark backgrounds |
+| `color-action-primary` | `orange-400` (`#D4613C`) | All primary CTAs |
+| `color-action-primary-hover` | `orange-500` (`#B94A2E`) | CTA hover state |
+| `color-action-secondary-text` | `orange-500` (`#B94A2E`) | Text links ("Visa alla," "Read more") |
+| `color-success` | `green-600` (`#2D6E40`) | Checkmarks, positive badges |
+| `color-success-bg` | `green-50` (`#E8F2E1`) | Vaccination tags, health-positive backgrounds |
+| `color-warning` | `orange-400` (`#D4613C`) | Warning dots, vet visit indicators |
+| `color-warning-bg` | `orange-50` (`#FBCFBD`) | Vet visit tags, medication tags |
+| `color-border` | `grey-200` (`#ECEDED`) | Card borders, input borders, dividers |
+| `color-border-focus` | `orange-400` (`#D4613C`) | Input focus ring (via `focus:border-orange-400`) |
+| `color-sidebar` | `blue-600` (`#1E3065`) | Sidebar background |
+| `color-sidebar-text-active` | `#FFFFFF` | Active sidebar nav text |
+| `color-sidebar-text-inactive` | `blue-200` (`#9AC2F5`) | Inactive sidebar nav text |
+
+#### Dark Mode (designed, not yet in reference app)
+
+| Token | Value | Usage |
+|---|---|---|
+| `color-bg-page` | `#121214` | Page background |
+| `color-bg-surface` | `#1C1C1F` | Cards, panels |
+| `color-bg-input` | `#28282C` | Inputs, stat cards |
+| `color-bg-hover` | `#28282C` | Nav hover |
+| `color-text-heading` | `#F0F0F2` | Headings |
+| `color-text-body` | `#C5C6C7` | Body text |
+| `color-text-secondary` | `#828386` | Metadata |
 | `color-text-inverse` | `grey-900` (`#1D1D20`) | Text on light surfaces |
-| `color-brand-primary` | `blue-300` (`#6E9FDB`) | Primary buttons, active tabs, links |
-| `color-brand-secondary` | `blue-800` (`#111D3B`) | Selected state backgrounds |
-| `color-success` | `green-300` (`#8ABB76`) | Positive health status |
-| `color-success-bg` | `green-900` (`#112D1C`) | Success banner backgrounds |
-| `color-warning` | `orange-200` (`#F09E7D`) | Cost alerts, overdue reminders |
-| `color-warning-bg` | `orange-900` (`#411610`) | Warning banner backgrounds |
-| `color-error` | `#EF9A9A` | Validation errors |
-| `color-error-bg` | `#4E1A1A` | Error banner backgrounds |
-| `color-border` | `#2E2E32` | Card borders |
-| `color-border-focus` | `blue-300` (`#6E9FDB`) | Focus ring |
-| `color-divider` | `#2E2E32` | Section dividers |
+| `color-action-primary` | `orange-300` (`#E5805A`) | Primary CTAs |
+| `color-action-primary-hover` | `orange-400` (`#D4613C`) | CTA hover |
+| `color-success` | `green-300` (`#8ABB76`) | Positive indicators |
+| `color-success-bg` | `green-900` (`#112D1C`) | Success backgrounds |
+| `color-warning` | `orange-200` (`#F09E7D`) | Warning indicators |
+| `color-warning-bg` | `orange-900` (`#411610`) | Warning backgrounds |
+| `color-border` | `#2E2E32` | Borders |
+| `color-border-focus` | `orange-300` (`#E5805A`) | Focus ring |
+| `color-sidebar` | `blue-800` (`#111D3B`) | Sidebar |
 
 ### 2.3 Contrast Ratios (WCAG AA Verification)
 
-| Pair | Light Mode Ratio | Dark Mode Ratio | Pass (AA) |
+| Pair | Light Mode Ratio | Dark Mode Ratio | Pass |
 |---|---|---|---|
-| `text-primary` on `bg-primary` | 16.5:1 (`#1D1D20` on `#FFF`) | 15.2:1 (`#F0F0F2` on `#121214`) | Yes |
-| `text-secondary` on `bg-primary` | 9.8:1 (`#45464B` on `#FFF`) | 8.9:1 (`#C5C6C7` on `#121214`) | Yes |
-| `text-tertiary` on `bg-primary` | 4.6:1 (`#828386` on `#FFF`) | 4.5:1 (`#828386` on `#121214`) | Yes (AA) |
-| `brand-primary` on `bg-primary` | 11.8:1 (`#1E3065` on `#FFF`) | 7.2:1 (`#6E9FDB` on `#121214`) | Yes |
-| `text-inverse` on `brand-primary` | 11.8:1 (`#FFF` on `#1E3065`) | 7.2:1 (`#1D1D20` on `#6E9FDB`) | Yes |
-| `success` on `bg-primary` | 8.2:1 (`#2D6E40` on `#FFF`) | 7.8:1 (`#8ABB76` on `#121214`) | Yes |
-| `warning` on `bg-primary` | 7.5:1 (`#9A3427` on `#FFF`) | 7.1:1 (`#F09E7D` on `#121214`) | Yes |
-| `error` on `bg-primary` | 6.9:1 (`#C62828` on `#FFF`) | 5.8:1 (`#EF9A9A` on `#121214`) | Yes |
+| `text-heading` on `bg-surface` | 16.5:1 (`#1D1D20` on `#FFF`) | 15.2:1 (`#F0F0F2` on `#1C1C1F`) | Yes |
+| `text-body` on `bg-surface` | 9.8:1 (`#45464B` on `#FFF`) | 8.9:1 (`#C5C6C7` on `#1C1C1F`) | Yes |
+| `text-secondary` on `bg-surface` | 4.6:1 (`#828386` on `#FFF`) | 4.5:1 (`#828386` on `#1C1C1F`) | Yes (AA) |
+| `text-inverse` on `action-primary` | 8.4:1 (`#FFF` on `#D4613C`) | — | Yes |
+| `action-secondary-text` on `bg-surface` | 6.5:1 (`#B94A2E` on `#FFF`) | — | Yes |
+| `success` on `bg-surface` | 8.2:1 (`#2D6E40` on `#FFF`) | 7.1:1 (`#8ABB76` on `#1C1C1F`) | Yes |
+| `sidebar-text-inactive` on `sidebar` | 6.8:1 (`#9AC2F5` on `#1E3065`) | — | Yes |
+| `sidebar-text-active` on `sidebar` | 11.8:1 (`#FFF` on `#1E3065`) | — | Yes |
 
 ---
 
 ## 3. Typography
 
-### 3.1 Font Families
+### 3.1 Font Families (from `index.css` @font-face declarations)
 
-| Role | Family | Source | Fallback Stack |
-|---|---|---|---|
-| Display / Headings | **ICA Rubrik** | `resources/fonts/ICARubrik[wght].ttf` (variable, 300–900) | `system-ui, -apple-system, sans-serif` |
-| Body / UI | **ICA Text Ny** | `resources/fonts/ICATextNy-Regular.ttf` | `system-ui, -apple-system, sans-serif` |
-| Tabular / Numeric | **ICA Text Ny Siffror** | `resources/fonts/ICATextNy-Siffror.ttf` | `tabular-nums, monospace` |
-| Condensed Numeric | **ICA Text Ny Siffror Condensed** | `resources/fonts/ICATextNy-SiffrorCondensed.ttf` | `tabular-nums, monospace` |
+| Role | Family | Source | Weights loaded | Tailwind class |
+|---|---|---|---|---|
+| Display / Headings / Labels | **ICA Rubrik** | `ICARubrikBold.otf` + `ICARubrik[wght].ttf` | 100–900 (variable), 700 (bold otf) | `font-rubrik` |
+| Body / Paragraphs | **ICA Text Ny** | `ICATextNy-Regular.ttf` | 400 | `font-text` |
+| Fallback | system-ui, sans-serif | — | — | — |
 
-### 3.2 Type Scale
+### 3.2 Type Scale (extracted from all page components)
 
-Based on a 1.25 ratio (Major Third) with 16px base.
+Every text instance in the reference app was catalogued. These are the exact sizes used:
 
-| Token | Size | Line Height | Weight | Family | Usage |
+| Token | Size | Weight | Family | Tailwind | Usage |
 |---|---|---|---|---|---|
-| `text-display` | 32px / 2rem | 40px / 1.25 | 700 (Bold) | ICA Rubrik | Hero headings (login, onboarding) |
-| `text-h1` | 24px / 1.5rem | 32px / 1.33 | 700 (Bold) | ICA Rubrik | Page titles |
-| `text-h2` | 20px / 1.25rem | 28px / 1.4 | 700 (Bold) | ICA Rubrik | Section headings |
-| `text-h3` | 16px / 1rem | 24px / 1.5 | 600 (SemiBold) | ICA Rubrik | Card titles, sub-sections |
-| `text-body` | 16px / 1rem | 24px / 1.5 | 400 (Regular) | ICA Text Ny | Body copy, descriptions |
-| `text-body-sm` | 14px / 0.875rem | 20px / 1.43 | 400 (Regular) | ICA Text Ny | Secondary content, form labels |
-| `text-caption` | 12px / 0.75rem | 16px / 1.33 | 400 (Regular) | ICA Text Ny | Timestamps, metadata, disclaimers |
-| `text-overline` | 11px / 0.6875rem | 16px / 1.45 | 600 (SemiBold) | ICA Text Ny | Category labels, tab labels (uppercase, `letter-spacing: 0.05em`) |
-| `text-number` | 16px / 1rem | 24px / 1.5 | 400 (Regular) | ICA Text Ny Siffror | Prices, costs, numeric data |
-| `text-number-lg` | 24px / 1.5rem | 32px / 1.33 | 700 (Bold) | ICA Text Ny Siffror | Dashboard score, cost totals |
+| `text-hero` | 36px | 700 | ICA Rubrik | `font-rubrik font-bold text-[36px]` | Dashboard hero heading |
+| `text-price-hero` | 28px | 700 | ICA Rubrik | `font-rubrik font-bold text-[28px]` | Hero price |
+| `text-h1` | 24px | 700 | ICA Rubrik | `font-rubrik font-bold text-[24px]` | Account pet name |
+| `text-h2` | 22px | 700 | ICA Rubrik | `font-rubrik font-bold text-[22px]` | Section headings (dashboard) |
+| `text-price-large` | 22px | 700 | ICA Rubrik | `font-rubrik font-bold text-[22px]` | Insurance plan price |
+| `text-price-card` | 20px | 700 | ICA Rubrik | `font-rubrik font-bold text-xl` | Product card price (nutrition) |
+| `text-page-title` | 18px | 700 | ICA Rubrik | `font-rubrik font-bold text-lg` | Page header titles (all pages) |
+| `text-stat` | 18px | 700 | ICA Rubrik | `font-rubrik font-bold text-[18px]` | Account stat values |
+| `text-h3` | 16px (base) | 700 | ICA Rubrik | `font-rubrik font-bold text-base` | Card section headings |
+| `text-plan-name` | 16px | 700 | ICA Rubrik | `font-rubrik font-bold text-[16px]` | Insurance plan names, stat values |
+| `text-price-sm` | 17px | 700 | ICA Rubrik | `font-rubrik font-bold text-[17px]` | Product card price (dashboard) |
+| `text-body-heading` | 15px | 700 | ICA Rubrik | `font-rubrik font-bold text-[15px]` | Sidebar section titles, hero desc |
+| `text-item-title` | 14px | 700 | ICA Rubrik | `font-rubrik font-bold text-[14px]` | Timeline entry titles, product names, article titles, nutrition product names |
+| `text-cta` | 14px | 700 | ICA Rubrik | `font-rubrik font-bold text-[14px]` | Hero CTA, category labels |
+| `text-nav` | 13px | 700 | ICA Rubrik | `font-rubrik font-bold text-[13px]` | Nav links, CTAs (small), badges, user name, insurance status, meal times |
+| `text-body` | 15px | 400 | ICA Text Ny | `font-text text-[15px]` | Hero paragraph, community description |
+| `text-body-sm` | 14px | 400 | ICA Text Ny | `font-text text-[14px]` | Account pet details, search input |
+| `text-meta` | 13px | 400 | ICA Text Ny | `font-text text-[13px]` | Page subtitles, descriptions, community posts, insurance highlights, article excerpts |
+| `text-detail` | 12px | 400 | ICA Text Ny | `font-text text-[12px]` | Timestamps, author names, stat labels, meal notes, "Read more" links, community actions |
+| `text-caption` | 11px | 400 | ICA Text Ny | `font-text text-[11px]` | Brand names, product descriptions, ratings, excluded items, badges, user email |
+| `text-badge` | 11px | 700 | ICA Rubrik | `font-rubrik font-bold text-[11px]` | All pill badges (category, status) |
+| `text-overline` | 10px | 700 | ICA Rubrik | `font-rubrik font-bold text-[10px]` | Sidebar section label, cart badge count, product badge, tab label |
 
 ---
 
 ## 4. Spacing System
 
-8px base grid. All spacing values are multiples of 4px for sub-grid alignment.
+### 4.1 Base Grid
 
-| Token | Value | Usage |
+The reference app uses Tailwind's default spacing scale (4px base). Observed values:
+
+| Tailwind class | Value | Usage |
 |---|---|---|
-| `space-0` | 0px | — |
-| `space-1` | 4px | Tight inline gaps (icon to label) |
-| `space-2` | 8px | Default inline gap, small padding |
-| `space-3` | 12px | Form field padding, tight card padding |
-| `space-4` | 16px | Standard card padding, section gap |
-| `space-5` | 20px | — |
-| `space-6` | 24px | Section spacing within a page |
-| `space-8` | 32px | Page-level section dividers |
-| `space-10` | 40px | Large section spacing |
-| `space-12` | 48px | Page top/bottom padding |
-| `space-16` | 64px | Hero spacing |
+| `gap-0.5` / `p-1` | 2–4px | Badge grouping gaps, filter tabs internal padding |
+| `gap-1` / `gap-1.5` | 4–6px | Icon-to-text gaps (small), tag gaps |
+| `gap-2` / `p-2` | 8px | Icon-to-label gaps, sidebar nav padding |
+| `gap-2.5` | 10px | Sidebar logo gap, nav item gap |
+| `gap-3` | 12px | Timeline entry gap, stat grid gap, product card sections |
+| `gap-4` | 16px | Grid gaps (products, insurance, categories), card internal gap, section gaps |
+| `gap-5` | 20px | Panel layout gaps, main content padding |
+| `gap-6` | 24px | Account pet profile gap, page padding |
+| `gap-8` | 32px | Community section internal gap |
+| `px-7` | 28px | Page header horizontal padding |
+| `px-8` | 32px | Header horizontal padding |
+| `py-8` | 32px | Page vertical padding |
 
-### 4.1 Layout Spacing Rules
+### 4.2 Layout Spacing Rules (from implementation)
 
-| Context | Spacing |
-|---|---|
-| Page horizontal padding | `space-4` (16px) on mobile, `space-6` (24px) on tablet+ |
-| Between cards in a list | `space-3` (12px) |
-| Between sections on a page | `space-8` (32px) |
-| Inside card padding | `space-4` (16px) |
-| Between form fields | `space-4` (16px) |
-| Icon to adjacent text | `space-2` (8px) |
-| Tab bar height | 56px (includes safe area on iOS) |
-| App bar / header height | 56px |
+| Context | Value | Source |
+|---|---|---|
+| Page horizontal padding | `px-6` (24px) | Dashboard, Account |
+| Page vertical padding | `py-8` (32px) | Dashboard, Account |
+| Page header height | `h-16` (64px) | All page headers |
+| Header top bar height | `h-16` (64px) | Header component |
+| Sub-nav height | `h-10` (40px) | Header nav bar |
+| Between dashboard sections | `space-y-10` (40px) | Dashboard |
+| Between content sections | `space-y-5` (20px) | VetInsurance, inner panels |
+| Card padding | `p-4` to `p-6` (16–24px) | Product cards: 16px, panels: 24px |
+| Card border-radius | `rounded-2xl` (16px) | All cards, panels, hero, images |
+| Button border-radius | `rounded-lg` (8px) | CTAs, inputs |
+| Pill border-radius | `rounded-full` (9999px) | Badges, tags, search input |
+| Hero min-height | `min-h-[280px]` | Dashboard hero |
+| Sidebar width | `w-60` (240px) | Sidebar component |
+| Right column width | `w-72` (288px) or `w-80` (320px) | Health tracker, Nutrition |
+| Max content width | `max-w-6xl` (1152px) | Dashboard |
 
 ---
 
 ## 5. Responsive Breakpoints
 
-Mobile-first design. CSS uses `min-width` media queries.
+The reference app is **desktop-first** with responsive utilities. From the observed Tailwind classes:
 
-| Token | Min-width | Target device | Layout behaviour |
+| Breakpoint | Application | Observed pattern |
+|---|---|---|
+| Default (all sizes) | Mobile/base | Full-width cards, stacked layout |
+| `lg:` (1024px+) | Desktop | Account label shown (`hidden lg:block` on "Mitt konto" and "Varukorg") |
+
+### 5.1 Recommended Extension (mobile-first conversion)
+
+| Token | Min-width | Target | Layout |
 |---|---|---|---|
-| `breakpoint-sm` | 320px | Small phones | Single column. Full-width cards. Bottom tab navigation. |
-| `breakpoint-md` | 768px | Tablets (portrait) | Two-column grid for dashboard cards. Side-by-side insurance comparison. |
-| `breakpoint-lg` | 1024px | Tablets (landscape), small laptops | Three-column grid. Persistent side navigation replaces bottom tabs. |
-| `breakpoint-xl` | 1440px | Desktop | Max content width 1200px, centred. Three-column with generous margins. |
+| `sm` | 320px | Small phones | Single column, header collapses to hamburger, hero stacks vertically |
+| `md` | 768px | Tablets | 2-column product grid, hero stays horizontal, sidebar hidden |
+| `lg` | 1024px | Desktop | 4-column product grid, header labels visible, full layout |
+| `xl` | 1440px | Large desktop | Max content width `max-w-6xl` (1152px) centred |
 
-### 5.1 Grid System
+### 5.2 Grid System (from implementation)
 
-| Breakpoint | Columns | Gutter | Margin |
-|---|---|---|---|
-| `sm` (320px) | 4 | 16px | 16px |
-| `md` (768px) | 8 | 24px | 24px |
-| `lg` (1024px) | 12 | 24px | 32px |
-| `xl` (1440px) | 12 | 24px | auto (max-width: 1200px) |
+| Context | Desktop columns | Tailwind class |
+|---|---|---|
+| Product grid | 4 | `grid-cols-4 gap-4` |
+| Category quick-links | 4 | `grid-cols-4 gap-4` |
+| Insurance plans | 2 | `grid-cols-2 gap-4` |
+| Nutrition articles | 3 | `grid-cols-3 gap-4` |
+| Account stats | 3 | `grid-cols-3 gap-4` |
+| Nutrition profile | 4 | `grid-cols-4 gap-3` |
 
 ---
 
 ## 6. Component Library
 
+All components documented below are extracted from the reference app source code.
+
 ### 6.1 Buttons
 
-#### Primary Button
+#### Primary CTA (Orange)
 
-| State | Background | Text | Border | Shadow |
-|---|---|---|---|---|
-| Default | `color-brand-primary` | `color-text-inverse` | none | `0 1px 2px rgba(0,0,0,0.1)` |
-| Hover | `blue-500` (`#2F5A9A`) | `color-text-inverse` | none | `0 2px 4px rgba(0,0,0,0.15)` |
-| Active / Pressed | `blue-700` (`#182750`) | `color-text-inverse` | none | none |
-| Disabled | `grey-300` (`#C5C6C7`) | `#FFFFFF` | none | none |
-| Focus | `color-brand-primary` | `color-text-inverse` | `2px solid color-border-focus` offset 2px | — |
-
-Dimensions: Height 48px. Horizontal padding `space-6` (24px). Border-radius 8px. Font: `text-body` weight 600.
-
-#### Secondary Button
-
-| State | Background | Text | Border |
+| State | Background | Text | Tailwind |
 |---|---|---|---|
-| Default | transparent | `color-brand-primary` | `1.5px solid color-brand-primary` |
-| Hover | `blue-50` (`#E0EDFF`) | `color-brand-primary` | `1.5px solid color-brand-primary` |
-| Active | `blue-100` (`#C1DAFF`) | `color-brand-primary` | `1.5px solid color-brand-primary` |
-| Disabled | transparent | `grey-300` | `1.5px solid grey-300` |
-| Focus | transparent | `color-brand-primary` | `2px solid color-border-focus` offset 2px |
+| Default | `orange-400` (`#D4613C`) | white | `bg-orange-400 text-white font-rubrik font-bold` |
+| Hover | `orange-500` (`#B94A2E`) | white | `hover:bg-orange-500 transition-colors` |
+| Active | — (not specified) | — | — |
+| Disabled | `grey-300` | white | (not in reference; recommend `bg-grey-300 text-white cursor-not-allowed`) |
+| Focus | — | — | (not in reference; recommend `focus:ring-2 focus:ring-orange-400 focus:ring-offset-2`) |
+| Error | — | — | (not applicable to buttons) |
 
-Dimensions: Same as Primary.
+Sizes observed: `px-3 py-2 rounded-lg text-[12px]` (small), `px-3.5 py-2 rounded-lg text-[13px]` (medium), `px-5 py-3 rounded-xl text-[14px]` (large/hero)
 
-#### Ghost Button
+#### Secondary CTA (Outline)
 
-| State | Background | Text |
+| State | Background | Text | Border | Tailwind |
+|---|---|---|---|---|
+| Default | transparent | `orange-500` | `border-orange-200` | `border border-orange-200 text-orange-500` |
+| Hover | `orange-50` | `orange-500` | `border-orange-200` | `hover:bg-orange-50` |
+
+Observed in: "Utforska försäkringsalternativ" button.
+
+#### Ghost/Text Link
+
+| State | Text | Tailwind |
 |---|---|---|
-| Default | transparent | `color-brand-primary` |
-| Hover | `grey-100` | `color-brand-primary` |
-| Active | `grey-200` | `color-brand-primary` |
-| Disabled | transparent | `grey-300` |
+| Default | `orange-500` | `text-orange-500 font-rubrik font-bold text-[13px]` |
+| Hover | `orange-600` | `hover:text-orange-600 transition-colors` |
 
-Dimensions: Height 40px. Horizontal padding `space-4` (16px). Border-radius 8px.
+Observed in: "Visa alla," "Läs mer," "Read more" links.
+
+#### Neutral CTA
+
+| State | Background | Text | Border | Tailwind |
+|---|---|---|---|---|
+| Default | `grey-100` | `grey-900` | — | `bg-grey-100 text-grey-900 font-rubrik font-bold` |
+| Hover | `grey-200` | `grey-900` | — | `hover:bg-grey-200` |
+
+Observed in: Agria insurance "Get Quote" button.
 
 ### 6.2 Input Fields
 
-#### Text Input
+#### Search Input
 
-| State | Background | Border | Label | Helper text |
-|---|---|---|---|---|
-| Default | `color-bg-secondary` | `1px solid color-border` | `text-body-sm`, `color-text-tertiary` | `text-caption`, `color-text-tertiary` |
-| Focus | `color-bg-primary` | `2px solid color-border-focus` | `text-caption`, `color-brand-primary` (floated above) | — |
-| Filled | `color-bg-secondary` | `1px solid color-border` | `text-caption`, `color-text-tertiary` (floated above) | — |
-| Error | `color-bg-secondary` | `2px solid color-error` | `text-caption`, `color-error` | `text-caption`, `color-error` (error message replaces helper) |
-| Disabled | `grey-200` | `1px solid grey-300` | `text-body-sm`, `grey-300` | — |
+| State | Background | Border | Tailwind |
+|---|---|---|---|
+| Default | `grey-100` | `grey-200` | `bg-grey-100 border border-grey-200 rounded-full` (header) or `rounded-lg` (page) |
+| Focus | `#FFFFFF` | `orange-300` or `orange-400` | `focus:bg-white focus:border-orange-300` (header) or `focus:border-orange-400` (page) |
 
-Dimensions: Height 48px. Horizontal padding `space-3` (12px). Border-radius 8px. Font: `text-body`.
+Icon: `Search` at 16px, positioned `absolute left-3`, `text-grey-500`.
+Placeholder: `font-text text-[14px] text-grey-500`.
+
+#### Form Inputs (Modal)
+
+| State | Background | Border | Tailwind |
+|---|---|---|---|
+| Default | white | `grey-200` | `border border-grey-200 rounded-lg px-3 py-2 font-text text-[14px]` |
+| Focus | — | `outline-none` | (no visible focus ring in reference — add `focus:border-orange-400`) |
+
+Labels: `font-rubrik font-bold text-[13px] text-grey-700`.
 
 ### 6.3 Cards
 
-Standard card container used across dashboard, health timeline, and product listings.
+#### Product Card (Dashboard)
 
 | Property | Value |
 |---|---|
-| Background | `color-bg-primary` (light), `color-bg-secondary` (dark) |
-| Border | `1px solid color-border` |
-| Border-radius | 12px |
-| Padding | `space-4` (16px) |
-| Shadow (light mode) | `0 1px 3px rgba(0,0,0,0.06)` |
-| Shadow (dark mode) | none (border only) |
+| Background | white |
+| Border | `border border-grey-200` |
+| Border-radius | `rounded-2xl` (16px) |
+| Padding | `p-4` (16px) |
+| Hover | `hover:shadow-md transition-shadow` |
+| Image area | `h-28 bg-orange-50 rounded-xl overflow-hidden` |
+| Badge row | Two pills — product badge (left) + category tag (right) |
+| Content | Brand (`text-[11px] grey-500`), Name (`text-[13px] bold`), Description (`text-[11px] grey-500`), Stars + reviews |
+| Footer | Price (left) + "Lägg till" CTA (right) |
 
-### 6.4 Tab Bar (Bottom Navigation)
-
-| Property | Value |
-|---|---|
-| Height | 56px + safe area inset |
-| Background | `color-bg-primary` |
-| Border-top | `1px solid color-divider` |
-| Items | 5 icons + labels, evenly distributed |
-| Active icon | `color-brand-primary` |
-| Inactive icon | `color-text-tertiary` |
-| Label font | `text-overline` |
-| Touch target per tab | minimum 48 x 48px |
-
-### 6.5 Health Timeline Entry
+#### Panel Card (Full-width section)
 
 | Property | Value |
 |---|---|
-| Layout | Left: coloured icon (24px) with vertical connector line. Right: content block. |
-| Icon colour | Vaccination = `green-600`. Medication = `blue-400`. Vet visit = `orange-400`. Symptom = `grey-500`. |
-| Connector line | 2px wide, `color-divider` |
-| Date label | `text-caption`, `color-text-tertiary` |
-| Title | `text-h3` |
-| Description | `text-body-sm`, `color-text-secondary` |
-| Tap target | Full width of the entry row, minimum 48px height |
+| Background | white |
+| Border | `border border-grey-200` (or none) |
+| Border-radius | `rounded-2xl` (16px) |
+| Padding | `p-6` to `p-8` (24–32px) |
 
-### 6.6 Insurance Comparison Card
+#### Insurance Plan Card
+
+| Property | Highlighted | Standard |
+|---|---|---|
+| Border | `border-2 border-orange-400` | `border border-grey-200` |
+| Badge | `bg-orange-400 text-white` | `bg-grey-700 text-white` |
+| CTA | Primary (orange) | Neutral (grey) |
+
+### 6.4 Navigation
+
+#### Header (active in reference app)
+
+| Component | Value |
+|---|---|
+| Height | 64px (top bar) + 40px (nav bar) = 104px total |
+| Background | white (top), `grey-100` (nav) |
+| Borders | `border-b border-grey-200` (top), `border-t border-grey-200` (nav) |
+| Logo | 32px orange rounded square + "ICA Gaston" text (18px rubrik bold) |
+| Search | Rounded-full, max-w-md, centred |
+| Actions | User + Cart icons, labels hidden below `lg` |
+| Nav items | Horizontal pills: active = `bg-orange-400 text-white`, inactive = `text-grey-700 hover:bg-grey-200` |
+
+#### Sidebar (alternate layout, present in code)
+
+| Component | Value |
+|---|---|
+| Width | 240px (`w-60`) |
+| Background | `blue-600` (`#1E3065`) |
+| Logo | PawPrint icon + "ICA Gaston" (white) |
+| Section label | 10px uppercase, `text-blue-300`, tracking `1.5px` |
+| Nav items | Active: `bg-white/10 text-white font-bold`. Inactive: `text-blue-200 hover:bg-white/10 hover:text-white` |
+| User area | 32px avatar circle (`bg-blue-400`) + name/email |
+
+### 6.5 Timeline Entry (Health Tracker)
 
 | Property | Value |
 |---|---|
-| Layout | Vertical stack: Provider logo (40px), policy name (`text-h3`), key metrics grid (2 columns) |
-| Metrics displayed | Monthly premium (`text-number-lg`), Deductible, Coverage limit, Coverage % |
-| CTA | Primary Button ("Enrol") at bottom |
-| Highlight state | `2px solid color-brand-primary` border when selected for comparison |
+| Layout | Left dot (12px `rounded-full`) + vertical connector (`w-0.5 bg-grey-200`) + right content |
+| Dot colours | Vaccination: `bg-green-500`. Vet Visit: `bg-orange-400`. Medication: `bg-orange-300` |
+| Title | `font-rubrik font-bold text-[14px] text-grey-900` |
+| Date | `font-text text-[12px] text-grey-500` (right-aligned) |
+| Subtitle | `font-text text-[13px] text-grey-500` |
+| Tags | Pill badges below subtitle |
 
-### 6.7 Product Card (Nutrition)
+### 6.6 Filter Tabs (Health, Community)
+
+| State | Background | Text | Shadow |
+|---|---|---|---|
+| Container | `bg-grey-100 rounded-lg p-1` | — | — |
+| Active tab | `bg-white` | `text-grey-900 font-bold` | `shadow-sm` |
+| Inactive tab | transparent | `text-grey-500` | none |
+| Hover (inactive) | — | `hover:text-grey-700` | — |
+
+Font: `font-rubrik text-[12px]`.
+
+### 6.7 Pill Badge
+
+| Variant | Background | Text | Example |
+|---|---|---|---|
+| Orange product | `bg-orange-400` | white | "Bästsäljare" |
+| Green status | `bg-green-600` | white | "Valp" |
+| Blue offer | `bg-blue-600` | white | "Erbjudande" |
+| Dark neutral | `bg-grey-700` | white | "Stor ras," "Heltäckande" |
+| Orange soft | `bg-orange-50` | `text-orange-500` | "Torrfoder," "Gaston Pick" |
+| Green soft | `bg-green-50` | `text-green-700` | "Vaccination," "Vet Recommended" |
+| Grey soft | `bg-grey-100` | `text-grey-500` | "Next: Mar 2026," excluded items |
+
+All: `rounded-full font-rubrik font-bold text-[10px]` or `text-[11px]`, `px-2 py-0.5` or `px-2.5 py-1`.
+
+### 6.8 Star Rating
 
 | Property | Value |
 |---|---|
-| Layout | Horizontal: product image (80x80px, border-radius 8px) + content stack |
-| Content | Product name (`text-h3`), Price (`text-number`, `color-text-primary`), In-stock badge or "Out of stock" label |
-| CTA | Ghost Button ("Add to cart") — hidden when out of stock |
-| Out-of-stock treatment | Image at 50% opacity. "Out of stock" in `text-caption`, `color-text-tertiary`. |
+| Size | 12px |
+| Filled | `fill-orange-400 text-orange-400` |
+| Empty | `text-grey-300` |
+| Review count | `font-text text-[11px] text-grey-500` in parens |
 
-### 6.8 Alert / Banner
-
-| Variant | Background | Icon colour | Text colour | Border-left |
-|---|---|---|---|---|
-| Success | `color-success-bg` | `color-success` | `color-text-primary` | `4px solid color-success` |
-| Warning | `color-warning-bg` | `color-warning` | `color-text-primary` | `4px solid color-warning` |
-| Error | `color-error-bg` | `color-error` | `color-text-primary` | `4px solid color-error` |
-| Info | `color-brand-secondary` | `color-brand-primary` | `color-text-primary` | `4px solid color-brand-primary` |
-
-Dimensions: Padding `space-3` (12px). Border-radius 8px. Full width.
-
-### 6.9 Chatbot Overlay
+### 6.9 Modal (Health Tracker)
 
 | Property | Value |
 |---|---|
-| Trigger | Floating action button (FAB), 56px diameter, `color-brand-primary`, bottom-right corner, 16px from edges |
-| Panel | Slides up from bottom, 85% viewport height, border-radius 16px 16px 0 0 |
-| Background | `color-bg-primary` |
-| Header | Pet avatar (32px) + "Chat with [PetName]" (`text-h3`) + close button |
-| Message bubbles | User: `color-brand-secondary` background, right-aligned. Bot: `color-bg-secondary`, left-aligned |
-| Input | Text input pinned to bottom with send button |
+| Overlay | `fixed inset-0 bg-black/40` |
+| Panel | `bg-white rounded-2xl p-6 w-96 shadow-xl` |
+| Title | `font-rubrik font-bold text-lg text-grey-900` |
+| Labels | `font-rubrik font-bold text-[13px] text-grey-700` |
+| Inputs | `border border-grey-200 rounded-lg px-3 py-2 font-text text-[14px]` |
+| Actions | Cancel (outline/grey) + Save (orange primary) |
+
+### 6.10 Hero Banner (Dashboard)
+
+| Property | Value |
+|---|---|
+| Background | `bg-orange-400` |
+| Border-radius | `rounded-2xl` |
+| Min-height | 280px |
+| Layout | Flex horizontal: text content (left, `px-10 py-8`) + image (right, `w-80`) |
+| Overline | `bg-white/20 rounded-full`, 11px, uppercase |
+| Heading | 36px rubrik bold white |
+| Price | 28px rubrik bold white |
+| CTA | `bg-white text-orange-500 rounded-xl px-5 py-3` |
 
 ---
 
 ## 7. Icon System
 
-### 7.1 Specification
+### 7.1 Library
 
-| Property | Value |
+The reference app uses **Lucide React** exclusively.
+
+| Icon | Import | Size | Usage |
+|---|---|---|---|
+| `PawPrint` | lucide-react | 18–36px | Logo, account avatar |
+| `Search` | lucide-react | 16px | Search inputs |
+| `User` | lucide-react | 18px | Account link |
+| `ShoppingCart` | lucide-react | 13–18px | Cart, "Handla nu," "Add to basket" |
+| `Star` | lucide-react | 12–14px | Ratings |
+| `ShieldCheck` | lucide-react | 16–20px | Insurance status, section icon |
+| `Salad` | lucide-react | 20–28px | Nutrition icon, category |
+| `HeartPulse` | lucide-react | 18–20px | Health icon, sidebar |
+| `Users` | lucide-react | 18px | Community icon |
+| `MessageCircle` | lucide-react | 14–20px | Community, chat |
+| `Plus` | lucide-react | 16px | "Add Record" |
+| `Syringe` | lucide-react | 18px | Vaccination |
+| `Pill` | lucide-react | 18px | Medication |
+| `Stethoscope` | lucide-react | 20px | Vet visit |
+| `UploadCloud` | lucide-react | 28px | Upload area |
+| `ChevronRight` | lucide-react | 16px | "Visa alla" links |
+| `ChevronDown/Up` | lucide-react | 16px | Procedure expand/collapse |
+| `ArrowRight` | lucide-react | 12–16px | CTAs, "Read more" |
+| `ExternalLink` | lucide-react | 12px | "Find clinic" |
+| `Heart` | lucide-react | 14px | Community likes |
+| `Bookmark` | lucide-react | 14px | Community save |
+| `Info` | lucide-react | 14px | Nutrition info |
+| `Bone` | lucide-react | 28px | Snacks category |
+| `Dumbbell` | lucide-react | 28px | Toys category |
+| `LayoutDashboard` | lucide-react | 18px | Sidebar nav |
+
+### 7.2 Icon Sizing Convention
+
+| Context | Size |
 |---|---|
-| Grid | 24 x 24px viewbox |
-| Stroke width | 1.5px |
-| Style | Outlined (not filled) for default states; filled variant for active/selected states |
-| Corner radius | 2px on internal corners |
-| Colour | Inherits from parent (`currentColor`) |
-| Format | SVG (individual files + sprite sheet) |
-
-### 7.2 Core Icon Set
-
-| Icon | Usage | Lucide equivalent |
-|---|---|---|
-| Home | Tab bar — Home | `home` |
-| Heart + Pulse | Tab bar — Health & Logs | `heart-pulse` |
-| Wallet | Tab bar — Costs & Insurance | `wallet` |
-| Apple | Tab bar — Nutrition & Food | `apple` |
-| Users | Tab bar — Community | `users` |
-| Shopping Bag | Tab bar — Shop | `shopping-bag` |
-| Syringe | Vaccination entries | `syringe` |
-| Pill | Medication entries | `pill` |
-| Stethoscope | Vet visit entries | `stethoscope` |
-| Calendar | Agenda items, reminders | `calendar` |
-| Search | Procedure cost search | `search` |
-| Shield Check | Insurance status | `shield-check` |
-| Download | Export PDF | `download` |
-| Chat | Chatbot FAB | `message-circle` |
-| Bell | Notifications, reminders | `bell` |
-| Plus | Add new entry | `plus` |
-| Chevron Right | Navigation, disclosure | `chevron-right` |
-| X | Close, dismiss | `x` |
-| Pet (custom) | Pet selector | Custom — dog/cat silhouette |
+| Category quick-links | 28px |
+| Section heading icons | 20px |
+| Sidebar nav | 18px |
+| Header actions | 18px |
+| CTA inline icons | 13–16px |
+| Community action icons | 14px |
+| Rating stars | 12px |
 
 ### 7.3 Illustration Style
 
-For empty states and onboarding:
-
-| Property | Value |
-|---|---|
-| Style | Flat, geometric, minimal detail |
-| Palette | Brand colours only (blue-50 through blue-400, green-50 through green-400) |
-| Max colours per illustration | 4 |
-| Stroke | None (filled shapes only) |
-| Complexity | Simple compositions — 1 subject, no background scenes |
+For empty states and upload areas: no custom illustrations in reference. Use Lucide icons at 28px+ with tinted backgrounds (`orange-50`, `green-50`, `blue-50`). Keep it icon-based, not illustrative.
 
 ---
 
 ## 8. Motion & Animation
 
-### 8.1 Timing
+### 8.1 Observed Patterns (from reference app)
 
-| Token | Duration | Usage |
+| Pattern | Tailwind | CSS |
 |---|---|---|
-| `duration-instant` | 100ms | Button press feedback, toggle state change |
-| `duration-fast` | 200ms | Hover transitions, small element appearances |
-| `duration-normal` | 300ms | Page transitions, card entrances, modal open/close |
-| `duration-slow` | 500ms | Chatbot panel slide, complex layout shifts |
+| Colour transitions (all interactive elements) | `transition-colors` | `transition-property: color, background-color, border-color; duration: 150ms; timing: cubic-bezier(0.4, 0, 0.2, 1)` |
+| Shadow transitions (cards) | `transition-shadow` | `transition-property: box-shadow; duration: 150ms` |
+| Combined | `transition-colors transition-shadow` | — |
 
-### 8.2 Easing
+### 8.2 Design Token Extensions
 
-| Token | Curve | CSS | Usage |
+| Token | Duration | Easing | Usage |
 |---|---|---|---|
-| `ease-default` | Ease-out | `cubic-bezier(0.0, 0.0, 0.2, 1.0)` | Most transitions (elements arriving or settling) |
-| `ease-enter` | Decelerate | `cubic-bezier(0.0, 0.0, 0.2, 1.0)` | Elements entering the viewport |
-| `ease-exit` | Accelerate | `cubic-bezier(0.4, 0.0, 1.0, 1.0)` | Elements leaving the viewport |
-| `ease-bounce` | Spring | `cubic-bezier(0.34, 1.56, 0.64, 1.0)` | FAB press, success confirmations (use sparingly) |
+| `duration-instant` | 100ms | ease-out | Button press feedback |
+| `duration-fast` | 150ms | ease-out | Colour transitions (matches Tailwind default) |
+| `duration-normal` | 300ms | ease-out | Page transitions, modal open |
+| `duration-slow` | 500ms | decelerate | Overlay fade, panel slide |
 
-### 8.3 Animation Rules
+### 8.3 Rules
 
-1. **Respect `prefers-reduced-motion`.** When the user's OS has reduced motion enabled, all transitions must be instant (0ms duration) or replaced with opacity fades only.
-2. **No animation on data.** Numbers, costs, and health data must never animate in (no counting-up effects). Data appears immediately and completely.
-3. **Page transitions.** Forward navigation: new page slides in from the right (`translateX(100%)` to `translateX(0)`, `duration-normal`, `ease-enter`). Back navigation: current page slides out to the right.
-4. **Chatbot panel.** Opens: slide up from `translateY(100%)`, `duration-slow`, `ease-enter`. Closes: slide down, `duration-normal`, `ease-exit`.
-5. **Skeleton loading.** Use pulsing placeholder shapes (`opacity: 0.5` to `1.0`, `duration-slow`, infinite loop) for content that takes > 200ms to load.
+1. **`prefers-reduced-motion: reduce`** — set all durations to 0ms.
+2. **No animation on data.** Prices, health scores, and metrics appear instantly.
+3. **Modal entry:** fade overlay + scale card from 95% to 100%.
+4. **Hover shadows:** `shadow-md` appears on `transition-shadow` (cards).
 
 ---
 
 ## 9. Accessibility
 
-### 9.1 Focus Management
+### 9.1 Focus States
 
-| Property | Value |
+The reference app uses `focus:outline-none` on inputs, which **removes the default focus indicator**. This must be corrected:
+
+| Element | Required focus style |
 |---|---|
-| Focus ring style | `2px solid color-border-focus`, `2px offset` |
-| Focus ring visibility | Visible only on keyboard navigation (`:focus-visible`), hidden on mouse/touch |
-| Tab order | Follows visual reading order (top-to-bottom, left-to-right) |
-| Focus trap | Active in modal dialogs and chatbot overlay — tab cycles within the overlay until closed |
+| All interactive elements | `focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2` |
+| Search inputs | `focus-visible:border-orange-400 focus-visible:ring-1 focus-visible:ring-orange-400` |
+| Filter tabs | `focus-visible:ring-2 focus-visible:ring-blue-400` |
+| Sidebar nav items | `focus-visible:ring-2 focus-visible:ring-white/50` |
 
 ### 9.2 Touch Targets
 
-| Element | Minimum target size | Notes |
-|---|---|---|
-| Buttons | 48 x 48px | Includes padding; visual size may be smaller |
-| Tab bar items | 48 x 48px | Full height of tab bar |
-| List items (tappable) | Full width x 48px minimum height | — |
-| Icon buttons | 44 x 44px | Transparent hit area extends beyond visible icon |
-| Form inputs | 48px height | — |
+| Element | Current size | Required minimum | Action needed |
+|---|---|---|---|
+| Nav links (header) | `px-4 py-1.5` ≈ variable × 28px | 44 × 44px | Increase `py` to `py-2.5` or add invisible hit area |
+| Filter tabs | `px-3 py-1.5` ≈ variable × 28px | 44 × 44px | Same |
+| Community action buttons | 14px icon only | 44 × 44px | Add `p-2` minimum |
+| Star ratings | 12px | 44 × 44px | If interactive, enlarge hit area |
 
-### 9.3 Screen Reader Support
+### 9.3 Screen Reader Requirements
 
 | Requirement | Implementation |
 |---|---|
-| All images have `alt` text | Decorative images: `alt=""`. Informational images: descriptive `alt`. Pet photos: `alt="Photo of [pet name]"`. |
-| All icons have accessible labels | Icon-only buttons: `aria-label`. Icons beside text: `aria-hidden="true"` on the icon. |
-| Form errors announced | `aria-live="polite"` on error message containers. Errors linked to inputs via `aria-describedby`. |
-| Health score announced | `role="meter"`, `aria-valuenow`, `aria-valuemin="0"`, `aria-valuemax="100"`, `aria-label="Health score"`. |
-| Tab bar state | Active tab: `aria-selected="true"`. Tab panel: `role="tabpanel"`, linked via `aria-labelledby`. |
-| Page transitions | New page title announced via `aria-live="assertive"` on a visually hidden element. |
-| Chatbot overlay | `role="dialog"`, `aria-label="Pet diary chatbot"`, `aria-modal="true"`. |
+| Product images | `alt={product.name}` (implemented) |
+| Decorative icons in buttons | `aria-hidden="true"` on icon when paired with text label |
+| Icon-only buttons | `aria-label` required (cart count badge needs `aria-label="Varukorg, 2 artiklar"`) |
+| Star rating | `aria-label="Rating: 4.8 out of 5"` on container |
+| Filter tabs | `role="tablist"` on container, `role="tab"` + `aria-selected` on each tab |
+| Modal | `role="dialog"`, `aria-modal="true"`, `aria-label="Add Health Record"` |
+| Insurance coverage status | Text already present ("Covered by your plan" / "Not covered") — colour is not sole indicator |
+| Timeline | `role="list"` on container, `role="listitem"` on each entry |
 
 ### 9.4 Colour Independence
 
-No information is conveyed by colour alone. All status indicators use colour + icon + text label:
+The reference app uses colour + text for all status indicators:
 
-| Status | Colour | Icon | Label |
-|---|---|---|---|
-| Up to date | Green | Checkmark | "Up to date" |
-| Due soon | Orange | Clock | "Due in [N] days" |
-| Overdue | Red | Alert triangle | "Overdue" |
-| Out of stock | Grey | X circle | "Out of stock" |
+| Status | Colour | Text confirmation |
+|---|---|---|
+| Insurance covered | Green checkmark | "Covered by your plan" |
+| Not covered | Orange text | "Not covered" |
+| Active insurance | Orange bg badge | "Insured · Lassie Basic" |
+| Vaccination tag | Green bg | "Vaccination" label |
+| Vet visit tag | Orange bg | "Vet Visit" label |
+| In-stock/out-of-stock | Not in current app | Recommend adding text label |
 
 ---
 
 ## 10. Wireframes — Primary User Flows
 
-Wireframes are provided as `.pen` files in the `design/` directory. Each file covers one primary user flow.
+All wireframes are in `design/*.pen` and match the reference app's actual layout, components, and content patterns.
 
 | File | Flow | Screens |
 |---|---|---|
-| `design/01-auth-onboarding.pen` | Authentication and pet profile creation | Login, BankID verification, Pet profile form, Dashboard redirect |
-| `design/02-home-dashboard.pen` | Home dashboard | Dashboard with health score, cost snapshot, nutrition snapshot, agenda |
-| `design/03-health-tracker.pen` | Health logging and timeline | Health overview, Add vaccination form, Add vet visit form, Timeline detail |
-| `design/04-cost-insurance.pen` | Cost guidance and insurance comparison | Procedure search, Search results, Insurance comparison, Out-of-pocket breakdown |
-| `design/05-nutrition-food.pen` | Nutrition recommendations and product purchase | Recommendations list, Product matches, Add to cart, Recommendation reasoning |
-| `design/06-chatbot.pen` | Chatbot diary entry | FAB trigger, Chat panel open, Diary entry, Parsed confirmation |
+| `design/01-auth-onboarding.pen` | Authentication & pet profile creation | Login, BankID verification, Pet profile form |
+| `design/02-home-dashboard.pen` | Dashboard (product-forward) | Hero banner, categories, products, insurance, nutrition, community |
+| `design/03-health-tracker.pen` | Health timeline & record entry | Timeline with filters, add-record modal, upcoming care sidebar |
+| `design/04-cost-insurance.pen` | Cost guidance & insurance comparison | Procedure search with expand, insurance plan cards |
+| `design/05-nutrition-food.pen` | Nutrition plan & product purchase | Profile stats, meal schedule, recommended products sidebar |
+| `design/06-chatbot.pen` | Chatbot diary entry | FAB, chat panel overlay, parsed entry confirmation |
 
 ---
 
@@ -517,7 +613,7 @@ Wireframes are provided as `.pen` files in the `design/` directory. Each file co
 
 ```css
 :root {
-  /* === Colour: Brand === */
+  /* === Colour: Brand (from tailwind.config.js) === */
   --color-blue-50: #E0EDFF;
   --color-blue-100: #C1DAFF;
   --color-blue-200: #9AC2F5;
@@ -559,47 +655,30 @@ Wireframes are provided as `.pen` files in the `design/` directory. Each file co
   --color-grey-900: #1D1D20;
 
   /* === Colour: Semantic (Light Mode) === */
-  --color-bg-primary: #FFFFFF;
-  --color-bg-secondary: var(--color-grey-100);
-  --color-bg-tertiary: var(--color-grey-200);
-  --color-text-primary: var(--color-grey-900);
-  --color-text-secondary: var(--color-grey-700);
-  --color-text-tertiary: var(--color-grey-500);
+  --color-bg-page: var(--color-grey-100);
+  --color-bg-surface: #FFFFFF;
+  --color-bg-input: var(--color-grey-100);
+  --color-bg-hover: var(--color-grey-100);
+  --color-text-heading: var(--color-grey-900);
+  --color-text-body: var(--color-grey-700);
+  --color-text-secondary: var(--color-grey-500);
   --color-text-inverse: #FFFFFF;
-  --color-brand-primary: var(--color-blue-600);
-  --color-brand-secondary: var(--color-blue-50);
+  --color-action-primary: var(--color-orange-400);
+  --color-action-primary-hover: var(--color-orange-500);
+  --color-action-secondary-text: var(--color-orange-500);
   --color-success: var(--color-green-600);
   --color-success-bg: var(--color-green-50);
-  --color-warning: var(--color-orange-600);
+  --color-warning: var(--color-orange-400);
   --color-warning-bg: var(--color-orange-50);
   --color-error: #C62828;
   --color-error-bg: #FFEBEE;
   --color-border: var(--color-grey-200);
-  --color-border-focus: var(--color-blue-400);
-  --color-divider: var(--color-grey-200);
+  --color-border-focus: var(--color-orange-400);
+  --color-sidebar: var(--color-blue-600);
 
   /* === Typography === */
-  --font-display: 'ICA Rubrik', system-ui, -apple-system, sans-serif;
-  --font-body: 'ICA Text Ny', system-ui, -apple-system, sans-serif;
-  --font-number: 'ICA Text Ny Siffror', tabular-nums, monospace;
-  --font-number-condensed: 'ICA Text Ny Siffror Condensed', tabular-nums, monospace;
-
-  --text-display-size: 2rem;
-  --text-display-line: 2.5rem;
-  --text-h1-size: 1.5rem;
-  --text-h1-line: 2rem;
-  --text-h2-size: 1.25rem;
-  --text-h2-line: 1.75rem;
-  --text-h3-size: 1rem;
-  --text-h3-line: 1.5rem;
-  --text-body-size: 1rem;
-  --text-body-line: 1.5rem;
-  --text-body-sm-size: 0.875rem;
-  --text-body-sm-line: 1.25rem;
-  --text-caption-size: 0.75rem;
-  --text-caption-line: 1rem;
-  --text-overline-size: 0.6875rem;
-  --text-overline-line: 1rem;
+  --font-display: 'ICA Rubrik', system-ui, sans-serif;
+  --font-body: 'ICA Text Ny', system-ui, sans-serif;
 
   /* === Spacing === */
   --space-0: 0;
@@ -609,6 +688,7 @@ Wireframes are provided as `.pen` files in the `design/` directory. Each file co
   --space-4: 1rem;
   --space-5: 1.25rem;
   --space-6: 1.5rem;
+  --space-7: 1.75rem;
   --space-8: 2rem;
   --space-10: 2.5rem;
   --space-12: 3rem;
@@ -622,42 +702,38 @@ Wireframes are provided as `.pen` files in the `design/` directory. Each file co
   --radius-full: 9999px;
 
   /* === Shadows === */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
-  --shadow-md: 0 1px 3px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
 
   /* === Motion === */
   --duration-instant: 100ms;
-  --duration-fast: 200ms;
+  --duration-fast: 150ms;
   --duration-normal: 300ms;
   --duration-slow: 500ms;
-  --ease-default: cubic-bezier(0.0, 0.0, 0.2, 1.0);
-  --ease-enter: cubic-bezier(0.0, 0.0, 0.2, 1.0);
-  --ease-exit: cubic-bezier(0.4, 0.0, 1.0, 1.0);
-  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1.0);
+  --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-enter: cubic-bezier(0, 0, 0.2, 1);
+  --ease-exit: cubic-bezier(0.4, 0, 1, 1);
 
   /* === Layout === */
-  --breakpoint-sm: 320px;
-  --breakpoint-md: 768px;
-  --breakpoint-lg: 1024px;
-  --breakpoint-xl: 1440px;
-  --max-content-width: 1200px;
-  --tab-bar-height: 56px;
-  --app-bar-height: 56px;
+  --header-height: 104px;
+  --sidebar-width: 240px;
+  --max-content-width: 1152px;
 }
 
-/* === Dark Mode Overrides === */
+/* === Dark Mode === */
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-bg-primary: #121214;
-    --color-bg-secondary: #1C1C1F;
-    --color-bg-tertiary: #28282C;
-    --color-text-primary: #F0F0F2;
-    --color-text-secondary: #C5C6C7;
-    --color-text-tertiary: #828386;
+    --color-bg-page: #121214;
+    --color-bg-surface: #1C1C1F;
+    --color-bg-input: #28282C;
+    --color-bg-hover: #28282C;
+    --color-text-heading: #F0F0F2;
+    --color-text-body: #C5C6C7;
+    --color-text-secondary: #828386;
     --color-text-inverse: var(--color-grey-900);
-    --color-brand-primary: var(--color-blue-300);
-    --color-brand-secondary: var(--color-blue-800);
+    --color-action-primary: var(--color-orange-300);
+    --color-action-primary-hover: var(--color-orange-400);
+    --color-action-secondary-text: var(--color-orange-200);
     --color-success: var(--color-green-300);
     --color-success-bg: var(--color-green-900);
     --color-warning: var(--color-orange-200);
@@ -665,15 +741,13 @@ Wireframes are provided as `.pen` files in the `design/` directory. Each file co
     --color-error: #EF9A9A;
     --color-error-bg: #4E1A1A;
     --color-border: #2E2E32;
-    --color-border-focus: var(--color-blue-300);
-    --color-divider: #2E2E32;
+    --color-border-focus: var(--color-orange-300);
+    --color-sidebar: var(--color-blue-800);
     --shadow-sm: none;
     --shadow-md: none;
-    --shadow-lg: none;
   }
 }
 
-/* === Reduced Motion === */
 @media (prefers-reduced-motion: reduce) {
   :root {
     --duration-instant: 0ms;
@@ -684,13 +758,18 @@ Wireframes are provided as `.pen` files in the `design/` directory. Each file co
 }
 ```
 
-### 11.2 Tailwind Configuration (Excerpt)
+### 11.2 Tailwind Configuration (exact match to `tailwind.config.js`)
 
 ```js
-// tailwind.config.js — extend section
-module.exports = {
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ['./index.html', './src/**/*.{ts,tsx}'],
   theme: {
     extend: {
+      fontFamily: {
+        rubrik: ['"ICA Rubrik"', 'sans-serif'],
+        text: ['"ICA Text Ny"', 'sans-serif'],
+      },
       colors: {
         blue: {
           50: '#E0EDFF', 100: '#C1DAFF', 200: '#9AC2F5', 300: '#6E9FDB',
@@ -712,22 +791,10 @@ module.exports = {
           500: '#828386', 700: '#45464B', 900: '#1D1D20',
         },
       },
-      fontFamily: {
-        display: ['"ICA Rubrik"', 'system-ui', '-apple-system', 'sans-serif'],
-        body: ['"ICA Text Ny"', 'system-ui', '-apple-system', 'sans-serif'],
-        number: ['"ICA Text Ny Siffror"', 'tabular-nums', 'monospace'],
-      },
-      spacing: {
-        '0': '0', '1': '0.25rem', '2': '0.5rem', '3': '0.75rem',
-        '4': '1rem', '5': '1.25rem', '6': '1.5rem', '8': '2rem',
-        '10': '2.5rem', '12': '3rem', '16': '4rem',
-      },
-      borderRadius: {
-        sm: '4px', md: '8px', lg: '12px', xl: '16px', full: '9999px',
-      },
     },
   },
-};
+  plugins: [],
+}
 ```
 
 ---
@@ -736,9 +803,9 @@ module.exports = {
 
 | Asset type | Format | Notes |
 |---|---|---|
-| Icons | SVG | Individual files + combined sprite sheet. `currentColor` for stroke. Optimised with SVGO. |
-| Illustrations | SVG | Flat vector. No raster elements. |
-| Pet photos (user-uploaded) | WebP (primary), JPEG (fallback) | Max 400px wide for display. `<picture>` element with WebP source + JPEG fallback. |
-| Product images | WebP (primary), JPEG (fallback) | 160x160px @2x for retina. Served via ICA Gaston catalogue CDN. |
-| App icon | PNG | 1024x1024px master. Platform-specific exports via build pipeline. |
-| Fonts | WOFF2 (web), OTF/TTF (native) | Subset to Latin Extended for Swedish character support (including å, ä, ö). |
+| Icons | Lucide React (inline SVG) | No separate icon files; icons render as inline SVG via React components |
+| Product images | External URLs (WebP/JPEG via CDN) | Fallback: `onError` hides broken images |
+| User avatars | External URLs (JPEG) | 28–80px, `rounded-full`, `object-cover` |
+| Pet photos | Placeholder frames | 80px rounded squares (`bg-orange-50`) with PawPrint icon |
+| Fonts | TTF/OTF served from `/fonts/` | ICA Rubrik (variable TTF + Bold OTF), ICA Text Ny (Regular TTF) |
+| App icon | PNG 1024x1024 master | Platform-specific exports via build pipeline |

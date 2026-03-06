@@ -6,372 +6,504 @@
       "id": "cost-flow",
       "x": 0,
       "y": 0,
-      "name": "Cost & Insurance Flow",
-      "width": 1200,
+      "name": "Vet & Insurance — Desktop",
+      "width": 960,
       "fill": "#F5F5F5",
-      "layout": "horizontal",
-      "gap": 40,
+      "layout": "vertical",
       "padding": [40, 40],
+      "gap": 0,
       "children": [
         {
           "type": "frame",
-          "id": "procedure-search-screen",
-          "name": "1. Procedure Cost Search",
-          "width": 360,
-          "height": 780,
-          "fill": "#FFFFFF",
+          "id": "cost-screen",
+          "name": "Vet & Insurance — Full Page",
+          "width": 880,
+          "height": 900,
+          "fill": "#F5F5F5",
           "layout": "vertical",
           "cornerRadius": 16,
           "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" },
           "children": [
-            { "type": "frame", "id": "ps-statusbar", "width": "fill_container", "height": 44, "fill": "#FFFFFF" },
             {
               "type": "frame",
-              "id": "ps-header",
+              "id": "vi-topbar",
+              "name": "page-header",
               "width": "fill_container",
-              "height": 56,
+              "height": 64,
               "fill": "#FFFFFF",
               "layout": "horizontal",
               "alignItems": "center",
-              "padding": [0, 16],
-              "children": [
-                { "type": "text", "id": "ps-title", "fill": "#1D1D20", "content": "Kostnader & Försäkring", "fontFamily": "ICA Rubrik", "fontSize": 20, "fontWeight": "700" }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "ps-search",
-              "width": "fill_container",
-              "padding": [8, 16],
+              "justifyContent": "space-between",
+              "padding": [0, 28],
               "children": [
                 {
                   "type": "frame",
-                  "id": "ps-search-bar",
-                  "width": "fill_container",
-                  "height": 48,
-                  "fill": "#F5F5F5",
+                  "id": "vi-topbar-left",
+                  "layout": "vertical",
+                  "gap": 2,
+                  "children": [
+                    { "type": "text", "id": "vi-title", "fill": "#1D1D20", "content": "Vet & Insurance", "fontFamily": "ICA Rubrik", "fontSize": 18, "fontWeight": "700" },
+                    { "type": "text", "id": "vi-subtitle", "fill": "#828386", "content": "Cost transparency & coverage for Bjørn", "fontFamily": "ICA Text Ny", "fontSize": 13, "fontWeight": "400" }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "vi-insurance-badge",
+                  "name": "insurance-status-badge",
+                  "fill": "#FBCFBD",
                   "cornerRadius": 8,
+                  "stroke": { "align": "inside", "thickness": 1, "fill": "#F09E7D" },
+                  "padding": [8, 14],
                   "layout": "horizontal",
                   "alignItems": "center",
-                  "padding": [0, 12],
                   "gap": 8,
                   "children": [
-                    { "type": "frame", "id": "ps-search-icon", "width": 20, "height": 20, "fill": "#828386", "cornerRadius": 4 },
-                    { "type": "text", "id": "ps-search-placeholder", "fill": "#828386", "content": "Sök behandling, t.ex. \"kastrering\"", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "400" }
+                    { "type": "text", "id": "vi-shield-icon", "fill": "#B94A2E", "content": "🛡️", "fontSize": 14 },
+                    { "type": "text", "id": "vi-insurance-label", "fill": "#9A3427", "content": "Insured · Lassie Basic", "fontFamily": "ICA Rubrik", "fontSize": 13, "fontWeight": "700" }
                   ]
                 }
               ]
             },
+            { "type": "rectangle", "id": "vi-topbar-border", "width": "fill_container", "height": 1, "fill": "#ECEDED" },
             {
               "type": "frame",
-              "id": "ps-results",
+              "id": "vi-content",
+              "name": "scrollable-content",
               "width": "fill_container",
               "layout": "vertical",
-              "padding": [8, 16],
-              "gap": 8,
-              "children": [
-                { "type": "text", "id": "ps-results-heading", "fill": "#828386", "content": "VANLIGA BEHANDLINGAR", "fontFamily": "ICA Rubrik", "fontSize": 11, "fontWeight": "600" },
-                {
-                  "type": "frame",
-                  "id": "ps-result-1",
-                  "width": "fill_container",
-                  "height": 72,
-                  "fill": "#FFFFFF",
-                  "cornerRadius": 12,
-                  "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" },
-                  "layout": "horizontal",
-                  "alignItems": "center",
-                  "justifyContent": "space-between",
-                  "padding": [0, 16],
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "ps-r1-left",
-                      "layout": "vertical",
-                      "gap": 2,
-                      "children": [
-                        { "type": "text", "id": "ps-r1-name", "fill": "#1D1D20", "content": "Kastrering (hane)", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "600" },
-                        { "type": "text", "id": "ps-r1-updated", "fill": "#828386", "content": "Uppdaterat: jan 2026", "fontFamily": "ICA Rubrik", "fontSize": 12, "fontWeight": "400" }
-                      ]
-                    },
-                    {
-                      "type": "frame",
-                      "id": "ps-r1-right",
-                      "layout": "vertical",
-                      "alignItems": "flex-end",
-                      "gap": 2,
-                      "children": [
-                        { "type": "text", "id": "ps-r1-price", "fill": "#1D1D20", "content": "3 500–6 000 kr", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "700" },
-                        { "type": "text", "id": "ps-r1-arrow", "fill": "#828386", "content": "Se detaljer ›", "fontFamily": "ICA Rubrik", "fontSize": 12, "fontWeight": "400" }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "ps-result-2",
-                  "width": "fill_container",
-                  "height": 72,
-                  "fill": "#FFFFFF",
-                  "cornerRadius": 12,
-                  "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" },
-                  "layout": "horizontal",
-                  "alignItems": "center",
-                  "justifyContent": "space-between",
-                  "padding": [0, 16],
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "ps-r2-left",
-                      "layout": "vertical",
-                      "gap": 2,
-                      "children": [
-                        { "type": "text", "id": "ps-r2-name", "fill": "#1D1D20", "content": "Tandsten / tandrengöring", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "600" },
-                        { "type": "text", "id": "ps-r2-updated", "fill": "#828386", "content": "Uppdaterat: feb 2026", "fontFamily": "ICA Rubrik", "fontSize": 12, "fontWeight": "400" }
-                      ]
-                    },
-                    {
-                      "type": "frame",
-                      "id": "ps-r2-right",
-                      "layout": "vertical",
-                      "alignItems": "flex-end",
-                      "gap": 2,
-                      "children": [
-                        { "type": "text", "id": "ps-r2-price", "fill": "#1D1D20", "content": "2 000–4 500 kr", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "700" },
-                        { "type": "text", "id": "ps-r2-arrow", "fill": "#828386", "content": "Se detaljer ›", "fontFamily": "ICA Rubrik", "fontSize": 12, "fontWeight": "400" }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "ps-result-3",
-                  "width": "fill_container",
-                  "height": 72,
-                  "fill": "#FFFFFF",
-                  "cornerRadius": 12,
-                  "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" },
-                  "layout": "horizontal",
-                  "alignItems": "center",
-                  "justifyContent": "space-between",
-                  "padding": [0, 16],
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "ps-r3-left",
-                      "layout": "vertical",
-                      "gap": 2,
-                      "children": [
-                        { "type": "text", "id": "ps-r3-name", "fill": "#1D1D20", "content": "Röntgen", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "600" },
-                        { "type": "text", "id": "ps-r3-updated", "fill": "#828386", "content": "Uppdaterat: dec 2025", "fontFamily": "ICA Rubrik", "fontSize": 12, "fontWeight": "400" }
-                      ]
-                    },
-                    {
-                      "type": "frame",
-                      "id": "ps-r3-right",
-                      "layout": "vertical",
-                      "alignItems": "flex-end",
-                      "gap": 2,
-                      "children": [
-                        { "type": "text", "id": "ps-r3-price", "fill": "#1D1D20", "content": "1 500–3 000 kr", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "700" },
-                        { "type": "text", "id": "ps-r3-arrow", "fill": "#828386", "content": "Se detaljer ›", "fontFamily": "ICA Rubrik", "fontSize": 12, "fontWeight": "400" }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "frame",
-          "id": "insurance-compare-screen",
-          "name": "2. Insurance Comparison",
-          "width": 360,
-          "height": 780,
-          "fill": "#FFFFFF",
-          "layout": "vertical",
-          "cornerRadius": 16,
-          "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" },
-          "children": [
-            { "type": "frame", "id": "ic-statusbar", "width": "fill_container", "height": 44, "fill": "#FFFFFF" },
-            {
-              "type": "frame",
-              "id": "ic-header",
-              "width": "fill_container",
-              "height": 56,
-              "fill": "#FFFFFF",
-              "layout": "horizontal",
-              "alignItems": "center",
-              "padding": [0, 16],
-              "children": [
-                { "type": "text", "id": "ic-back", "fill": "#1E3065", "content": "←", "fontFamily": "ICA Rubrik", "fontSize": 20, "fontWeight": "600" },
-                { "type": "text", "id": "ic-title", "fill": "#1D1D20", "content": "  Jämför försäkringar", "fontFamily": "ICA Rubrik", "fontSize": 20, "fontWeight": "700" }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "ic-cards",
-              "width": "fill_container",
-              "layout": "vertical",
-              "padding": [8, 16],
-              "gap": 12,
+              "gap": 20,
+              "padding": [24, 24],
               "children": [
                 {
                   "type": "frame",
-                  "id": "ic-card-1",
-                  "name": "insurance-card-A",
+                  "id": "vi-procedures",
+                  "name": "procedure-cost-lookup",
                   "width": "fill_container",
                   "fill": "#FFFFFF",
-                  "cornerRadius": 12,
-                  "stroke": { "align": "inside", "thickness": 2, "fill": "#1E3065" },
+                  "cornerRadius": 16,
+                  "padding": [24, 24],
                   "layout": "vertical",
-                  "padding": [16, 16],
-                  "gap": 12,
+                  "gap": 16,
                   "children": [
                     {
                       "type": "frame",
-                      "id": "ic1-header",
-                      "width": "fill_container",
+                      "id": "vi-proc-header",
                       "layout": "horizontal",
                       "justifyContent": "space-between",
                       "alignItems": "center",
+                      "width": "fill_container",
                       "children": [
-                        { "type": "text", "id": "ic1-name", "fill": "#1D1D20", "content": "Lassie Hundförsäkring Plus", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "700" },
-                        { "type": "frame", "id": "ic1-logo", "width": 40, "height": 24, "fill": "#E0EDFF", "cornerRadius": 4 }
+                        { "type": "text", "id": "vi-proc-title", "fill": "#1D1D20", "content": "Procedure Cost Lookup", "fontFamily": "ICA Rubrik", "fontSize": 16, "fontWeight": "700" },
+                        { "type": "text", "id": "vi-proc-note", "fill": "#828386", "content": "Based on Swedish clinic averages", "fontFamily": "ICA Text Ny", "fontSize": 12, "fontWeight": "400" }
                       ]
                     },
                     {
                       "type": "frame",
-                      "id": "ic1-metrics",
-                      "width": "fill_container",
-                      "layout": "horizontal",
-                      "gap": 16,
-                      "children": [
-                        {
-                          "type": "frame",
-                          "id": "ic1-premium",
-                          "layout": "vertical",
-                          "gap": 2,
-                          "children": [
-                            { "type": "text", "id": "ic1-prem-label", "fill": "#828386", "content": "Premie/mån", "fontFamily": "ICA Rubrik", "fontSize": 11, "fontWeight": "400" },
-                            { "type": "text", "id": "ic1-prem-value", "fill": "#1D1D20", "content": "329 kr", "fontFamily": "ICA Rubrik", "fontSize": 20, "fontWeight": "700" }
-                          ]
-                        },
-                        {
-                          "type": "frame",
-                          "id": "ic1-deductible",
-                          "layout": "vertical",
-                          "gap": 2,
-                          "children": [
-                            { "type": "text", "id": "ic1-ded-label", "fill": "#828386", "content": "Självrisk", "fontFamily": "ICA Rubrik", "fontSize": 11, "fontWeight": "400" },
-                            { "type": "text", "id": "ic1-ded-value", "fill": "#1D1D20", "content": "1 500 kr", "fontFamily": "ICA Rubrik", "fontSize": 16, "fontWeight": "600" }
-                          ]
-                        },
-                        {
-                          "type": "frame",
-                          "id": "ic1-coverage",
-                          "layout": "vertical",
-                          "gap": 2,
-                          "children": [
-                            { "type": "text", "id": "ic1-cov-label", "fill": "#828386", "content": "Maxbelopp", "fontFamily": "ICA Rubrik", "fontSize": 11, "fontWeight": "400" },
-                            { "type": "text", "id": "ic1-cov-value", "fill": "#1D1D20", "content": "120 000 kr", "fontFamily": "ICA Rubrik", "fontSize": 16, "fontWeight": "600" }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "type": "frame",
-                      "id": "ic1-cta",
-                      "width": "fill_container",
-                      "height": 40,
-                      "fill": "#1E3065",
-                      "cornerRadius": 8,
-                      "layout": "horizontal",
-                      "alignItems": "center",
-                      "justifyContent": "center",
-                      "children": [
-                        { "type": "text", "id": "ic1-cta-label", "fill": "#FFFFFF", "content": "Teckna försäkring", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "600" }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "ic-card-2",
-                  "name": "insurance-card-B",
-                  "width": "fill_container",
-                  "fill": "#FFFFFF",
-                  "cornerRadius": 12,
-                  "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" },
-                  "layout": "vertical",
-                  "padding": [16, 16],
-                  "gap": 12,
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "ic2-header",
-                      "width": "fill_container",
-                      "layout": "horizontal",
-                      "justifyContent": "space-between",
-                      "alignItems": "center",
-                      "children": [
-                        { "type": "text", "id": "ic2-name", "fill": "#1D1D20", "content": "Agria Bas", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "700" },
-                        { "type": "frame", "id": "ic2-logo", "width": 40, "height": 24, "fill": "#E8F2E1", "cornerRadius": 4 }
-                      ]
-                    },
-                    {
-                      "type": "frame",
-                      "id": "ic2-metrics",
-                      "width": "fill_container",
-                      "layout": "horizontal",
-                      "gap": 16,
-                      "children": [
-                        {
-                          "type": "frame",
-                          "id": "ic2-premium",
-                          "layout": "vertical",
-                          "gap": 2,
-                          "children": [
-                            { "type": "text", "id": "ic2-prem-label", "fill": "#828386", "content": "Premie/mån", "fontFamily": "ICA Rubrik", "fontSize": 11, "fontWeight": "400" },
-                            { "type": "text", "id": "ic2-prem-value", "fill": "#1D1D20", "content": "289 kr", "fontFamily": "ICA Rubrik", "fontSize": 20, "fontWeight": "700" }
-                          ]
-                        },
-                        {
-                          "type": "frame",
-                          "id": "ic2-deductible",
-                          "layout": "vertical",
-                          "gap": 2,
-                          "children": [
-                            { "type": "text", "id": "ic2-ded-label", "fill": "#828386", "content": "Självrisk", "fontFamily": "ICA Rubrik", "fontSize": 11, "fontWeight": "400" },
-                            { "type": "text", "id": "ic2-ded-value", "fill": "#1D1D20", "content": "2 000 kr", "fontFamily": "ICA Rubrik", "fontSize": 16, "fontWeight": "600" }
-                          ]
-                        },
-                        {
-                          "type": "frame",
-                          "id": "ic2-coverage",
-                          "layout": "vertical",
-                          "gap": 2,
-                          "children": [
-                            { "type": "text", "id": "ic2-cov-label", "fill": "#828386", "content": "Maxbelopp", "fontFamily": "ICA Rubrik", "fontSize": 11, "fontWeight": "400" },
-                            { "type": "text", "id": "ic2-cov-value", "fill": "#1D1D20", "content": "80 000 kr", "fontFamily": "ICA Rubrik", "fontSize": 16, "fontWeight": "600" }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "type": "frame",
-                      "id": "ic2-cta",
+                      "id": "vi-search",
+                      "name": "search-input",
                       "width": "fill_container",
                       "height": 40,
                       "fill": "#FFFFFF",
                       "cornerRadius": 8,
-                      "stroke": { "align": "inside", "thickness": 1.5, "fill": "#1E3065" },
+                      "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" },
                       "layout": "horizontal",
                       "alignItems": "center",
-                      "justifyContent": "center",
+                      "padding": [0, 12],
+                      "gap": 8,
                       "children": [
-                        { "type": "text", "id": "ic2-cta-label", "fill": "#1E3065", "content": "Teckna försäkring", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "600" }
+                        { "type": "text", "id": "vi-search-icon", "fill": "#828386", "content": "🔍", "fontSize": 14 },
+                        { "type": "text", "id": "vi-search-placeholder", "fill": "#828386", "content": "Search procedure…", "fontFamily": "ICA Text Ny", "fontSize": 14, "fontWeight": "400" }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "vi-proc-row-1",
+                      "name": "procedure-row-collapsed",
+                      "width": "fill_container",
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 12,
+                      "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" },
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "space-between",
+                      "padding": [12, 16],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "vi-proc1-left",
+                          "layout": "horizontal",
+                          "gap": 12,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "vi-proc1-badge",
+                              "fill": "#E8F2E1",
+                              "cornerRadius": 999,
+                              "padding": [2, 8],
+                              "children": [
+                                { "type": "text", "id": "vi-proc1-cat", "fill": "#235834", "content": "Preventive", "fontFamily": "ICA Rubrik", "fontSize": 11, "fontWeight": "700" }
+                              ]
+                            },
+                            { "type": "text", "id": "vi-proc1-name", "fill": "#1D1D20", "content": "Annual Vaccination", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "700" }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "vi-proc1-right",
+                          "layout": "horizontal",
+                          "gap": 16,
+                          "alignItems": "center",
+                          "children": [
+                            { "type": "text", "id": "vi-proc1-price", "fill": "#1D1D20", "content": "400–800 kr", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "700" },
+                            { "type": "text", "id": "vi-proc1-chevron", "fill": "#828386", "content": "▾", "fontSize": 14 }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "vi-proc-row-2-wrapper",
+                      "name": "procedure-row-expanded",
+                      "width": "fill_container",
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 12,
+                      "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" },
+                      "layout": "vertical",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "vi-proc2-header",
+                          "width": "fill_container",
+                          "layout": "horizontal",
+                          "alignItems": "center",
+                          "justifyContent": "space-between",
+                          "padding": [12, 16],
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "vi-proc2-left",
+                              "layout": "horizontal",
+                              "gap": 12,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "vi-proc2-badge",
+                                  "fill": "#E0EDFF",
+                                  "cornerRadius": 999,
+                                  "padding": [2, 8],
+                                  "children": [
+                                    { "type": "text", "id": "vi-proc2-cat", "fill": "#1E3065", "content": "Diagnostics", "fontFamily": "ICA Rubrik", "fontSize": 11, "fontWeight": "700" }
+                                  ]
+                                },
+                                { "type": "text", "id": "vi-proc2-name", "fill": "#1D1D20", "content": "Blood Panel & Analysis", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "700" }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "vi-proc2-right",
+                              "layout": "horizontal",
+                              "gap": 16,
+                              "alignItems": "center",
+                              "children": [
+                                { "type": "text", "id": "vi-proc2-price", "fill": "#1D1D20", "content": "900–1 800 kr", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "700" },
+                                { "type": "text", "id": "vi-proc2-chevron", "fill": "#828386", "content": "▴", "fontSize": 14 }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "vi-proc2-expanded",
+                          "name": "expanded-detail",
+                          "width": "fill_container",
+                          "fill": "#F5F5F5",
+                          "layout": "horizontal",
+                          "justifyContent": "space-between",
+                          "alignItems": "center",
+                          "padding": [12, 16],
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "vi-proc2-detail-left",
+                              "layout": "vertical",
+                              "gap": 4,
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "vi-proc2-avg-row",
+                                  "layout": "horizontal",
+                                  "gap": 4,
+                                  "children": [
+                                    { "type": "text", "id": "vi-proc2-avg-label", "fill": "#828386", "content": "Average cost:", "fontFamily": "ICA Text Ny", "fontSize": 13, "fontWeight": "400" },
+                                    { "type": "text", "id": "vi-proc2-avg-val", "fill": "#1D1D20", "content": "1 300 kr", "fontFamily": "ICA Rubrik", "fontSize": 13, "fontWeight": "700" }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "vi-proc2-cov-row",
+                                  "layout": "horizontal",
+                                  "gap": 4,
+                                  "children": [
+                                    { "type": "text", "id": "vi-proc2-cov-label", "fill": "#828386", "content": "Insurance coverage:", "fontFamily": "ICA Text Ny", "fontSize": 13, "fontWeight": "400" },
+                                    { "type": "text", "id": "vi-proc2-cov-val", "fill": "#2D6E40", "content": "Covered by your plan", "fontFamily": "ICA Rubrik", "fontSize": 13, "fontWeight": "700" }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "vi-proc2-find-btn",
+                              "fill": "#FFFFFF",
+                              "cornerRadius": 8,
+                              "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" },
+                              "padding": [6, 12],
+                              "layout": "horizontal",
+                              "alignItems": "center",
+                              "gap": 6,
+                              "children": [
+                                { "type": "text", "id": "vi-proc2-find-label", "fill": "#45464B", "content": "Find clinic", "fontFamily": "ICA Rubrik", "fontSize": 12, "fontWeight": "700" },
+                                { "type": "text", "id": "vi-proc2-find-icon", "fill": "#828386", "content": "↗", "fontSize": 12 }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "vi-proc-row-3",
+                      "name": "procedure-row-not-covered",
+                      "width": "fill_container",
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 12,
+                      "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" },
+                      "layout": "horizontal",
+                      "alignItems": "center",
+                      "justifyContent": "space-between",
+                      "padding": [12, 16],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "vi-proc3-left",
+                          "layout": "horizontal",
+                          "gap": 12,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "vi-proc3-badge",
+                              "fill": "#FBCFBD",
+                              "cornerRadius": 999,
+                              "padding": [2, 8],
+                              "children": [
+                                { "type": "text", "id": "vi-proc3-cat", "fill": "#9A3427", "content": "Dental", "fontFamily": "ICA Rubrik", "fontSize": 11, "fontWeight": "700" }
+                              ]
+                            },
+                            { "type": "text", "id": "vi-proc3-name", "fill": "#1D1D20", "content": "Dental Cleaning", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "700" }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "vi-proc3-right",
+                          "layout": "horizontal",
+                          "gap": 16,
+                          "alignItems": "center",
+                          "children": [
+                            { "type": "text", "id": "vi-proc3-price", "fill": "#1D1D20", "content": "2 500–5 000 kr", "fontFamily": "ICA Rubrik", "fontSize": 14, "fontWeight": "700" },
+                            { "type": "text", "id": "vi-proc3-chevron", "fill": "#828386", "content": "▾", "fontSize": 14 }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "vi-plans",
+                  "name": "insurance-plans-section",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 16,
+                  "padding": [24, 24],
+                  "layout": "vertical",
+                  "gap": 16,
+                  "children": [
+                    { "type": "text", "id": "vi-plans-title", "fill": "#1D1D20", "content": "Insurance Plans", "fontFamily": "ICA Rubrik", "fontSize": 16, "fontWeight": "700" },
+                    {
+                      "type": "frame",
+                      "id": "vi-plans-grid",
+                      "name": "two-column-plan-grid",
+                      "width": "fill_container",
+                      "layout": "horizontal",
+                      "gap": 16,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "vi-plan-1",
+                          "name": "plan-highlighted",
+                          "width": 396,
+                          "fill": "#FFFFFF",
+                          "cornerRadius": 12,
+                          "stroke": { "align": "inside", "thickness": 2, "fill": "#D4613C" },
+                          "padding": [20, 20],
+                          "layout": "vertical",
+                          "gap": 16,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "vi-plan1-header",
+                              "layout": "horizontal",
+                              "justifyContent": "space-between",
+                              "alignItems": "center",
+                              "width": "fill_container",
+                              "children": [
+                                { "type": "text", "id": "vi-plan1-name", "fill": "#1D1D20", "content": "Lassie Basic", "fontFamily": "ICA Rubrik", "fontSize": 16, "fontWeight": "700" },
+                                {
+                                  "type": "frame",
+                                  "id": "vi-plan1-badge",
+                                  "fill": "#2D6E40",
+                                  "cornerRadius": 999,
+                                  "padding": [4, 10],
+                                  "children": [
+                                    { "type": "text", "id": "vi-plan1-badge-text", "fill": "#FFFFFF", "content": "Best Value", "fontFamily": "ICA Rubrik", "fontSize": 11, "fontWeight": "700" }
+                                  ]
+                                }
+                              ]
+                            },
+                            { "type": "text", "id": "vi-plan1-price", "fill": "#1D1D20", "content": "249 kr/mo", "fontFamily": "ICA Rubrik", "fontSize": 24, "fontWeight": "700" },
+                            {
+                              "type": "frame",
+                              "id": "vi-plan1-rating",
+                              "layout": "horizontal",
+                              "gap": 4,
+                              "alignItems": "center",
+                              "children": [
+                                { "type": "text", "id": "vi-plan1-star", "fill": "#D4613C", "content": "★", "fontSize": 14 },
+                                { "type": "text", "id": "vi-plan1-rating-val", "fill": "#1D1D20", "content": "4.7", "fontFamily": "ICA Rubrik", "fontSize": 13, "fontWeight": "700" }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "vi-plan1-highlights",
+                              "layout": "vertical",
+                              "gap": 6,
+                              "width": "fill_container",
+                              "children": [
+                                { "type": "text", "id": "vi-plan1-h1", "fill": "#45464B", "content": "✓ Up to 50 000 kr/year", "fontFamily": "ICA Text Ny", "fontSize": 13, "fontWeight": "400" },
+                                { "type": "text", "id": "vi-plan1-h2", "fill": "#45464B", "content": "✓ Accident & illness covered", "fontFamily": "ICA Text Ny", "fontSize": 13, "fontWeight": "400" },
+                                { "type": "text", "id": "vi-plan1-h3", "fill": "#45464B", "content": "✓ Digital vet included", "fontFamily": "ICA Text Ny", "fontSize": 13, "fontWeight": "400" }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "vi-plan1-excluded",
+                              "layout": "vertical",
+                              "gap": 4,
+                              "width": "fill_container",
+                              "children": [
+                                { "type": "text", "id": "vi-plan1-excl-label", "fill": "#828386", "content": "EXCLUDED", "fontFamily": "ICA Rubrik", "fontSize": 11, "fontWeight": "700" },
+                                {
+                                  "type": "frame",
+                                  "id": "vi-plan1-excl-badges",
+                                  "layout": "horizontal",
+                                  "gap": 4,
+                                  "children": [
+                                    { "type": "frame", "id": "vi-plan1-excl1", "fill": "#F5F5F5", "cornerRadius": 999, "padding": [2, 8], "children": [{ "type": "text", "id": "vi-plan1-excl1-t", "fill": "#828386", "content": "Dental", "fontFamily": "ICA Text Ny", "fontSize": 11, "fontWeight": "400" }] },
+                                    { "type": "frame", "id": "vi-plan1-excl2", "fill": "#F5F5F5", "cornerRadius": 999, "padding": [2, 8], "children": [{ "type": "text", "id": "vi-plan1-excl2-t", "fill": "#828386", "content": "Preventive care", "fontFamily": "ICA Text Ny", "fontSize": 11, "fontWeight": "400" }] }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "vi-plan1-cta",
+                              "width": "fill_container",
+                              "height": 36,
+                              "fill": "#D4613C",
+                              "cornerRadius": 8,
+                              "layout": "horizontal",
+                              "alignItems": "center",
+                              "justifyContent": "center",
+                              "children": [
+                                { "type": "text", "id": "vi-plan1-cta-label", "fill": "#FFFFFF", "content": "Get Quote", "fontFamily": "ICA Rubrik", "fontSize": 13, "fontWeight": "700" }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "vi-plan-2",
+                          "name": "plan-standard",
+                          "width": 396,
+                          "fill": "#FFFFFF",
+                          "cornerRadius": 12,
+                          "stroke": { "align": "inside", "thickness": 1, "fill": "#ECEDED" },
+                          "padding": [20, 20],
+                          "layout": "vertical",
+                          "gap": 16,
+                          "children": [
+                            { "type": "text", "id": "vi-plan2-name", "fill": "#1D1D20", "content": "Agria Stor", "fontFamily": "ICA Rubrik", "fontSize": 16, "fontWeight": "700" },
+                            { "type": "text", "id": "vi-plan2-price", "fill": "#1D1D20", "content": "399 kr/mo", "fontFamily": "ICA Rubrik", "fontSize": 24, "fontWeight": "700" },
+                            {
+                              "type": "frame",
+                              "id": "vi-plan2-rating",
+                              "layout": "horizontal",
+                              "gap": 4,
+                              "alignItems": "center",
+                              "children": [
+                                { "type": "text", "id": "vi-plan2-star", "fill": "#D4613C", "content": "★", "fontSize": 14 },
+                                { "type": "text", "id": "vi-plan2-rating-val", "fill": "#1D1D20", "content": "4.5", "fontFamily": "ICA Rubrik", "fontSize": 13, "fontWeight": "700" }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "vi-plan2-highlights",
+                              "layout": "vertical",
+                              "gap": 6,
+                              "width": "fill_container",
+                              "children": [
+                                { "type": "text", "id": "vi-plan2-h1", "fill": "#45464B", "content": "✓ Up to 100 000 kr/year", "fontFamily": "ICA Text Ny", "fontSize": 13, "fontWeight": "400" },
+                                { "type": "text", "id": "vi-plan2-h2", "fill": "#45464B", "content": "✓ Dental partially covered", "fontFamily": "ICA Text Ny", "fontSize": 13, "fontWeight": "400" },
+                                { "type": "text", "id": "vi-plan2-h3", "fill": "#45464B", "content": "✓ Rehab & physio included", "fontFamily": "ICA Text Ny", "fontSize": 13, "fontWeight": "400" }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "vi-plan2-excluded",
+                              "layout": "vertical",
+                              "gap": 4,
+                              "width": "fill_container",
+                              "children": [
+                                { "type": "text", "id": "vi-plan2-excl-label", "fill": "#828386", "content": "EXCLUDED", "fontFamily": "ICA Rubrik", "fontSize": 11, "fontWeight": "700" },
+                                {
+                                  "type": "frame",
+                                  "id": "vi-plan2-excl-badges",
+                                  "layout": "horizontal",
+                                  "gap": 4,
+                                  "children": [
+                                    { "type": "frame", "id": "vi-plan2-excl1", "fill": "#F5F5F5", "cornerRadius": 999, "padding": [2, 8], "children": [{ "type": "text", "id": "vi-plan2-excl1-t", "fill": "#828386", "content": "Preventive care", "fontFamily": "ICA Text Ny", "fontSize": 11, "fontWeight": "400" }] }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "vi-plan2-cta",
+                              "width": "fill_container",
+                              "height": 36,
+                              "fill": "#F5F5F5",
+                              "cornerRadius": 8,
+                              "layout": "horizontal",
+                              "alignItems": "center",
+                              "justifyContent": "center",
+                              "children": [
+                                { "type": "text", "id": "vi-plan2-cta-label", "fill": "#1D1D20", "content": "Get Quote", "fontFamily": "ICA Rubrik", "fontSize": 13, "fontWeight": "700" }
+                              ]
+                            }
+                          ]
+                        }
                       ]
                     }
                   ]
